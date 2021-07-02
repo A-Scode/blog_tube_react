@@ -1,0 +1,201 @@
+.signup{
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+}
+.signup_form{
+    position: inherit;
+    height: 400px;
+    border-width: 4px;
+    border-style : inset;
+    border-radius:20px;
+    border-color: #0334dd;
+    box-shadow: 0 2px 10px var(--main_color);
+    display : grid;
+    background-size: 700px 100%;
+    background-repeat: no-repeat;
+}
+@media only screen and (min-width : 576px){
+    .signup_form{
+        max-width: 700px;
+        grid-template-rows: 80px auto;
+        grid-template-areas: "header"
+                             "form";
+        
+    }
+    .signup_form > form{
+        display: grid;
+        grid-template-rows: repeat(5 , 1fr);
+        grid-template-columns: 70%  30%;
+        grid-template-areas: "username image" 
+                             "email    image"
+                             "password image"
+                             ".     ."
+                             "submit   submit"
+                                            ;
+    }
+
+    #signup_submit{
+        align-self: baseline;
+        justify-self: center;
+    }
+
+}
+@media only screen and (max-width : 575px){
+    .signup_form{
+        width: 300px;
+        grid-template-rows: 80px auto ;
+        grid-template-areas: 'header'
+                             'form';
+    }
+    .signup_form > form{
+        display: grid;
+        grid-template-rows: 90px repeat(3 , 1fr) 60px;
+        grid-template-columns: 300px;
+        grid-template-areas: "image"
+                             "username"
+                             "email"
+                             "password"
+                             "submit"    ;
+    }
+    #signup_submit{
+        justify-self: center ;
+        align-self: center;
+    }
+    
+}
+
+
+.signup_form > h1{
+    grid-area: header;
+    align-self: center;
+    justify-self    : center;
+    color: rgb(24, 151, 201);
+    margin:10px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    mix-blend-mode: exclusion  ;
+    text-align: center;
+}
+.signup_form > form{
+    grid-area : form;
+}
+#signup_submit{
+    grid-area:submit;
+    width:100px;
+    height: 40px;
+    transform-origin: center;
+    border-radius: 20px;
+    border-color: #0334dd;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    box-shadow: 0 0px 10px var(--main_color);
+    font-weight: 800;
+    color: rgb(167, 0, 0);
+    cursor: pointer;
+}
+#signup_submit:active{
+    background-color:#0334dd ;
+    color:white;
+}
+.signup_username,.signup_email, .signup_password{
+    font-family: monospace;
+    font-weight: bold;
+    outline: none;
+    width: 200px;
+
+    height: 30px;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-color: var(--main_color);
+    font-size: 18px;
+    background-size: 25px 25px;
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-color: rgba(241, 241, 241, 0);
+}
+.signup_form input[type=file]{
+    height: 0.1px;
+    width: 0.1px;
+}
+.upload_image{
+    transition-property: all;
+    position: inherit;
+    width:80px;
+    height: 80px;
+    margin-right: 100px ;
+    margin-left: 100px ;
+    border-width: 4px;
+    border-style: inset;
+    border-color: #0334dd;
+    border-radius: 100%;
+    text-align: center;
+    background-size: 80px auto;
+    background-repeat: no-repeat;
+    background-color: white;
+    
+ 
+}
+.upload_image label{
+    color:rgba(255, 255, 255, 0);
+    display: inline-block;
+    vertical-align: center;
+    line-height: 80px;
+    cursor: pointer;
+}
+.signup_form >form > div.upload_image{
+    grid-area : image;
+    align-self: center;
+    justify-self: center;
+}
+.signup_username{
+    grid-area: username;
+    align-self:center;
+    justify-self: center;
+}
+.signup_email{
+    grid-area:email;
+    align-self:center;
+    justify-self: center;
+}
+.signup_password{
+    grid-area: password;
+    align-self:center;
+    justify-self: center;
+}
+.progress{
+    position: absolute;
+    width:0%;
+    height: 15px;
+    background-color: rgb(255, 251, 2);
+    transition-property: all ;
+    transition-duration: 500ms;
+    border-radius:20px;
+    bottom:0;
+    text-align: right;
+    color:#0334dd;
+    font-size:10px;
+    font-weight:bold;
+    left:0;
+    z-index:11;
+}
+.instList{
+    grid-column:  1 / span 2;
+    grid-row: 3 / span 2;
+    font-size: 20px;
+    font-family: monospace;
+    letter-spacing: 1.5px;
+    color:rgb(81, 170, 29);
+    text-shadow: 2px 1px  4px rgb(183, 0, 255) ;
+    margin:auto;margin-bottom :auto;
+    list-style-position: inside;
+    padding-left: 20px;
+}
+.instList > li{
+    list-style-image: radial-gradient(rgb(0, 119, 255) , rgba(255, 0, 0, 0.075));
+    list-style-position: outside;
+}

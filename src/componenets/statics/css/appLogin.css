@@ -1,0 +1,124 @@
+.login{
+    display : flex;
+    justify-content:center;
+    place-items:center;
+    height:100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+}
+
+.login h1,.login h2{
+    grid-area:h1;
+    color: rgb(24, 151, 201);
+    margin:10px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    mix-blend-mode: exclusion  ;
+    text-align: center;
+}
+form #email{
+    font-family: monospace;
+    font-weight: bold;
+    outline: none;
+    grid-area:main;
+    width: 200px;
+    margin:20px;
+    height: 30px;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-color: var(--main_color);
+    font-size: 18px;
+    background-size: 25px 25px;
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-color: rgba(255, 255, 255, 0);
+
+}
+form #password{
+    font-family: monospace;
+    font-weight: bold;
+    outline: none;
+    grid-area:main;
+    width: 200px;
+    margin:20px;
+    height: 30px;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-color: var(--main_color);
+    font-size: 18px;
+    background-size: 25px 25px;
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-color: rgba(255, 255, 255, 0);
+  
+
+}
+
+
+
+.form{
+    display: grid;
+    border-width: 4px;
+    border-style : inset;
+    border-radius:20px;
+    border-color: #0334dd;
+    box-shadow: 0 2px 10px var(--main_color);
+    width:300px;
+    height:400px;
+    grid-template-rows: 100px 300px;
+    grid-template-areas: 
+    "h1"
+    "main"    
+    ;
+    background-size: 300px 400px;
+    background-repeat: no-repeat;
+
+}
+.submit , .back{
+    width:100px;
+    height: 40px;
+    transform-origin: center;
+    transform:translateX(100%) translateY(100%);
+    border-radius: 20px;
+    border-color: #0334dd;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    box-shadow: 0 0px 10px var(--main_color);
+    font-weight: 800;
+    color: rgb(167, 0, 0);
+    cursor: pointer;
+    
+}
+.submit:active , .back:active{
+    background-color:#0334dd ;
+    color:white;
+}
+.redirectSignup{
+    position:inherit;
+    display:flex;
+    justify-content: center ;
+    max-width:300px;
+    max-height: 300px;
+    place-items: center;
+    transform:translateY(60px)
+    
+}
+.redirectSignup>p{
+    font-size:12px;
+    font-weight: bold;
+    line-height: 15px;
+    text-align: center;
+}
+.forgot_form {
+    position: inherit;
+    width:300px;
+    display: grid;
+    grid-row: 2 / span 1;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, calc(300px / 4)) ;
+}
+.forgot_form{
+    width:300px;
+}

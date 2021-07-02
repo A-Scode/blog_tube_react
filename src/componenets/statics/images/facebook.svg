@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <g class="layer">
+  <title>Layer 1</title>
+  <path fill="none" id="svg_31" opacity="0.5" stroke="#000000" stroke-width="5"/>
+  <path fill="none" id="svg_32" opacity="0.5" stroke="#000000" stroke-width="5"/>
+  <path fill="none" id="svg_33" opacity="0.5" stroke="#000000" stroke-width="5"/>
+  <g id="svg_34">
+   <path d="m5.070904,52.640101c0,0 0.484716,-47.634196 47.825324,-47.634196c47.340608,0 47.179036,0.160926 47.179036,0c0,-0.160926 47.663752,-0.160926 47.599114,-0.289679c-0.064638,-0.128752 47.889962,-1.158659 47.566818,47.119243" fill="none" id="svg_19" stroke="#ffffff" stroke-width="8"/>
+   <path d="m195.325117,147.627172c0,0 -0.649393,47.632207 -47.989715,47.466046c-47.340322,-0.166161 -47.178192,-0.326517 -47.178748,-0.165594c-0.000556,0.160929 -47.66402,-0.006366 -47.599829,0.122609c0.064197,0.128981 -47.893673,0.990566 -47.403629,-47.285912" fill="none" id="svg_20" stroke="#ffffff" stroke-width="8"/>
+   <line fill="none" id="svg_27" stroke="#ffffff" stroke-width="8" x1="5.000004" x2="5.000004" y1="50.375332" y2="151.793062"/>
+   <line fill="none" id="svg_28" stroke="#ffffff" stroke-width="8" x1="195.413064" x2="195.413064" y1="47.347937" y2="148.765667"/>
+   <text fill="#ffffff" font-family="Serif" font-size="24" id="svg_29" stroke="#ffffff" stroke-width="0" text-anchor="middle" transform="matrix(12.0289 0 0 7.64727 -3452.78 -1878.64)" x="294.366058" xml:space="preserve" y="267.751194">f</text>
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,300;1,500&display=swap');
+
+*{
+    scroll-behavior: smooth;
+    outline : none;
+}
+body{
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    -webkit-user-select:none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    margin:0;padding:0;
+
+}
+::-webkit-scrollbar{
+    width: 5px;
+    box-sizing: border-box;
+    scrollbar-gutter: stable;
+
+}
+::-webkit-scrollbar-track{
+    background-color: #3cb7ff00;
+    border-radius: 0px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(102, 102, 102, 0.432);
+    border-radius: 5px;
+}
+::selection{
+    background-color: rgb(255, 251, 0);
+    color:rgb(108, 0, 141);
+}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+.appbody{
+    font-family: 'Poppins', sans-serif;
+    font-size:1.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    position: inherit;
+    overflow-y: auto;
+    bottom : 0;
+    top:0;
+    padding-top: 35px;
+    margin-top:20px;
+    margin-left:10px;
+    margin-right: 10px;
+    padding-bottom: 50px;
+    width: calc(100% - 20px );
+    filter: saturate(1.5) contrast(1.5);
+    grid-area: appbody;
+}
+.appcontent::-webkit-scrollbar{
+    width : 0 ;
+     
+}
+.appcontent{
+    display:grid;
+    width : 100%;
+    height: calc(100% - 20px);
+    overflow-y: auto;
+    position:absolute;
+    top:20px;
+    left:0;
+    grid-template-rows: 100% 100px;
+    grid-template-areas: 
+    "appbody"
+    "footer"
+    ;
+}
+@media only screen and (max-width: 575px){
+    .appcontent{
+        grid-template-rows: 100% 200px;
+        grid-template-areas: 
+        "appbody"
+        "footer"
+        ;
+    }
+}

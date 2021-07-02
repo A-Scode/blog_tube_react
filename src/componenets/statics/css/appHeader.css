@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+:root{
+    --main_color : #3cb8ff;
+    /* --search_icon_url :url('http://192.168.43.226:8000/static/images/search_icon.svg');  */
+}
+
+.menuicon{
+    display : flex;
+    position: inherit;
+    left: calc(10px + 10px);
+    place-items: center;
+
+}
+
+#menuIcon{
+    position : relative;
+    /* left : 10px; */
+    min-height: auto;
+    min-width: auto;
+    height : 35px;
+    width : 30px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    opacity:1;
+    
+}
+
+#menuIcon:active{
+    opacity: 0.5;
+    filter: blur(1px) saturate(1) ;
+
+}
+
+.header{
+    position: fixed;
+    background-color:white;
+    margin:10px;
+    width:calc(100vw - 30px);
+    height: 35px;
+    box-shadow: 0 2px 10px var(--main_color);
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 4px;
+    border-color: #0334dd;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    z-index:5;
+}
+
+#blog_tube{
+    position: fixed;
+    max-height: 50px;
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+    z-index: 7;
+}
+
+#logo{
+    margin-left: 5px;
+    margin-right:5px;
+    display: inline-flex;
+    height: 50px;
+    width : 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    filter: saturate(1.5) contrast(1.5);
+}
+
+#searchIcon{
+    position:absolute;
+    margin-right: 10px;
+    display: inline-flex;
+    height: 25px;
+    width : 30px;
+    vertical-align: middle;
+    line-height: 50px;
+    right:0;
+    /* filter:  ; */
+
+}
+#searchInput{
+    position: absolute;
+    right:0;
+    margin:15px;
+    height: 20px;
+    width:200px ;
+    outline : #3cb8ff;
+    background-image: var(--search_icon_url) ;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-color: var(--main_color);
+    background-size: 25px 18px;
+    background-position: 4px 0px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    font-size: 18px;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+
+}
+#searchInputResponsive{
+    display: block;
+    position: fixed;
+    margin:10px;
+    height: 40px;
+    top:calc(35px + 10px + 10px);
+    width:80vw ;
+    outline : #3cb8ff;
+    /* background-image: url('http://localhost:8000/static/images/search_icon.svg'); */
+    background-size: 25px 20px;
+    background-position: 4px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    font-family: monospace;
+
+    z-index: inherit;
+    border-width: 0;
+    border-bottom-width:1px;
+    border-style: inset;
+    border-color: var(--main_color);
+    background-color: transparent;
+
+}
+
+#blogListContainer{
+    position:fixed;
+    display:block;
+    width: 80vw;
+    overflow-y: auto;
+    z-index: inherit;
+    top:calc(35px + (2*10px) + 60px);
+    margin-top:10px;
+    bottom: 10vh;
+}
+#blogListContainer::-webkit-scrollbar{
+    width: 0;
+}
+.blog_elems{
+    font-size:20px;
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    color:#0334dd;
+    border-width: 2px;
+    border-color: #0334dd;
+    border-style: inset;
+    border-radius: 20px;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    overflow: hidden ;
+    white-space: nowrap;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+@media only screen and (min-width : 769px) {
+    .blog_elems{
+        max-width: 50vw;
+    }
+    
+}
+
+.blog_elems:hover{
+    transition-property: all;
+    transition-duration: 0.1s;
+    box-shadow: 2px 2px 5px rgb(131, 107, 0);
+    text-decoration:none;
+    
+}
+#blogList{
+    position: fixed;
+    display: none  ;
+    top: calc(35px + 10px);
+    right:15px;
+    z-index: 4;
+    margin: 10px;
+    min-width:450px;
+    max-height: 80vh;
+    overflow-y: auto;
+    
+}
+#blogList::-webkit-scrollbar{
+    width: 0;
+}

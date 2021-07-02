@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="30mm"
+   height="30.000002mm"
+   viewBox="0 0 30 30.000002"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="logoutIcon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.9598765"
+     inkscape:cx="-6.3779528"
+     inkscape:cy="49.237795"
+     inkscape:window-width="1280"
+     inkscape:window-height="777"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1527"
+       originx="-2.2492484"
+       originy="2.1792585" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2.2492484,2.1792586)">
+    <path
+       id="path2638"
+       style="fill:none;stroke:#0062ff;stroke-width:1.58167;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       d="m 22.225001,4.6510699 c 4.411782,1.7104515 7.502512,5.6757301 7.502512,10.2943011 0,6.182306 -5.537927,11.194057 -12.369308,11.194057 -6.83138,0 -12.3693083,-5.011751 -12.3693083,-11.194057 0,-4.604009 3.0712725,-8.5588396 7.4608223,-10.2780559"
+       sodipodi:nodetypes="csssc" />
+    <path
+       style="fill:none;stroke:#0062ff;stroke-width:1.69393;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 17.492721,-0.43970401 V 13.559924"
+       id="path4878" />
+  </g>
+</svg>
