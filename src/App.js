@@ -1,4 +1,4 @@
-import {  BrowserRouter as Router} from 'react-router-dom'
+import {  BrowserRouter as Router ,Route} from 'react-router-dom'
 import {CacheSwitch , CacheRoute } from 'react-router-cache-route'
 import AppHeader from './componenets/appHeader';
 import AppFooter from './componenets/appFooter';
@@ -69,9 +69,9 @@ function App() {
             <CacheRoute exact path = '/Signup'>
               <AppSignup appbodyloading = {change_appbodyloading}  />
             </CacheRoute>
-            <CacheRoute exact path = '/Blogians'>
+            <Route exact path = '/Blogians'>
               <AppBlogians />
-            </CacheRoute>
+            </Route>
         </CacheSwitch>
       
       </div>

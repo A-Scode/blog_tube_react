@@ -24,8 +24,7 @@ body{
     border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: rgba(102, 102, 102, 0.432);
-    border-radius: 5px;
+    background-image: radial-gradient(#0334dd ,rgb(36, 149, 255));
 }
 ::selection{
     background-color: rgb(255, 251, 0);
@@ -47,7 +46,6 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     margin-top:20px;
     margin-left:10px;
     margin-right: 10px;
-    padding-bottom: 50px;
     width: calc(100% - 20px );
     filter: saturate(1.5) contrast(1.5);
     grid-area: appbody;

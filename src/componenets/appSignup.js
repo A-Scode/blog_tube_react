@@ -29,7 +29,7 @@ var AppSignup = props=>{
         else if (event.nativeEvent.data === '"' || event.nativeEvent.data === "'"){
             event.target.value = event.target.value.slice(0, event.target.value.length-1)
         }else if (event.nativeEvent.data in chars ){
-            event.target.setCustomValidity("username should not contain \n ------------ ?!:;#$%^&*() ------------")
+            event.target.setCustomValidity("username should not contain \n ------------ ?!:;\"'#$%^&*() ------------")
             event.target.reportValidity()
             
         }

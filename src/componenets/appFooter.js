@@ -15,7 +15,7 @@ var AppFooter = props=>{
         try{
             let el = props.appbody
             el.addEventListener('scroll' , event=>{
-                console.log(el.scrollHeight,el.scrollTop+el.clientHeight)
+                
                 let height = el.getBoundingClientRect().height
                 if (el.scrollTop+ height === el.scrollHeight){
                     // ref.current['footer'].scrollIntoView({behavior:'smooth', block:'center'})

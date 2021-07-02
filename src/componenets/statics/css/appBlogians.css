@@ -1,19 +1,21 @@
 .blogians{
     width : 100%;
-    height: 100%;
+    height: auto ;
     overflow: auto;
-    display :flex;
-    flex-direction: row;
-    justify-content: center;
-    place-items: center;
+    display :grid;
+    grid-template-rows:  100px auto;
+    grid-template-areas: "input" "allBlogians" ;
+    align-items: center;
+    justify-items: center;
 }
 
+
 .blogiansInput{
-    width : calc(100% - 50px);
+    width : calc(100% - 100px);
     font-family: monospace;
     font-weight: bold;
     outline: none;
-
+    grid-area: input;
     height: 30px;
     border-width: 0;
     border-bottom-width: 1px;
@@ -23,6 +25,85 @@
     background-position: left;
     background-repeat: no-repeat;
     padding-left: 30px;
-    background-color: rgba(241, 241, 241, 0);
+    background-color: rgba(250, 235, 215, 0);
 
+
+}
+div.miniprofile{
+    position: inherit;
+    width :80%;
+    margin-top: 20px;
+    box-shadow: 2px 2px 4px grey;
+    padding:10px;
+    border-width :1px;
+    border-style: inset;
+    border-color: rgb(255, 60, 0);
+    border-radius: 10px; 
+    transition-property: all;
+    transition-duration: 0.15s;
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 30% repeat(2,1fr);
+    grid-template-areas: "photo name"
+                         "photo followers"
+                         "photo tag";
+    align-items: center;
+
+}
+div.miniprofile:active{
+    background-color: rgba(131, 131, 131, 0.089);
+}
+div.miniprofile:hover{
+    transform : scale( 1.05);
+    box-shadow: 4px 4px 20px  rgb(121, 0, 0);
+}
+
+div.tag{
+    background-color: rgb(4, 124, 223);
+    color:white;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 17px;
+    width: 100px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(25, 0, 255);
+    grid-area:tag;
+}
+div.allBlogians{
+    grid-area: allBlogians;
+    width : 100%;
+    display:flex;
+    justify-content: center;
+    place-items:center;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+div.follower_count{
+    font-size: 15px;
+    text-indent: 40px;
+    margin:10px;
+    background-size: 25px 25px;
+    background-position: left;
+    background-repeat: no-repeat;
+    grid-area:followers;
+}
+div.profilePhoto{
+    background-color: rgb(226, 226, 226);
+    width:50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: auto;
+    grid-area : photo;
+    background-size: 50px 50px;
+    background-position: left;
+    background-repeat: no-repeat;
+    border-width : 2px;
+    border-style: inset;
+    border-color: #0334dd;
+}
+div.profile_name{
+    grid-area:name;
+    text-indent:10px;
 }
