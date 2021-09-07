@@ -99,7 +99,8 @@
     font-size: 18px;
     font-family: monospace;
     letter-spacing: 0.5px;
-
+    background-color: transparent;
+    border-radius: 20px;
 }
 #searchInputResponsive{
     display: block;

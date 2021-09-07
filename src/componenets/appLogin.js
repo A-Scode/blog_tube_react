@@ -4,12 +4,11 @@ import password_logo from './statics/images/password.svg'
 import form_background from './statics/images/form_background.svg'
 import appConfig from './statics/appConfig.json'
 
-import anime, { set } from 'animejs'
+import anime from 'animejs'
 import { Login_context } from '../App'
 import { useEffect, useRef , useState , useContext} from 'react'
 import {
-    Link, Redirect, Route 
-} from 'react-router-dom'
+    Link} from 'react-router-dom'
 
 var AppLogin = props=>{
    

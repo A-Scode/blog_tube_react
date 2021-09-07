@@ -6,9 +6,11 @@ import AppLogin from './componenets/appLogin';
 import AppSignup from './componenets/appSignup';
 import AppBodyLoading from './componenets/appBodyLoading';
 import AppBlogians from './componenets/appBlogians';
+import config from './componenets/statics/appConfig.json'
 
 import './App.css'
 import  React , {useState , useCallback , useEffect} from 'react'
+import AppUserProfile from './componenets/appUserProfile';
 
 var Login_context = React.createContext(null)
 
@@ -54,6 +56,20 @@ function App() {
           set_appbodyloading_state(display)
     }
 
+    useEffect(()=>{
+    let xhr = new XMLHttpRequest()
+    xhr.open("POST",config.origin+"backend_api/getSessionId")
+
+    xhr.onreadystatechange = ()=>{
+      if (xhr.readyState == 4 && xhr.status == 200){
+        let session = JSON.parse(xhr.response).session
+        set_login_context_state(session)
+        console.log("login_successfull")
+      }
+    }
+    xhr.send()})
+
+    
   return (
     <Router>
       
@@ -69,8 +85,11 @@ function App() {
             <CacheRoute exact path = '/Signup'>
               <AppSignup appbodyloading = {change_appbodyloading}  />
             </CacheRoute>
-            <Route exact path = '/Blogians'>
+            <Route  path = '/Blogians' >
               <AppBlogians />
+            </Route>
+            <Route exact path = '/Profile/:user_id'>
+              <AppUserProfile />
             </Route>
         </CacheSwitch>
       

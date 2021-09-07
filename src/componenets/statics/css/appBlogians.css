@@ -4,6 +4,7 @@
     overflow: auto;
     display :grid;
     grid-template-rows:  100px auto;
+    grid-template-columns: 100%;
     grid-template-areas: "input" "allBlogians" ;
     align-items: center;
     justify-items: center;
@@ -42,7 +43,7 @@ div.miniprofile{
     transition-property: all;
     transition-duration: 0.15s;
     display: grid;
-    grid-template-columns: 80px auto;
+    grid-template-columns: 80px minmax(auto , calc(100% - 80px));
     grid-template-rows: 30% repeat(2,1fr);
     grid-template-areas: "photo name"
                          "photo followers"
@@ -50,12 +51,13 @@ div.miniprofile{
     align-items: center;
 
 }
-div.miniprofile:active{
-    background-color: rgba(131, 131, 131, 0.089);
-}
 div.miniprofile:hover{
     transform : scale( 1.05);
     box-shadow: 4px 4px 20px  rgb(121, 0, 0);
+}
+div.miniprofile:active{
+    transform: scale(1.04);
+    background-color: rgba(131, 131, 131, 0.089);
 }
 
 div.tag{
@@ -79,6 +81,8 @@ div.allBlogians{
     place-items:center;
     flex-direction: column;
     padding-bottom: 50px;
+    align-self:start;
+    transition-duration: .5s;
 }
 div.follower_count{
     font-size: 15px;
@@ -88,9 +92,12 @@ div.follower_count{
     background-position: left;
     background-repeat: no-repeat;
     grid-area:followers;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 div.profilePhoto{
-    background-color: rgb(226, 226, 226);
+    background-color: rgb(255, 255, 255);
     width:50px;
     height: 50px;
     border-radius: 100%;
@@ -106,4 +113,63 @@ div.profilePhoto{
 div.profile_name{
     grid-area:name;
     text-indent:10px;
+    text-overflow: ellipsis;
+    overflow: clip;
+    white-space: nowrap;
+    max-width: 80%;
+    position:inherit;
+}
+div.holder{
+    display: grid;
+    width : 100%;
+    height: auto;
+}
+div.profile_preview{
+    display: none;
+    overflow-x: scroll;
+}
+
+@media only screen and (min-width : 768px){
+    div.holder{
+        grid-template-columns: 50% 50%;
+        height :100%;
+    }
+    div.profile_preview{
+        display: none;
+        width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        grid-column: 2 / span 1;
+        position: sticky;
+        top:0;
+        
+    }
+    div.blogians{
+        width : 100%;
+        grid-column: 1 / span 2;
+        overflow-x: clip;
+
+    }
+}
+#FullpageProfile{
+    display: flex;
+    position:fixed;
+    bottom:20px;
+    margin:20px;
+    font-size: 20px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 4px;
+    padding: 5px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    border-color: #0334dd;
+    font-weight: 400;
+    box-shadow: 0 2px 10px var(--main_color);
+    right:0;
+    color: #0334dd;
+    font-weight: 600;
+}
+.links:visited{
+    text-decoration: none;
 }

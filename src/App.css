@@ -17,6 +17,7 @@ body{
     width: 5px;
     box-sizing: border-box;
     scrollbar-gutter: stable;
+    height: 5px;
 
 }
 ::-webkit-scrollbar-track{
@@ -25,6 +26,8 @@ body{
 }
 ::-webkit-scrollbar-thumb{
     background-image: radial-gradient(#0334dd ,rgb(36, 149, 255));
+    border-radius: 10px;
+
 }
 ::selection{
     background-color: rgb(255, 251, 0);
@@ -63,10 +66,12 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     top:20px;
     left:0;
     grid-template-rows: 100% 100px;
+    grid-template-columns: 100%;
     grid-template-areas: 
     "appbody"
     "footer"
     ;
+    overflow-x: clip;
 }
 @media only screen and (max-width: 575px){
     .appcontent{
@@ -76,4 +81,8 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
         "footer"
         ;
     }
+}
+
+a:visited ,a{
+    color:black;
 }

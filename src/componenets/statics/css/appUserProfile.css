@@ -1,0 +1,6 @@
+.profile_div{
+    display: grid;
+    grid-template-columns: auto repeat(2,minmax(150px , auto)) auto ;
+    min-height: calc(100% - 70px);
+    width: 100%;
+}

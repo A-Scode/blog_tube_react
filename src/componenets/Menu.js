@@ -55,20 +55,20 @@ function Menu  (props){
     }
 
 
+    var login_context = useContext(Login_context)
     useEffect(()=>{
         change_display(ref.current['menu_box'])
     }, [props.open])
 
     const [login , set_login ] = useState(Boolean(sessionStorage.session))
 
-    var login_context = useContext(Login_context)
 
     useEffect(()=>{
         if( sessionStorage.session === login_context ){
             set_login(true)
         }else{ set_login(false) }
 
-    } , [sessionStorage.session , login])
+    } , [sessionStorage.session , login,login_context])
 
 
     let mq = window.matchMedia('(min-width: 576px)')
@@ -105,7 +105,6 @@ var MenuItem = props=>{
         paddingLeft : "40px",
         minHeight : '30px',
         fontSize : '25px',
-        color : 'black'    ,
         fontWeight : '500',
         fontFamily : "sans-serif",
     }
@@ -126,7 +125,7 @@ var MenuItem = props=>{
     }
 
     return (
-        <Link to = {props.to} onClick={()=>click()} style = {{textDecoration: 'none'}}>
+        <Link  to = {props.to} onClick={()=>click()} style = {{textDecoration: 'none'}}>
         <div style = {menuItem_style} className="menuItem">
             <div style = {child_style}>{props.children}</div>
         </div>
