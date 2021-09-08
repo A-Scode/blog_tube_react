@@ -85,7 +85,7 @@ function Menu  (props){
                 <UserImage onClick = {()=>props.onClick()} width = "80px"  height = "80px" to = {login?'':'/Signup'} user_id={profile_photo()}  />
                 <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon}>Home</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Blogians"  img = {blogians}>Blogians</MenuItem>
-                <MenuItem  onClick = {()=>props.onClick()} to = "/Login"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
+                <MenuItem  onClick = {()=>props.onClick()} to = "/UploadBlog"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Login" logout = {login?true:false} img = {login?logoutIcon:loginIcon}>{login?"Logout":"Login"}</MenuItem>
 
 

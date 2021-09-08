@@ -11,6 +11,8 @@ import config from './componenets/statics/appConfig.json'
 import './App.css'
 import  React , {useState , useCallback , useEffect} from 'react'
 import AppUserProfile from './componenets/appUserProfile';
+import AppUploadBlog from './componenets/appUploadBlog';
+import { logout } from './componenets/statics/utils';
 
 var Login_context = React.createContext(null)
 
@@ -63,8 +65,14 @@ function App() {
     xhr.onreadystatechange = ()=>{
       if (xhr.readyState == 4 && xhr.status == 200){
         let session = JSON.parse(xhr.response).session
-        set_login_context_state(session)
-        console.log("login_successfull")
+        if (sessionStorage.session === session){
+          set_login_context_state(session)
+        } 
+        else{
+          logout()
+           delete sessionStorage.session
+          }
+        console.log(session)
       }
     }
     xhr.send()})
@@ -90,6 +98,9 @@ function App() {
             </Route>
             <Route exact path = '/Profile/:user_id'>
               <AppUserProfile />
+            </Route>
+            <Route exact path = '/UploadBlog'>
+              <AppUploadBlog />
             </Route>
         </CacheSwitch>
       

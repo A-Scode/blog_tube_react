@@ -16,11 +16,11 @@ const logout = ()=>{
     xhr.onreadystatechange = ()=>{
         if (xhr.readyState == 4 && xhr.status == 200){
             console.log("successfully Logged Out")
+            delete sessionStorage.session
         }
     }
     xhr.setRequestHeader('session' ,JSON.stringify(sessionStorage.session) )
     xhr.send()
-    delete sessionStorage.session
 }
 }
 
