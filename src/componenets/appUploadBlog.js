@@ -1,13 +1,14 @@
 import {useEffect ,useContext , useState} from 'react'
 import { Redirect ,useHistory } from 'react-router'
 import { Login_context } from '../App'
+import './statics/css/appUploadBlog.css'
 
 
 var AppUploadBlog = props=>{
     var login_context  = useContext(Login_context)
     const history  = useHistory()
     useEffect(()=>{
-        if (! login_context){
+        if (login_context !== sessionStorage.session){
             history.push('/Login')
             return null
         }        
@@ -17,17 +18,20 @@ var AppUploadBlog = props=>{
     
     const blog_info = (
         <div className="blog_info">
+            <div className="blog_info_child">
+            <h1 align = "center">Blog Information </h1>
             <form action="javascript:void(0)"></form>
-            <label htmlFor="blog_title">Title</label>
+            <label htmlFor="blog_title" id = "label_title">Title</label>
             <input type="text" placeholder = "Title" id = "blog_title" maxLength={100} required />
 
-            <label htmlFor="blog_discription">Discription</label>
+            <label htmlFor="blog_discription" id = "label_discription">Discription</label>
             <textarea type="text"  id="blog_discription" placeholder="Discription" maxLength={200} />
 
-            <label htmlFor="blog_image">image</label>
-            <input type="file" id = "blog_image" />
+            <label htmlFor="blog_image" id = "label_image" ></label>
+            <input type="file" id = "blog_image" hidden />
 
-            <input type="submit" value="Next" />
+            <input type="submit" value="Next" id = "submit" />
+            </div>
 
         </div>
     )

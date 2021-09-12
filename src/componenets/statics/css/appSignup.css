@@ -136,8 +136,8 @@
     text-align: center;
     background-size: 80px auto;
     background-repeat: no-repeat;
-    background-color: white;
-    
+    background-color: #ffffff0a;
+    backdrop-filter: blur(10px);
  
 }
 .upload_image label{

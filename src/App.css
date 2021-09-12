@@ -86,3 +86,10 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
 a:visited ,a{
     color:black;
 }
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus{
+    -webkit-transition-delay: 99999s;
+    -webkit-text-fill-color:#D7D8CE;
+} */
