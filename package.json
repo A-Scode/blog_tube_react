@@ -38,6 +38,8 @@
   },
   "devDependencies": {
     "animejs": "^3.2.1",
+    "dom-to-image": "^2.6.0",
+    "jquery": "^3.6.0",
     "react-router-cache-route": "^1.11.1"
   }
 }
