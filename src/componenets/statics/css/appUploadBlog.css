@@ -173,7 +173,7 @@ h1{
     border-color: #0334dd;
     font-size: 20px;
     font-weight: 500;
-}#blog_title , #blog_discription{
+}#blog_title , #blog_discription,.editing_pane #text_input{
     font-size: 15px;
     border-radius: 7px;
     border-color:#0334dd;
@@ -185,7 +185,7 @@ h1{
     transition-duration: 0.5s;
     background-color: rgba(201, 201, 201, 0.219);
 }
-#blog_title:focus , #blog_discription:focus{
+#blog_title:focus , #blog_discription:focus ,.editing_pane #text_input:focus{
     box-shadow: 0 0px 5px rgb(0, 110, 255) ,inset 2px 2px 5px #898989a3;
 }
 #submit:hover{
@@ -207,6 +207,7 @@ h1{
     display: block;
     position: absolute;
     top:0;
+    overflow:clip;
 }
 div.tabs{
     display: flex;
@@ -217,13 +218,11 @@ div.tabs{
     font-weight: 500;
     border-top-left-radius:20px;
     border-top-right-radius:20px;
-    margin-top: 20px;
+    margin-top: 30px;
     justify-content: space-around;
     place-items: center;
     box-shadow: inset 7px 6px 11px 2px #7196da57, inset -3px 4px 5px 2px #7196da57;
     font-size: 20px;
-
-
 }
 input[type="radio"]:checked + label{
     color:rgb(0, 107, 247);
@@ -238,6 +237,9 @@ div.tabs label{
     padding-left:20px;
     padding-right:20px;
     margin-top: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
 }.label_ico{
     width: 30px;
@@ -246,4 +248,156 @@ div.tabs label{
 }
 input[type="radio"]:checked + label > .label_ico{
     filter:none;
+}
+.editing_pane{
+    width: 100%;
+    height: calc(100% - 80px);
+    display: grid;
+    background-color:rgb(218 234 251 / 13%);
+    font-weight: 500;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    justify-content: space-around;
+    place-items: center;
+    box-shadow: inset 7px -9px 11px 2px #7196da57, inset -3px -7px 5px 2px #7196da57;
+    margin-bottom: 15px;
+}
+.editing_pane #text_input{
+    margin-left:5px;
+    margin-right:5px;
+    width: 80%;
+    resize: none;
+    grid-area: textarea;
+    height: 100px;
+    border-style: solid;
+    overflow: auto;
+    filter: grayscale(1);
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    grid-template-rows: 20px 1fr;
+    grid-template-areas:  "tag insert"
+                          "maintext insert";
+    padding: 0;
+}
+.components{
+    flex-direction: column;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: #0d19ff;
+    min-height: 200px;
+    min-width: 180px;
+    background-color: rgb(218 234 251 / 13%);
+    max-height: 300px;
+    overflow: auto;
+}
+
+@media only screen and (min-width : 768px){
+    .editing_pane{
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 1fr 200px;
+        grid-template-areas: "editing   components"
+                             "editing   textarea";
+    }
+    .editing{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        max-width: 600px;
+        grid-area: editing;
+    }
+    .addComponents{
+        display: none;
+    }
+    .components{
+        grid-area: components;
+        display: flex;
+    }
+}
+@media only screen and (max-width : 767px){
+    .editing_pane{
+        grid-template-rows: 1fr 120px;
+        grid-template-columns: 100%;
+        grid-template-areas: "editing" "textarea";
+    }
+    .editing{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        grid-area: editing;
+    }
+    .editing_pane #text_input{
+        height: 70px;
+        max-height: 100px;
+    }
+    .addComponents{
+        display: block;
+        position: absolute;
+        bottom: 130px;
+        width: 40px;
+        height: 40px;
+        right: 0;
+        margin-bottom: 10px;
+        margin-right: 8vw;
+        border-radius: 100%;
+        border-color: #0093ff;
+        border-width: 3px;
+        background-image: url(../images/addComponents.svg) ;
+        background-size: cover;
+    }.components{
+        display: none;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+.upload{
+    height: 30px;
+    width: 70px;
+    font-size: 15px;
+    color: white;
+    border-radius: 4px;
+    background-color: #0288d1;
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    border-color: white;
+}
+.comp_tag{
+    font-size: 10px;
+    background-color   : #0288d1 ;
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content;
+    display: none;
+    color: white;
+    grid-area: tag;
+    justify-self: center;
+}
+.components .heading{
+    height: 30px;
+    margin: 0;
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-style: solid;
+    width: 100%;
+    border-color: #0d19ff;
+}
+.insert_comp{
+        display: inline;
+        width: 40px;
+        height: 40px;
+        right: 0;
+        margin-right: 5px;
+        border-radius: 10px;
+        border-color: #0093ff;
+        border-width: 3px;
+        background-image: url(../images/insertComponents.svg) ;
+        background-size: cover;
+        grid-area: insert;
+        align-self: center;
+        place-self: center;
+}
+.maintext{
+    grid-area: maintext;
+    overflow: scroll;
 }

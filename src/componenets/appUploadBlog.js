@@ -54,12 +54,15 @@ var AppUploadBlog = props=>{
             'backgroundImage':`url(${image_url})`,
             backgroundSize:'contain',
             backgroundPosition : 'center',
-            backdropFilter:'blur(3px)'
+            backdropFilter:'blur(3px)',
+            'borderRadius':'20px',
+           
         })
         let target = $('#label_image')
         target.css({'backgroundImage': `url(${image_url})`,
            'borderRadius':'20px',
-           'backgroundSize' :'cover'
+           'backgroundSize' :'cover',
+           "boxShadow": "0px 1px 7px 3px #1976d2"
         })
 
         image_span = document.getElementById("image_span")
@@ -83,10 +86,10 @@ var AppUploadBlog = props=>{
             <div className="blog_info_child">
             <h1 align = "center">Blog Information </h1>
             <label htmlFor="blog_title" id = "label_title">Title</label>
-            <input type="text" placeholder = "Title" autoComplete={false} autoCorrect={true} autoCapitalize={true}  id = "blog_title" maxLength={100} ref= {el =>ref.current['blog_title']=el} required />
+            <input type="text" placeholder = "Title" autoComplete="off" spellCheck="true" autoCapitalize="words"  id = "blog_title" maxLength={100} ref= {el =>ref.current['blog_title']=el} required />
 
             <label htmlFor="blog_discription" id = "label_discription">Discription</label>
-            <textarea type="text" autoComplete={false} autoCorrect={true} autoCapitalize={true} id="blog_discription" placeholder="Discription" maxLength={200} ref= {el =>ref.current['blog_discription']=el} />
+            <textarea type="text" autoComplete="off" spellCheck="true" autoCapitalize="sentences" id="blog_discription" placeholder="Discription" maxLength={200} ref= {el =>ref.current['blog_discription']=el} />
 
             <label htmlFor="blog_image" id = "label_image" ><span id = "image_span"></span></label>
             <input type="file" id = "blog_image" onChange={change_image} hidden />
@@ -97,11 +100,21 @@ var AppUploadBlog = props=>{
         </form>
     ),[upload_blog_state, change_image,forward_to_editor])
 
-    const blog_editor = useMemo(()=>(
+    const [editor_state,set_editor_state] = useState('editor')
+
+    const [comp_state , set_comp_state] = useState('')
+
+    let set_to_editor= e=>{
+        set_editor_state(e.target.value)
+    }
+
+    const blog_editor = (
         <div className="editor">
-            <Editor_tabs />
+            <Editor_tabs change_state = {set_to_editor} />
+            {editor_state ==="editor"?<Editing_pane component = {comp_state} />:null}
+            {editor_state === "preview"?null:null}
         </div>
-    ),[upload_blog_state, change_image,forward_to_editor])
+    )
     return(
         <div className="blog_upload_page">
             {upload_blog_state == 'blog'? blog_info : null}
@@ -117,10 +130,65 @@ export default  AppUploadBlog;
 var Editor_tabs= props =>{
     return(
         <div className="tabs">
-            <input type="radio" name="tabs" id="editer_radio" value={true} hidden  checked/>
+            <input type="radio" name="tabs" id="editer_radio" value={"editor"} onInput= {(e)=>props.change_state(e)} hidden  defaultChecked/>
             <label htmlFor="editer_radio" id = "label_editor" ><img src = {editor_image}  className = "label_ico" />Editor</label>
-            <input type="radio" name="tabs" id="preview_radio" hidden />
+            <input type="radio" name="tabs" id="preview_radio" value= "preview" onInput= {(e)=>props.change_state(e)} hidden />
             <label htmlFor= "preview_radio" id = "label_preview" ><img src = {preview_image}  className = "label_ico" />Preview</label>
         </div>
         )
+}
+
+var Editing_pane = props =>{
+    const ref = useRef({})
+    const [edit_state , set_edit_state ] = useState(false)
+    useEffect(()=>{
+        if (props.component === ''){
+            set_edit_state(false)
+            ref.current['text_input'].style.filter = "greyscale(1)"
+            ref.current['comp_tag'].style.display = 'none'
+            ref.current['insert_comp'].disabled = true
+        }
+        else{
+             set_edit_state(true)
+             ref.current['text_input'].style.filter = "greyscale(0)"
+            ref.current['comp_tag'].style.display = 'block'
+            ref.current['insert_comp'].disabled = false
+
+            }
+    }
+    ,[props.component])
+    let mq = window.matchMedia("(max-width : 767px)")
+
+    const switch_comp = useCallback(()=>{
+        let display = ref.current['components'].style.display
+        if (mq.matches){
+            if (display === "none" || display === ""){
+                ref.current['components'].style.display = "flex"
+            }else{
+                ref.current['components'].style.display = ""
+            }
+        }else{
+            ref.current['components'].style.display = "flex"
+        }
+
+    },[mq])
+
+
+
+    return (
+        <div className="editing_pane">
+            <div className="editing">
+                <button className = "addComponents" onClick = {switch_comp} ></button>
+                <button className = "upload" >Upload</button>
+            </div>
+            <div className="components" ref = {el=>ref.current['components']=el}>
+                <h6 align = "center" className="heading">Components</h6>
+            </div>
+            <div id="text_input" ref = {el=>ref.current["text_input"]=el} cols="30" rows="10"  >
+                <span ref = {el => ref.current['comp_tag']=el} contentEditable = "false" className="comp_tag">{props.component}</span>
+                <div ref = {el => ref.current['maintext']= el} className="maintext"contentEditable = {edit_state}></div>
+                <button className="insert_comp" ref = {el => ref.current['insert_comp']=el} disabled></button>
+            </div>
+        </div>
+    )
 }
