@@ -293,7 +293,7 @@ var Editing_pane = props =>{
             ref.current['maintext'].innerText = ""
         }else if (input_state === "List"){
             let list = ref.current['maintext'].innerText
-            list = list.split("\n")
+            list = list.split("\n").filter(i=>i?i:null)
             set_blog([...blog,{"List":list}])
             props.blog([...blog,{"List":list}])
             ref.current['maintext'].innerText = ""
@@ -367,7 +367,7 @@ var Editing_pane = props =>{
             }
             xhr.setRequestHeader("session" , login_context)
             xhr.setRequestHeader("logindata" , login_data)
-            formdata.append("blogDetails" , JSON.stringify(blog_details))
+            formdata.append("blogDetails" , blog_details)
             xhr.send(formdata)
         }
     },[blog])
@@ -380,9 +380,13 @@ var Editing_pane = props =>{
         props.blog([...b])
     }
 
+    useEffect(()=>{
+        ref.current['editing'].scrollTo(0,ref.current['editing'].scrollHeight )
+    },[blog])
+
     return (
         <div className="editing_pane">
-            <div className="editing">
+            <div className="editing" ref ={el=>ref.current['editing']=el}>
                 <button className = "upload" onClick ={submit_data}  >Upload</button>
                 <button className = "addComponents" onClick = {switch_comp} ></button>
 
@@ -439,7 +443,7 @@ const Blog_part = props=>{
         data =(<video src = {url}  controls style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px", borderRadius : "5px" , maxWidth:"95%" ,justifySelf:"center" ,zIndex:"-1" }} />)
     }else if(heading === "Youtube Video"){
         data = (<iframe  src={`https://www.youtube.com/embed/${props.data[heading]}`}
-        title="YouTube video player" frameborder="0" style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px",width :"auto",height:"auto", borderRadius : "5px"}}
+        title="YouTube video player" frameborder="0" style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px",width :"auto",height:"auto", borderRadius : "5px" ,justifySelf:"center"}}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe>)
     }

@@ -7,6 +7,7 @@ import AppSignup from './componenets/appSignup';
 import AppBodyLoading from './componenets/appBodyLoading';
 import AppBlogians from './componenets/appBlogians';
 import config from './componenets/statics/appConfig.json'
+import AppBlog from './componenets/appBlog';
 
 import './App.css'
 import  React , {useState , useCallback , useEffect} from 'react'
@@ -87,6 +88,9 @@ function App() {
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
+            <CacheRoute exact path = '/Blog/:title'>
+              <AppBlog />
+            </CacheRoute>
             <CacheRoute exact path = '/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
             </CacheRoute>
@@ -105,9 +109,9 @@ function App() {
             <Route exact path = "/Home" >
               Home
             </Route>
-            <Route exact path = "/Error">
+            <CacheRoute exact path = "/Error">
               <h1>Error</h1>
-            </Route>
+            </CacheRoute>
         </CacheSwitch>
       
       </div>

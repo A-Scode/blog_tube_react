@@ -27,7 +27,6 @@ let UserImage = props=>{
             let to = '/Signup'
         }else{
                 ref.current.style.backgroundImage = `url(${appConfig.origin + `backend_api/getprofilephoto?user_id=${props.user_id}`})`
-                console.log("iloaded")
         }}
     }
     useEffect(()=>{
