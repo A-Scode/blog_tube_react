@@ -7,13 +7,14 @@ import searchIcon from './statics/images/search_icon.svg'
 import appConfig from './statics/appConfig.json'
 import search_logo from './statics/images/search_icon.svg'
 
-import { useState, useRef } from 'react'
+import { useState, useRef ,useEffect} from 'react'
 
 import Menu from './Menu'
 
 var change_menu_state;
 
 const AppHeader = props => {
+    
     var root = document.documentElement
     root.style.setProperty('--search_icon_url' , `url(${search_logo})`)
 
@@ -70,17 +71,13 @@ const AppHeader = props => {
             menuIcon_elem.current['searchIconResponsive'].focus()
             document.addEventListener('click' ,doc_click , true )
             setTimeout(()=>menuIcon_elem.current['searchIconResponsive'].focus() , 500)
-    }catch(err){
-        console.log(err)
-    }
+    }catch(err){}
     }
 
     let showHideSearch=(type)=>{
        try{
         menuIcon_elem.current['blogList'].style.display = type
-       }catch(err){
-           console.log(err)
-       }
+       }catch(err){}
         
     }
 
@@ -143,9 +140,7 @@ if(!mq.matches){
         }
         
         set_state_blog_list([...final_arr])
-    }catch(err){
-        console.log(err)
-    }
+    }catch(err){}
 
     }
     function sorting_list_sm(){
@@ -167,11 +162,8 @@ if(!mq.matches){
         }
         
         set_state_blog_list([...final_arr])
-        // console.log(state_blog_list)
     }
-    catch(err){
-        console.log(err)
-    }
+    catch(err){}
 
     }
     let [menu_state , set_menu_state] = useState(false)
@@ -180,7 +172,7 @@ if(!mq.matches){
 
     return (
         <div className="header" >
-            <Menu open = {menu_state}   onClick = {()=>menu_click()} /> 
+            <Menu open = {menu_state} login_state = {props.login_state}  onClick = {()=>menu_click()} /> 
             <div className="menuicon"  >
                 <img src={img_state} id='menuIcon' ref={el => menuIcon_elem.current['menuIcon'] = el} onClick={()=>menu_click()} alt="menuIcon" />
 

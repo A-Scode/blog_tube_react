@@ -82,7 +82,7 @@ function App() {
     <Router>
       
   <Login_context.Provider value = {login_context_state}>
-      <AppHeader  bloglist = {blogs}   />
+      <AppHeader  bloglist = {blogs} login_state = {login_context_state}  />
     <div className="appcontent" ref = {app_container_callback} >
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
@@ -99,8 +99,14 @@ function App() {
             <Route exact path = '/Profile/:user_id'>
               <AppUserProfile />
             </Route>
-            <Route exact path = '/UploadBlog'>
-              <AppUploadBlog />
+            <Route  path = '/UploadBlog'>
+              <AppUploadBlog appbodyloading= {change_appbodyloading} />
+            </Route>
+            <Route exact path = "/Home" >
+              Home
+            </Route>
+            <Route exact path = "/Error">
+              <h1>Error</h1>
             </Route>
         </CacheSwitch>
       

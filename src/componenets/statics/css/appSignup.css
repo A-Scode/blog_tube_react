@@ -143,7 +143,7 @@
 .upload_image label{
     color:rgba(255, 255, 255, 0);
     display: inline-block;
-    vertical-align: center;
+    vertical-align: middle;
     line-height: 80px;
     cursor: pointer;
 }
@@ -151,6 +151,8 @@
     grid-area : image;
     align-self: center;
     justify-self: center;
+    background-size: contain;
+    background-position: center;
 }
 .signup_username{
     grid-area: username;
@@ -189,8 +191,8 @@
     font-size: 20px;
     font-family: monospace;
     letter-spacing: 1.5px;
-    color:rgb(81, 170, 29);
-    text-shadow: 2px 1px  4px rgb(183, 0, 255) ;
+    color:#0277bd;
+    text-shadow: 2px 1px  4px rgb(0 114 255) ;
     margin:auto;margin-bottom :auto;
     list-style-position: inside;
     padding-left: 20px;

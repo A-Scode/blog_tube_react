@@ -153,13 +153,13 @@ try{
     var input_id
     var prev_value
     function change_image(){
-        
+        try{
         if (ref.current['image_input'].value !== '' && ref.current['image_input'].value !== prev_value ){
-        try{let image_url = URL.createObjectURL( ref.current['image_input'].files[0])
-        ref.current['image'].style.backgroundImage = `url(${image_url})`}catch(e){console.log(e)}
-        prev_value = ref.current['image_input'].value
-        clearInterval(input_id)
-    }
+            try{let image_url = URL.createObjectURL( ref.current['image_input'].files[0])
+            ref.current['image'].style.backgroundImage = `url(${image_url})`}catch(e){console.log(e)}
+            prev_value = ref.current['image_input'].value
+            clearInterval(input_id)
+    }}catch(e){}
     }
 
     function check_otp(event){
