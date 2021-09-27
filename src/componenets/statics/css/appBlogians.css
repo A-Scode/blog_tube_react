@@ -38,7 +38,7 @@ div.miniprofile{
     padding:10px;
     border-width :1px;
     border-style: inset;
-    border-color: rgb(255, 60, 0);
+    border-color: rgb(3 52 221);
     border-radius: 10px; 
     transition-property: all;
     transition-duration: 0.15s;
@@ -53,7 +53,7 @@ div.miniprofile{
 }
 div.miniprofile:hover{
     transform : scale( 1.05);
-    box-shadow: 4px 4px 20px  rgb(121, 0, 0);
+    box-shadow: 4px 4px 20px  grey;
 }
 div.miniprofile:active{
     transform: scale(1.04);
@@ -95,20 +95,6 @@ div.follower_count{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-div.profilePhoto{
-    background-color: rgb(255, 255, 255);
-    width:50px;
-    height: 50px;
-    border-radius: 100%;
-    margin: auto;
-    grid-area : photo;
-    background-size: 50px 50px;
-    background-position: left;
-    background-repeat: no-repeat;
-    border-width : 2px;
-    border-style: inset;
-    border-color: #0334dd;
 }
 div.profile_name{
     grid-area:name;

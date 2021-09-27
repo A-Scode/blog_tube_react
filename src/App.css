@@ -31,7 +31,7 @@ body{
 }
 ::selection{
     background-color: rgba(70, 70, 70, 0.267);
-    color:rgb(255, 217, 0);
+    color:#ff9800;
 }
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     -webkit-appearance: none;

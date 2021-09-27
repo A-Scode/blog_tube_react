@@ -13,7 +13,6 @@ import blogians from  './statics/images/blogians.svg'
 
 function Menu  (props){
     var ref = useRef({})
-    var menu_box;
 
     let count = 0 
 
@@ -83,7 +82,7 @@ function Menu  (props){
         <div className="menu_box" id = "menu_box"  ref= {el => ref.current['menu_box'] = el}  >
             <div className="menu_container" id = "menu_container" ref = { el => ref.current['menu_container']=el}>
                 <UserImage onClick = {()=>props.onClick()} width = "80px"  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
-                <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon}>Home</MenuItem>
+                <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/Home" >Home</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Blogians"  img = {blogians}>Blogians</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/UploadBlog"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Login" logout = {login?true:false} img = {login?logoutIcon:loginIcon}>{login?"Logout":"Login"}</MenuItem>

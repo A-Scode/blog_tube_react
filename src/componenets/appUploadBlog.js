@@ -10,7 +10,6 @@ import youtubeLogo from './statics/images/youtubeLogo.svg'
 import popComp from './statics/images/popComp.svg'
 import appConfig from './statics/appConfig.json'
 
-var babel = require('babel-core')
 
 var final_data = {}
 
@@ -45,7 +44,6 @@ var AppUploadBlog = props=>{
            "boxShadow": "0px 1px 7px 3px #1976d2"
         })        
     },[])
-    final_data['blog_title_image']=""
 
     const forward_to_editor = useCallback((event)=>{
         event.preventDefault()
@@ -106,10 +104,12 @@ var AppUploadBlog = props=>{
             </Switch>
         </div>
     ))
-
+    
     useEffect(()=>{
+        final_data['blog_title_image']=""
         if (login_context !== sessionStorage.session){
             history.push('/Login')
+
             return null
         }
     },[])
@@ -143,7 +143,7 @@ var Preview_tab =props =>{
                         break;
                     case "loginRequired":
                         history.push("/Login")
-                
+                        break
                     default:
                         console.log(response.status)
                         props.appbodyloading('none')

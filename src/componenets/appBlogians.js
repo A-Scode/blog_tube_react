@@ -7,6 +7,7 @@ import {Login_context} from '../App'
 import { useLocation , Link ,Redirect, useRouteMatch , useHistory} from 'react-router-dom'
 import { CacheSwitch as Switch, CacheRoute as Route} from 'react-router-cache-route'
 import AppUserProfile from './appUserProfile'
+import UserImage from './userImage'
 
 
 var AppBlogians = props=>{
@@ -92,7 +93,7 @@ var AppBlogians = props=>{
                 <input className = "blogiansInput" onInput= {event=>search(event)} style= {{backgroundImage:`url(${blogiansIcon})`}} type = "text" placeholder = "Search Blogians" />
                 <div className="allBlogians">
                     {user_list.map(item=>{
-                        return(<BlogiansMiniProfile key = {item.user_id} user_details = {item}  onClick = {(uid)=>show_preview(uid)} />)
+                        return(<BlogiansMiniProfile key = {item.user_id} user_details = {item}  onClick = {(uid)=>show_preview(uid)} to={`${path}/profile_small/${item.user_id}`} />)
                     })}
                 </div>
             </div>
@@ -114,30 +115,19 @@ var AppBlogians = props=>{
 
 function BlogiansMiniProfile(props){
 
-    const {path }= useRouteMatch()
-    // console.log(`${path}/profile_small/${props.user_details.user_id}`)
-
-    let ref = useRef({})
-    const session = useContext(Login_context)
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', appConfig.origin + "backend_api/getprofilephoto")
-    xhr.responseType = 'blob'
-    useEffect(()=>{
-    xhr.onreadystatechange = ()=>{
-        if (xhr.readyState == 4 && xhr.status == 200){
-           ref.current['profile_photo'].style.backgroundImage = `url(${URL.createObjectURL(xhr.response)})`
-        }
-    }
-    xhr.setRequestHeader("session" , session)
-    xhr.setRequestHeader("photouid" ,JSON.stringify( props.user_details.user_id))
-    xhr.send()}, [ref])
-
-
     return(
-        <Link className = "links" onClick = {()=>props.onClick(props.user_details.user_id)} style = {{textDecoration:'none',width : '100%',display:'flex', justifyContent:'center',placeItems:'center'}} to = {`${path}/profile_small/${props.user_details.user_id}`} >
+        <Link className = "links" onClick = {()=>props.onClick(props.user_details.user_id)} style = {{textDecoration:'none',width : '100%',display:'flex', maxWidth: "1000px", justifyContent:'center',placeItems:'center'}} to = {props.to} >
         <div className="miniprofile" >
-            <div className="profilePhoto" ref = {el=>ref.current['profile_photo']=el}>
-            </div>
+            <UserImage  width = "50px" height = "50px" to = {`/Profile/${props.user_details.user_id}`}
+             style = {{backgroundColor : "rgb(255, 255, 255)",
+                        margin:"auto",
+                        gridArea : "photo" ,
+                        borderWidth : "2px"}} 
+                        
+                user_id = {props.user_details.user_id}
+                onClick = {()=>null} />
+            {/* <div className="profilePhoto" ref = {el=>ref.current['profile_photo']=el}> */}
+            {/* </div> */}
             <div className="profile_name">{props.user_details.user_name}</div>
             <div className="follower_count" style= {{backgroundImage : `url(${blogiansIcon})`}} >{props.user_details.followers_count > 0 ?props.user_details.followers_count:"No"} Followers</div>
             {props.user_details.total_blogs > 0 ?<div className="tag">🏹Blogger</div>:null}
@@ -147,9 +137,10 @@ function BlogiansMiniProfile(props){
 }
 
 BlogiansMiniProfile.propTypes = {
-    user_details : PropTypes.object.isRequired
+    user_details : PropTypes.object.isRequired,
+    to : PropTypes.string.isRequired
 }
 
-
+export {BlogiansMiniProfile}
 
 export  default AppBlogians;

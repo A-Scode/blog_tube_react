@@ -14,6 +14,7 @@ import  React , {useState , useCallback , useEffect} from 'react'
 import AppUserProfile from './componenets/appUserProfile';
 import AppUploadBlog from './componenets/appUploadBlog';
 import { logout } from './componenets/statics/utils';
+import AppHome from './componenets/appHome';
 
 var Login_context = React.createContext(null)
 
@@ -88,9 +89,9 @@ function App() {
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
-            <CacheRoute exact path = '/Blog/:title'>
+            <Route exact path = '/Blog/:title'>
               <AppBlog />
-            </CacheRoute>
+            </Route>
             <CacheRoute exact path = '/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
             </CacheRoute>
@@ -107,7 +108,7 @@ function App() {
               <AppUploadBlog appbodyloading= {change_appbodyloading} />
             </Route>
             <Route exact path = "/Home" >
-              Home
+              <AppHome />
             </Route>
             <CacheRoute exact path = "/Error">
               <h1>Error</h1>
