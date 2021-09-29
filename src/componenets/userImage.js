@@ -55,8 +55,7 @@ let UserImage = props=>{
         })
         observer.observe(ref.current)
         flag = false;
-    // load_image()
-    
+        set_div_style({...div_style , ...props.style})
 },[props.user_id])
 
     return  <Link to = {props.to} ref ={el =>ref.current =el}  style = {div_style} onClick= {()=>props.onClick()} ></Link>

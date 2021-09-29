@@ -23,6 +23,7 @@ const AppBlog  = props=>{
     const [blog_details , set_blog_details] = useState({likes:"" , dislikes:"" ,
      views :"" , title:"" , image_url:"",blogger_details:""})
 
+     const ref = useRef({})
     useEffect(()=>{
     const xhr = new XMLHttpRequest()
     xhr.open('GET' ,appConfig.origin+'backend_api/getBlog?blog_id='+blog_id )
@@ -53,10 +54,19 @@ const AppBlog  = props=>{
     xhr.send()
     },[])
 
+    var full = false
 
-    return(<div className = "blog_page">
+    const getFullScreen = useCallback(()=>{
+        if (!full){
+        document.documentElement.requestFullscreen()
+        .then( ()=>full= true)
+        .catch(()=>full = false)}
+    },[ref.current.blog_page])
+
+
+    return(<div  className = "blog_page" ref ={el=>ref.current.blog_page = el} onMouseDown={getFullScreen} >
         <h2 align = "center">{blog_details.title}</h2>
-        <img src = {blog_details.image_url} className = "title_image" />
+        <img src = {blog_details.image_url} className = "title_image" loading = {"eager"} />
         <BlogiansMiniProfile user_details = {blog_details.blogger_details} onClick={()=>null}  to ={`/Profile/${blog_details.blogger_details.user_id}`} />
         <Blog>
             {blog_data_list.map((item,index)=>(<div key = {index} className = "container_data" dangerouslySetInnerHTML = {{__html:item}}></div>))}
@@ -126,10 +136,10 @@ const ReviewBlog=props=>{
     return(
         <div className="review">
             <input type="radio" name="review" ref = {el=>ref.current.like = el}  id="like" value= {"like"} onInput={e=>review(e)}  hidden/>
-            <label htmlFor="like" id="like_label" style={{backgroundImage:`url(${like_logo})`}} >{reviews.likes?reviews.likes:"No Likes"}</label>
-            <label id ="view_label" style={{backgroundImage:`url(${view_logo})`}}>{reviews.views?reviews.views:"No Views"}</label>
+            <label htmlFor="like" id="like_label" style={{backgroundImage:`url(${like_logo})`}} >{reviews.likes>0?reviews.likes:"No Likes"}</label>
+            <label id ="view_label" style={{backgroundImage:`url(${view_logo})`}}>{reviews.views>0?reviews.views:"No Views"}</label>
             <input type="radio" name="review" ref = {el=>ref.current.dislike = el}  id="dislike" value={"dislike"} onInput={e=>review(e)} hidden/>
-            <label htmlFor="dislike" id="dislike_label" style={{backgroundImage:`url(${dislike_logo})`}}  >{reviews.dislikes?reviews.dislikes:"No Dislikes"}</label>
+            <label htmlFor="dislike" id="dislike_label" style={{backgroundImage:`url(${dislike_logo})`}}  >{reviews.dislikes>0?reviews.dislikes:"No Dislikes"}</label>
         </div>
     )
 }
@@ -173,6 +183,7 @@ const Comments =props=>{
         let formdata = new FormData()
         formdata.append('blog_id' , props.blog_id)
         xhr.send(formdata)
+        
     },[])
 
     const send_comment = useCallback(()=>{

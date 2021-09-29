@@ -17,15 +17,14 @@
     margin:20px 0;
     border-radius: 20px;
     border-style: solid;
-    border-color: chartreuse;
-    box-shadow: 0px 0px 11px 4px green;
-    animation:3s ease-in-out alternate infinite image_shadow;
+    border-color: white;
+    box-shadow: 0px 0px 11px 4px #8b8b8b;
     grid-area : image;
 }
 @media only screen and (max-width : 768px){
     .blog_page{
         grid-template-columns: calc(100% - 10px);
-        grid-template-rows: 70px auto auto auto auto  auto;
+        grid-template-rows: minmax(70px,auto) auto auto auto auto  auto;
         grid-template-areas: "heading" 
                              " image "
                              "miniprofile"
@@ -70,12 +69,7 @@
                              "comment_input comment_list";
     }
 }
-@keyframes image_shadow {
-    to{
-        border-color: rgb(255, 0, 0);
-    box-shadow: 0px 0px 11px 4px rgb(128, 0, 0);
-    }
-}
+
 .review #like_label , .review #dislike_label ,.review #view_label{
     background-position: left;
     background-size: 30px 30px;

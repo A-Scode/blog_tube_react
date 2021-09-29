@@ -89,9 +89,9 @@ function App() {
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
-            <Route exact path = '/Blog/:title'>
+            <CacheRoute exact path = '/Blog/:title'>
               <AppBlog />
-            </Route>
+            </CacheRoute>
             <CacheRoute exact path = '/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
             </CacheRoute>

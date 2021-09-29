@@ -451,7 +451,9 @@ div.showpreview{
     padding:3px;
     border-radius:5px; 
 }
-
+.maintext input:valid ~label {
+    background-color: #607d8b;
+}
 
 .bullet_list::before , .bullet_list>div::before{
     content: "◉";
@@ -510,7 +512,10 @@ input[type="radio"]:checked + label.complist{
     overflow-wrap: break-word;
     hyphens: auto;
 }.container_data ul li{
-    list-style-type: "➥";
+    list-style-type: "🔰";
+    font-family: monospace;
+    font-size: 25px;
+    margin-left: 40px;
 }.container_part h5{
     margin-top: 10px;
     margin-bottom: 10px;

@@ -42,16 +42,15 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     font-weight: 300;
     letter-spacing: 1px;
     position: inherit;
+    margin: 20px 10px 0;
     overflow-y: auto;
     bottom : 0;
     top:0;
     padding-top: 35px;
-    margin-top:20px;
-    margin-left:10px;
-    margin-right: 10px;
     width: calc(100% - 20px );
     filter: saturate(1.5) contrast(1.5);
     grid-area: appbody;
+    max-width: 1500px;
 }
 .appcontent::-webkit-scrollbar{
     width : 0 ;
@@ -69,8 +68,8 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     grid-template-columns: 100%;
     grid-template-areas: 
     "appbody"
-    "footer"
-    ;
+    "footer";
+    justify-items: center;
     overflow-x: clip;
 }
 @media only screen and (max-width: 575px){

@@ -12,6 +12,7 @@ const AppBodyLoading = props=>{
     return (
         <div className="loading"  style = {{display : state, pointerEvents:'all'}} >
             <div className="logoanime">
+                <h1 style = {{color :'white'}}  align = "center" >Depends on Internet Speed</h1>
                 <img src={logo}  id = 'loadinglogo'   />
                 <div className='loadinganime' >
                     <div className ='dots' style = {{"--i" : 1}}></div>

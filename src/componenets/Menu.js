@@ -41,6 +41,7 @@ function Menu  (props){
             if(mq.matches){item.style.display= 'none'}
             else{
             item.style.transform = 'translateX(-270px)'
+            item.style.backdropFilter = 'brightness(1)'
             setTimeout(()=>{
                 item.style.display = 'none'
                 
@@ -48,6 +49,7 @@ function Menu  (props){
         }else{
             item.style.display = 'flex'
             item.style.transform = 'translateX(0px)'
+            item.style.backdropFilter = 'brightness(0.6)'
             item.addEventListener('click' , click_event , true)
 
         }
@@ -81,7 +83,18 @@ function Menu  (props){
     return(
         <div className="menu_box" id = "menu_box"  ref= {el => ref.current['menu_box'] = el}  >
             <div className="menu_container" id = "menu_container" ref = { el => ref.current['menu_container']=el}>
-                <UserImage onClick = {()=>props.onClick()} width = "80px"  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
+                <div className="nameImage" style = {{display : 'grid',gridTemplateRows:' 70% 30% '}} >
+                <UserImage onClick = {()=>props.onClick()} width = "80px" style = {{alignSelf:"end"}}  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
+                <h2 align = "center" style = {{margin:0 , padding:0,
+                fontFamily:'play',
+                fontSize:'28px',
+                color:"#0066ed",
+                lineHeight:2,
+                maxWidth:"80%",
+                textOverflow:'ellipsis',
+                justifySelf:'center'
+                }} >{login?JSON.parse(localStorage.login_data).username : ""}</h2>
+                </div>
                 <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/Home" >Home</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Blogians"  img = {blogians}>Blogians</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/UploadBlog"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
