@@ -12,6 +12,7 @@ let UserImage = props=>{
         height       : props.height,
         borderRadius : '100%',
         borderStyle  : 'inset',
+        backgroundColor: '#ffffffa3',
         borderWidth  : '4px',
         borderColor  : '#0334dd',
         backgroundSize : `contain`,

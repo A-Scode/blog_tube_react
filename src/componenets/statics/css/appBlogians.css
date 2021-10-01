@@ -44,7 +44,7 @@ div.miniprofile{
     transition-duration: 0.15s;
     display: grid;
     grid-template-columns: 80px minmax(auto , calc(100% - 80px));
-    grid-template-rows: 30% repeat(2,1fr);
+    grid-template-rows: 30% repeat(2,40px);
     grid-template-areas: "photo name"
                          "photo followers"
                          "photo tag";
@@ -67,11 +67,14 @@ div.tag{
     padding-left: 10px;
     padding-right: 10px;
     font-size: 17px;
-    width: 100px;
+    max-width: 100px;
     border-width: 1px;
     border-style: solid;
     border-color: rgb(25, 0, 255);
     grid-area:tag;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 div.allBlogians{
     grid-area: allBlogians;
@@ -87,7 +90,7 @@ div.allBlogians{
 div.follower_count{
     font-size: 15px;
     text-indent: 40px;
-    margin:10px;
+    margin:0 10px;
     background-size: 25px 25px;
     background-position: left;
     background-repeat: no-repeat;

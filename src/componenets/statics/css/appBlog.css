@@ -70,7 +70,7 @@
     }
 }
 
-.review #like_label , .review #dislike_label ,.review #view_label{
+#like_label , #dislike_label ,#view_label{
     background-position: left;
     background-size: 30px 30px;
     background-repeat: no-repeat;
@@ -190,9 +190,9 @@
     margin: 15px 0;
     max-width: calc(100% - 80px);
 
-}div.comment .datetime{
+} .datetime{
     grid-area : date;
-    font-size: 13px;
+    font-size: 15px;
     color : rgb(131, 131, 131);
     justify-self: right;
 }

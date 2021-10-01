@@ -1,0 +1,83 @@
+.blog_details{
+    max-width: 1000px;
+    color:white;
+    width: 90%;
+    display: grid;
+    align-items: center;
+    grid-template-areas: "image blogger"
+                         "image head_dis"
+                         "image public";
+    grid-gap: 10px;
+    box-shadow: 2px 2px 4px grey;
+    border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.15s;
+    border:2px solid rgb(3 52 221);
+    background-position: bottom;
+    background-size: cover;
+    margin: 20px auto ;
+}.blog_details:hover{
+    transform : scale( 1.05);
+    box-shadow: 4px 4px 20px  grey;
+}
+.public_details{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}.datetime {
+    align-self: center;
+    margin-left: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 5px;
+}div.blogger{
+    display: flex;
+    grid-area: blogger;
+}.blogger #username{
+    max-width: 100%;
+    margin-left: 10px;
+    font-weight: 300;
+}.blog_details .blog_image{
+    object-fit: contain;
+    aspect-ratio:  16 / 9;
+    grid-area: image;
+    width: 100%;
+    align-self: center;
+    margin:0 10px;
+    width: 90%;
+    border: 2px solid #cca200;
+    border-radius: 10px;
+    box-shadow: 4px 4px 14px 10px #4e4e4ea8;
+    backdrop-filter: brightness(0.7);
+    border: 1px solid #fffcf0;
+}.head_dis{
+    width: 100%;
+    height: 100%;
+    grid-area: head_dis;
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-areas: "heading" "discription";
+    align-items: center;
+}.head_dis h4{
+    grid-area: heading;
+    margin:0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}.head_dis p{
+    grid-area: discription;     align-self: start;
+    margin:0;
+    font-size: 22px;
+    line-height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+  padding: 0 10px;
+  hyphens: auto;
+}.homepage{
+    display:flex;
+    flex-direction: column;
+    place-items: center;
+}

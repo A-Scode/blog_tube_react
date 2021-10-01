@@ -138,7 +138,7 @@ const ReviewBlog=props=>{
             <input type="radio" name="review" ref = {el=>ref.current.like = el}  id="like" value= {"like"} onInput={e=>review(e)}  hidden/>
             <label htmlFor="like" id="like_label" style={{backgroundImage:`url(${like_logo})`}} >{reviews.likes>0?reviews.likes:"No Likes"}</label>
             <label id ="view_label" style={{backgroundImage:`url(${view_logo})`}}>{reviews.views>0?reviews.views:"No Views"}</label>
-            <input type="radio" name="review" ref = {el=>ref.current.dislike = el}  id="dislike" value={"dislike"} onInput={e=>review(e)} hidden/>
+            <input type="radio" name="review" ref = {el=>ref.current.dislike = el}  id="dislike" value={"dislike"} onInput={e=>review(e)} disabled={!session_id} hidden/>
             <label htmlFor="dislike" id="dislike_label" style={{backgroundImage:`url(${dislike_logo})`}}  >{reviews.dislikes>0?reviews.dislikes:"No Dislikes"}</label>
         </div>
     )

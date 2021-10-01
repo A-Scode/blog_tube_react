@@ -107,9 +107,9 @@ function App() {
             <Route  path = '/UploadBlog'>
               <AppUploadBlog appbodyloading= {change_appbodyloading} />
             </Route>
-            <Route exact path = "/Home" >
+            <CacheRoute exact path = "/Home" >
               <AppHome />
-            </Route>
+            </CacheRoute>
             <CacheRoute exact path = "/Error">
               <h1>Error</h1>
             </CacheRoute>
