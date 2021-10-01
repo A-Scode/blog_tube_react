@@ -37,6 +37,7 @@ div.miniprofile{
     box-shadow: 2px 2px 4px grey;
     padding:10px;
     border-width :1px;
+    background: bottom url(../images/blogians_bg.svg);
     border-style: inset;
     border-color: rgb(3 52 221);
     border-radius: 10px; 
@@ -49,7 +50,7 @@ div.miniprofile{
                          "photo followers"
                          "photo tag";
     align-items: center;
-
+    color: white;
 }
 div.miniprofile:hover{
     transform : scale( 1.05);
@@ -98,6 +99,7 @@ div.follower_count{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    filter: drop-shadow(2px 4px 5px black);
 }
 div.profile_name{
     grid-area:name;

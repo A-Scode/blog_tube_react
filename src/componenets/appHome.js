@@ -2,7 +2,7 @@ import "./statics/css/appHome.css"
 import UserImage from './userImage'
 import PropType from 'prop-types'
 import { useContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link ,useHistory } from "react-router-dom"
 import appConfig from './statics/appConfig.json'
 import { Login_context } from "../App"
 import "./statics/css/appBlog.css"
@@ -13,33 +13,26 @@ import steps_bg from './statics/images/steps_bg.svg'
 
 const AppHome = props=>{
 
-    const session = useContext(Login_context)
-    const [blogs_list , set_blogs_list] = useState([])
+    const mq = window.matchMedia('(max-width:768px)')
+    const [mini , set_mini] = useState(false)
 
+    function mq_change(){
+        if (mq.matches){
+            set_mini(true)
+        }else{
+            set_mini(false)
+        }
+    }
     useEffect( ()=>{
-        fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
-            mode:'cors',
-            method:"POST",
-            headers:{ session : session }
-        })
-        .then(response=> response.text().then(
-            text=>{
-                let response = JSON.parse(text)
-                switch (response.status) {
-                    case "success":
-                        set_blogs_list(response.blogs_list)
-                        break;
-                
-                    default:
-                        break;
-                }
-            }
-        ))
-    },[])
+                mq_change()
+            window.addEventListener("resize",mq_change,true)
+            return ()=>window.removeEventListener("resize",mq_change,true)
+            },[])
+            
     
     return(
         <div className="homepage">
-           {blogs_list.map(item=>( <BlogComponent user_details={item.user_details} 
+           {props.blogs_list.map(item=>( <BlogComponent mini={mini} user_details={item.user_details} 
             views= {item.blog_details.views} likes={item.blog_details.likes} dislikes={item.blog_details.dislikes}
             date = {item.blog_details.datetime}
             title = {item.blog_details.title} 
@@ -52,11 +45,42 @@ export default AppHome
 
 const BlogComponent = props=>{
     const [style , set_style ] = useState({blog_details:{gridTemplateColumns: "minmax(40%, 350px) minmax(calc(60% - 15px), auto)",
-        gridTemplateRows: "60px 170px 30px",backgroundImage : `url(${steps_bg})`}})
+    gridTemplateRows: "60px 170px 50px",  gridGap: "10px",
+    gridTemplateAreas: `"image blogger" "image head_dis" "image public"`,
+    maxWidth: "1000px",width: "90%",
+        backgroundImage : `url(${steps_bg})`},
+        title_image:{
+            width: "90%",margin:"0 10px",border: "2px solid #cca200"
+        }
+        })
+
+    useEffect(()=>{
+        if (props.mini){
+            set_style({blog_details:{gridTemplateColumns: "100%",
+    gridTemplateAreas: `"image" "blogger" "head_dis" "public"`,
+    width:"95%" , maxWidth:"400px", gridGap: "0",
+            gridTemplateRows: "minmax(200px,auto) 60px 170px 50px",
+            backgroundImage : `url(${steps_bg})`},
+        title_image:{
+            width:"100%",margin:"0",border:"none"
+        }
+        })
+        }else{
+            set_style({blog_details:{gridTemplateColumns: "minmax(40%, 350px) minmax(calc(60% - 15px), auto)",
+    gridTemplateAreas: `"image blogger" "image head_dis" "image public"`,
+    gridTemplateRows: "60px 170px 50px", gridGap: "10px",
+            width: "90%",maxWidth: "1000px",
+            backgroundImage : `url(${steps_bg})`},
+            title_image:{
+                width: "90%",margin:"0 10px",border: "2px solid #cca200"
+            }
+            })
+        }
+    },[props.mini])
         
     return (<Link to = {`/Blog/${props.title}?id=${props.blog_id}`} style ={{display:"flex",width:"100%" ,placeItems:"center"}} >
         <div className="blog_details" style = {style.blog_details} >
-            <img className="blog_image" src = {props.image_url} loading= "lazy" />
+            <img className="blog_image" style={style.title_image} src = {props.image_url} loading= "lazy" />
             
                 <div className="blogger">
                     <UserImage user_id = {props.user_details.user_id} width="35px" height="35px" style ={{
@@ -69,9 +93,9 @@ const BlogComponent = props=>{
                     <p>{props.discription!==""?props.discription :"No Discription"}</p>
                 </span>
                 <span className="public_details">
-                    <span id = "like_label" style = {{backgroundImage : `url(${like_logo})`,backgroundSize:"20px 20px",paddingLeft:"25px"}} >{props.likes?props.likes:"No likes"}</span>
-                    <span id = "view_label" style = {{backgroundImage : `url(${view_logo})`,backgroundSize:"20px 20px",paddingLeft:"25px"}} >{props.views?props.views:"No views"}</span>
-                    <span id = "dislike_label" style = {{backgroundImage : `url(${dislike_logo})`,backgroundSize:"20px 20px",paddingLeft:"25px"}} >{props.dislikes?props.dislikes:"No dislikes"}</span>
+                    <span id = "like_label" style = {{backgroundImage : `url(${like_logo})`}} >{props.likes?props.likes:"No likes"}</span>
+                    <span id = "view_label" style = {{backgroundImage : `url(${view_logo})`}} >{props.views?props.views:"No views"}</span>
+                    <span id = "dislike_label" style = {{backgroundImage : `url(${dislike_logo})`}} >{props.dislikes?props.dislikes:"No dislikes"}</span>
                     <span className ="datetime">{props.date}</span>
                 </span>
             </div>

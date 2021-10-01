@@ -23,7 +23,7 @@
 }
 @media only screen and (max-width : 768px){
     .blog_page{
-        grid-template-columns: calc(100% - 10px);
+        grid-template-columns: 100%;
         grid-template-rows: minmax(70px,auto) auto auto auto auto  auto;
         grid-template-areas: "heading" 
                              " image "
@@ -81,6 +81,9 @@
     font-size: 20px;
     height: 30px;
     max-width: 100%;
+    transition: all 0.2s linear;
+}#like_label:hover , #dislike_label:hover ,#view_label:hover{
+    transform: scaleZ(1.2);
 }
 .review{
     display: grid;

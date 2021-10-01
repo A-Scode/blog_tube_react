@@ -515,7 +515,6 @@ input[type="radio"]:checked + label.complist{
     list-style-type: "🔰";
     font-family: monospace;
     font-size: 25px;
-    margin-left: 40px;
 }.container_part h5{
     margin-top: 10px;
     margin-bottom: 10px;

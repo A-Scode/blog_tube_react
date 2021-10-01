@@ -21,7 +21,7 @@ const AppBlog  = props=>{
 
     const [blog_data_list , set_blog_data_list] = useState([])
     const [blog_details , set_blog_details] = useState({likes:"" , dislikes:"" ,
-     views :"" , title:"" , image_url:"",blogger_details:""})
+     views :"" , title:"" , image_url:"",blogger_details:{}})
 
      const ref = useRef({})
     useEffect(()=>{
@@ -52,6 +52,7 @@ const AppBlog  = props=>{
         }
     }
     xhr.send()
+    
     },[])
 
     var full = false

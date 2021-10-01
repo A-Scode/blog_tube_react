@@ -7,7 +7,8 @@ import searchIcon from './statics/images/search_icon.svg'
 import appConfig from './statics/appConfig.json'
 import search_logo from './statics/images/search_icon.svg'
 
-import { useState, useRef ,useEffect} from 'react'
+import { useState, useRef ,useEffect, useCallback} from 'react'
+import { Link } from 'react-router-dom'
 
 import Menu from './Menu'
 
@@ -22,9 +23,11 @@ const AppHeader = props => {
 
     var menuIcon_elem = useRef({})
 
-    // blog_list state
-    var blog_list = props.bloglist
-    let [state_blog_list , set_state_blog_list] = useState(blog_list)
+
+    const [state_blog_list , set_state_blog_list] = useState(props.bloglist)
+    useEffect(()=>{
+        set_state_blog_list([...props.bloglist])
+    },[props.bloglist])
 
 
 
@@ -121,11 +124,11 @@ if(!mq.matches){
    
 
 
-    function sorting_list_lg(){
+    const sorting_list= useCallback(()=>{
         try{
         let elem =  menuIcon_elem.current['searchIcon']
         let value = elem.value.toLowerCase() 
-        let copy = blog_list
+        let copy = props.bloglist
         let const_obj = {}
         let final_arr = []
 
@@ -142,30 +145,8 @@ if(!mq.matches){
         set_state_blog_list([...final_arr])
     }catch(err){}
 
-    }
-    function sorting_list_sm(){
-        try{
-        let elem =  menuIcon_elem.current['searchIconResponsive']
-        let value = elem.value.toLowerCase()
-        let copy = blog_list
-        let const_obj = {}
-        let final_arr = []
-
-        for (let blog of copy){
-            let index = blog.toLowerCase().search(value)
-            if (index > -1){
-                const_obj[copy.indexOf(blog)] = index
-            }
-        }
-        for (let index of Object.keys(const_obj).sort()){
-            final_arr.push(copy[index])
-        }
-        
-        set_state_blog_list([...final_arr])
-    }
-    catch(err){}
-
-    }
+    })
+    
     let [menu_state , set_menu_state] = useState(false)
 
 
@@ -186,18 +167,18 @@ if(!mq.matches){
                 set_menu_state(false)
 
                 }} />
-                : <><input ref={el => menuIcon_elem.current['searchIcon'] = el} placeholder='Search Blogs' onInput = {sorting_list_lg} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />            </>
+                : <><input ref={el => menuIcon_elem.current['searchIcon'] = el} placeholder='Search Blogs' onInput = {sorting_list} onFocus = {sorting_list} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />            </>
             }
             <div id="blogList" ref={el => menuIcon_elem.current['blogList'] = el}>
-                {state_blog_list.length !== 0 ? state_blog_list.map((e, i, a) => <div key={i + a.length} className='blog_elems' >{e}</div>)
+                {state_blog_list.length !== 0 ? state_blog_list.map((e, i) =>( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
                     : <div className='blog_elems'> No Blogs Found</div>}
             </div>
             {responsive ?
                 <div id="search" style = {state_search_style}  >
                     {responsive ?
-                        <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {sorting_list_sm} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
+                        <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {sorting_list} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
                     <div id="blogListContainer" >
-                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i, a) => <div key={i} className='blog_elems'>{e}</div>)
+                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => ( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
                             : <div className='blog_elems'> No Blogs Found</div>}
                     </div>
                 </div> : null

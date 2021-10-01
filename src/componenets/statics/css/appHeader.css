@@ -142,24 +142,19 @@
     width: 0;
 }
 .blog_elems{
-    font-size:20px;
+    font-size: 20px;
     background-color: white;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
-    font-weight: 500;
-    color:#0334dd;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #0334dd;
-    border-style: inset;
-    border-radius: 20px;
+    border-style: solid;
+    border-radius: 10px;
     text-overflow: ellipsis;
-    text-transform: capitalize;
-    overflow: hidden ;
-    white-space: nowrap;
+    overflow: hidden;
     font-family: monospace;
-    font-weight: bold;
     letter-spacing: 0.5px;
 }
 @media only screen and (min-width : 769px) {
@@ -171,8 +166,8 @@
 
 .blog_elems:hover{
     transition-property: all;
-    transition-duration: 0.1s;
-    box-shadow: 2px 2px 5px rgb(131, 107, 0);
+    transition-duration: 0.2s;
+    box-shadow: inset 0 0 5px 2px rgba(59, 59, 59, 0.527);
     text-decoration:none;
     
 }

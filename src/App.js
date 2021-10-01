@@ -1,4 +1,4 @@
-import {  BrowserRouter as Router ,Route} from 'react-router-dom'
+import {useHistory,  BrowserRouter as Router ,Route} from 'react-router-dom'
 import {CacheSwitch , CacheRoute } from 'react-router-cache-route'
 import AppHeader from './componenets/appHeader';
 import AppFooter from './componenets/appFooter';
@@ -8,6 +8,7 @@ import AppBodyLoading from './componenets/appBodyLoading';
 import AppBlogians from './componenets/appBlogians';
 import config from './componenets/statics/appConfig.json'
 import AppBlog from './componenets/appBlog';
+import appConfig from './componenets/statics/appConfig.json'
 
 import './App.css'
 import  React , {useState , useCallback , useEffect} from 'react'
@@ -27,7 +28,6 @@ function App() {
   function change_login_context (state){
     set_login_context_state(state)
   }
-  
 
   var blogs= [
     'How 5g will Revolutionize the world...',
@@ -60,12 +60,15 @@ function App() {
           set_appbodyloading_state(display)
     }
 
+    const history = useHistory()
+    const [blogs_list , set_blogs_list] = useState([])
+
     useEffect(()=>{
     let xhr = new XMLHttpRequest()
     xhr.open("POST",config.origin+"backend_api/getSessionId")
 
     xhr.onreadystatechange = ()=>{
-      if (xhr.readyState == 4 && xhr.status == 200){
+      if (xhr.readyState === 4 && xhr.status === 200){
         let session = JSON.parse(xhr.response).session
         if (sessionStorage.session === session){
           set_login_context_state(session)
@@ -77,14 +80,36 @@ function App() {
         console.log(session)
       }
     }
-    xhr.send()})
+    xhr.send()
+    
+    fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
+      mode:'cors',
+      method:"POST",
+      headers:{ session : login_context_state }
+  })
+  .then(response=> response.text().then(
+      text=>{
+          let response = JSON.parse(text)
+          switch (response.status) {
+              case "success":
+                  set_blogs_list(response.blogs_list)
+                  break;
+              case "fail":
+                  history.push('/Home')
+                  break;
+              default:
+                  break;
+          }}))}
+    
+    ,[])
+  
 
     
   return (
     <Router>
       
   <Login_context.Provider value = {login_context_state}>
-      <AppHeader  bloglist = {blogs} login_state = {login_context_state}  />
+      <AppHeader  bloglist = {blogs_list} login_state = {login_context_state}  />
     <div className="appcontent" ref = {app_container_callback} >
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
@@ -108,7 +133,7 @@ function App() {
               <AppUploadBlog appbodyloading= {change_appbodyloading} />
             </Route>
             <CacheRoute exact path = "/Home" >
-              <AppHome />
+              <AppHome blogs_list = {blogs_list} />
             </CacheRoute>
             <CacheRoute exact path = "/Error">
               <h1>Error</h1>
