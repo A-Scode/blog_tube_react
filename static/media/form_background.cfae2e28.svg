@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="302mm"
+   height="402mm"
+   viewBox="0 0 302 402.00001"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="form_background.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.46666667"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="true"
+     width="200mm"
+     inkscape:zoom="0.3464605"
+     inkscape:cx="751.88947"
+     inkscape:cy="800.95711"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5">
+    <inkscape:grid
+       type="xygrid"
+       id="grid843"
+       originx="96.249996"
+       originy="11.583332" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0.07802875;stroke:#006fff;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect4691"
+     width="300"
+     height="400"
+     x="1"
+     y="1" />
+  <path
+     sodipodi:type="star"
+     style="fill:#0000ff;fill-opacity:0.75;stroke:#006fff;stroke-width:3.77953;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path4737"
+     inkscape:flatsided="true"
+     sodipodi:sides="5"
+     sodipodi:cx="643.77948"
+     sodipodi:cy="-196.22047"
+     sodipodi:r1="688.18604"
+     sodipodi:r2="556.75421"
+     sodipodi:arg1="0.95054684"
+     sodipodi:arg2="1.5788654"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 1043.7795,363.77954 234.79462,357.25166 -8.9870723,-414.15589 649.33242,-884.38411 1299.9779,-403.59357 Z"
+     transform="matrix(0.26458333,0,0,0.26458333,178.44746,245.57662)"
+     inkscape:transform-center-x="-0.45401067"
+     inkscape:transform-center-y="-16.954978" />
+  <path
+     style="fill:#000080;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 223.25,120.59165 -31.75,21.16666 52.91667,158.75"
+     id="path5014" />
+  <path
+     sodipodi:type="star"
+     style="fill:#ff0000;fill-opacity:0.80000001;stroke:#006fff;stroke-width:3.77953;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path5093"
+     inkscape:flatsided="true"
+     sodipodi:sides="3"
+     sodipodi:cx="483.77951"
+     sodipodi:cy="-116.22048"
+     sodipodi:r1="322.4903"
+     sodipodi:r2="144.22205"
+     sodipodi:arg1="3.0172376"
+     sodipodi:arg2="4.0644352"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 163.77953,-76.220465 609.13847,-413.34861 678.42053,140.90762 Z"
+     transform="matrix(0.26458333,0,0,0.26458333,-114.99877,397.63486)"
+     inkscape:transform-center-x="2.4558727"
+     inkscape:transform-center-y="16.912974" />
+  <path
+     style="fill:#800000;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 14.75833,326.43748 21.166666,-10.58333 10.583333,63.5"
+     id="path5281" />
+  <ellipse
+     style="fill:#00ffff;fill-opacity:0.8;stroke:#006fff;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path5820"
+     cx="38.04166"
+     cy="32.75"
+     rx="89.958336"
+     ry="95.25" />
+  <path
+     style="fill:#008080;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0.80000001"
+     d="m 22.166662,117.41666 c 0,0 95.249998,-10.58333 84.666668,-84.666662 0,0 -10.583335,52.916657 -84.666668,84.666662 z"
+     id="path5855" />
+</svg>
