@@ -45,7 +45,7 @@ div.miniprofile{
     transition-duration: 0.15s;
     display: grid;
     grid-template-columns: 80px minmax(auto , calc(100% - 80px));
-    grid-template-rows: 30% repeat(2,40px);
+    grid-template-rows: 30% repeat(2,minmax(40px,auto));
     grid-template-areas: "photo name"
                          "photo followers"
                          "photo tag";
@@ -88,18 +88,27 @@ div.allBlogians{
     align-self:start;
     transition-duration: .5s;
 }
-div.follower_count{
+div.follower{
+    overflow: hidden;
+    grid-area:followers;
+    display: flex;
+    justify-items:  flex-start;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    row-gap:3px;
+    padding: 10px 0;
+    
+}div.follower div.follower_count{
     font-size: 15px;
     text-indent: 40px;
     margin:0 10px;
     background-size: 25px 25px;
     background-position: left;
+    filter: drop-shadow(2px 4px 5px black);
     background-repeat: no-repeat;
-    grid-area:followers;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    filter: drop-shadow(2px 4px 5px black);
 }
 div.profile_name{
     grid-area:name;
@@ -132,34 +141,30 @@ div.profile_preview{
         max-height: 100%;
         grid-column: 2 / span 1;
         position: sticky;
-        top:0;
-        
+        top:0;  
     }
     div.blogians{
         width : 100%;
         grid-column: 1 / span 2;
         overflow-x: clip;
-
     }
 }
 #FullpageProfile{
-    display: flex;
     position:fixed;
     bottom:20px;
     margin:20px;
     font-size: 20px;
     border-radius: 10px;
-    border-style: inset;
-    border-width: 4px;
+    border: 4px inset #0334dd;
     padding: 5px;
     font-family: sans-serif;
     letter-spacing: 1px;
-    border-color: #0334dd;
-    font-weight: 400;
     box-shadow: 0 2px 10px var(--main_color);
     right:0;
     color: #0334dd;
     font-weight: 600;
+}#FullpageProfile:active{
+    box-shadow: inset 0 2px 10px var(--main_color);
 }
 .links:visited{
     text-decoration: none;

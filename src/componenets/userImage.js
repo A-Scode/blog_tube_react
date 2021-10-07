@@ -9,7 +9,7 @@ let UserImage = props=>{
     let ref = useRef("")
     const [ div_style , set_div_style] = useState({
         width        : props.width,
-        height       : props.height,
+        aspectRatio:"1 / 1",
         borderRadius : '100%',
         borderStyle  : 'inset',
         backgroundColor: "rgb(255 255 255 / 55%)",
@@ -39,7 +39,6 @@ let UserImage = props=>{
             let response = xhr.response
             set_div_style({...div_style , ...props.style ,backgroundImage : `url(${URL.createObjectURL(response)})` })
             flag = true
-            console.log(props.user_id)
         }
     }
     xhr.setRequestHeader("session" , session?session:'')

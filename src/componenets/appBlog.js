@@ -52,7 +52,7 @@ const AppBlog  = props=>{
         }
     }
     xhr.send()
-    
+
     },[])
 
     var full = false
@@ -61,8 +61,15 @@ const AppBlog  = props=>{
         if (!full){
         document.documentElement.requestFullscreen()
         .then( ()=>full= true)
-        .catch(()=>full = false)}
+        .catch(()=>full = false)}    
+        
     },[ref.current.blog_page])
+    useEffect(()=>{
+        let ele  = document.getElementsByClassName("appbody")[0]
+        ele.scrollTo(0,0)
+    }
+    
+    ,[blog_details])
 
 
     return(<div  className = "blog_page" ref ={el=>ref.current.blog_page = el} onMouseDown={getFullScreen} >
@@ -203,7 +210,7 @@ const Comments =props=>{
                         break;
                     case "loginRequired":
                         console.log(response.status)
-                        history.push("/Error")
+                        history.push("/Login")
                         break;
                     case "fail":
                         console.log(response.status)
@@ -253,3 +260,4 @@ const Comment = props=>{
         </div>
     )
 }
+export {Comment}

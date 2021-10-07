@@ -114,9 +114,9 @@ function App() {
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
-            <CacheRoute exact path = '/Blog/:title'>
+            <Route exact path = '/Blog/:title'>
               <AppBlog />
-            </CacheRoute>
+            </Route>
             <CacheRoute exact path = '/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
             </CacheRoute>
@@ -132,9 +132,9 @@ function App() {
             <Route  path = '/UploadBlog'>
               <AppUploadBlog appbodyloading= {change_appbodyloading} />
             </Route>
-            <CacheRoute exact path = "/Home" >
+            <Route exact path = "/Home" >
               <AppHome blogs_list = {blogs_list} />
-            </CacheRoute>
+            </Route>
             <CacheRoute exact path = "/Error">
               <h1>Error</h1>
             </CacheRoute>

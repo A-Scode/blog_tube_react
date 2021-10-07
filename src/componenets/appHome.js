@@ -10,6 +10,7 @@ import view_logo from './statics/images/preview.svg'
 import like_logo from './statics/images/like.svg'
 import dislike_logo from './statics/images/dislike.svg'
 import steps_bg from './statics/images/steps_bg.svg'
+import { FollowButton } from "./appUserProfile"
 
 const AppHome = props=>{
 
@@ -37,7 +38,8 @@ const AppHome = props=>{
             date = {item.blog_details.datetime}
             title = {item.blog_details.title} 
             discription = {item.blog_details.discription}
-            image_url = {item.blog_details.blog_title_image} blog_id = {item.blog_details.blog_id} />))}
+            image_url = {item.blog_details.blog_title_image} blog_id = {item.blog_details.blog_id}
+            key = {item.blog_details.blog_id} />))}
         </div>
     )
 }
@@ -87,6 +89,9 @@ const BlogComponent = props=>{
                         borderWidth:"2px"
                     }} to ={`/Profile/${props.user_details.user_id}`}  onClick ={()=>null} />
                     <span id = "username">{props.user_details.username}</span>
+                    <FollowButton user_id = {props.user_details.user_id}
+                    style = {{marginLeft:'auto' , marginRight:"10px"  , height:"30px" , alignSelf:'center'}}                    
+                    />
                 </div>
                 <span className = "head_dis">
                     <h4>{props.title}</h4>
@@ -110,3 +115,4 @@ BlogComponent.propTypes = {
     dislikes : PropType.number.isRequired,
     mini : PropType.bool
 }
+export {BlogComponent}

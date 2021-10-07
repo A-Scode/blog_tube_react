@@ -77,6 +77,7 @@
     display:flex;
     flex-direction: column;
     place-items: center;
+    overflow-x: clip;
 }.public_details #like_label,.public_details  #dislike_label,.public_details  #view_label{
     margin: auto;
     background-size: 20px 20px;

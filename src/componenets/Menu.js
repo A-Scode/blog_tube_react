@@ -1,7 +1,7 @@
-import {useContext, useEffect, useRef ,useState } from 'react'
+import {useCallback, useContext, useEffect, useRef ,useState } from 'react'
 import { Login_context } from '../App'
 import './statics/css/Menu.css'
-import { Link } from 'react-router-dom'
+import { Link , useHistory } from 'react-router-dom'
 import UserImage from './userImage'
 import {profile_photo , logout} from './statics/utils'
 import homeIcon from './statics/images/homeIcon.svg'
@@ -79,6 +79,7 @@ function Menu  (props){
         ref.current["menu_container"].style.left = 0
     }}catch(err){
         console.log(err)}
+    
 
     return(
         <div className="menu_box" id = "menu_box"  ref= {el => ref.current['menu_box'] = el}  >
@@ -129,15 +130,17 @@ var MenuItem = props=>{
         placeItems : 'center',
     }
 
-    const click= ()=>{
+    const click= useCallback(()=>{
+        history.push(props.to)
         props.onClick()
         if( props.logout === true){
             logout()
         }
-    }
+    })
+    const history = useHistory()
 
     return (
-        <Link  to = {props.to} onClick={()=>click()} style = {{textDecoration: 'none'}}>
+        <Link  onClick={()=>click()} style = {{textDecoration: 'none'}}>
         <div style = {menuItem_style} className="menuItem">
             <div style = {child_style}>{props.children}</div>
         </div>

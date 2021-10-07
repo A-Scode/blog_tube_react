@@ -17,7 +17,7 @@ body{
     width: 2px;
     box-sizing: border-box;
     scrollbar-gutter: stable;
-    height: 5px;
+    height: 2px;
 
 }
 ::-webkit-scrollbar-track{
@@ -83,7 +83,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
 }
 
 a:visited ,a ,a:hover{
-    color:black;
+    color:inherit;
     text-decoration: none;
 }
 input:-webkit-autofill,

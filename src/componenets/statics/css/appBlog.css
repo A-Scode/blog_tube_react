@@ -168,6 +168,8 @@
     border-image-slice: 1;
     align-self: center;
     padding: 5px;
+    padding-left: 30px;
+    background: left/30px  30px  url(../images/comments.svg) no-repeat;
 }div.comment{
     margin: 15px 5px 15px;
     border-top: 2px dashed #ad7d2b;
