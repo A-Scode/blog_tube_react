@@ -203,8 +203,7 @@ const FollowButton=props=>{
                         set_follow_state('Following'):set_follow_state('Follow')
                         break;
                     case "loginRequired":
-                        console.log('backend_api/getFollowingList')
-                        history.push('/blog_tube_react/Login')
+                        console.log('backend_api/getFollowingList LoginRequired')
                         break;
                     case "fail":
                         check_follower()
