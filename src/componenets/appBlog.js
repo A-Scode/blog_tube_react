@@ -101,7 +101,7 @@ const ReviewBlog=props=>{
         let opt = event.target.value
         if (session_id === sessionStorage.session ){
             let xhr = new XMLHttpRequest()
-            let uid = JSON.parse(localStorage.login_data).user_id
+            let uid = JSON.parse(sessionStorage.login_data).user_id
             xhr.open('POST' , appConfig.origin+`backend_api/Blogreview`)
             xhr.onreadystatechange=()=>{if(xhr.readyState===4 && xhr.status===200){
                 let response = JSON.parse(xhr.response)
@@ -122,7 +122,7 @@ const ReviewBlog=props=>{
         if (session_id===sessionStorage.session){
 
             let xhr = new XMLHttpRequest()
-            let uid = JSON.parse(localStorage.login_data).user_id
+            let uid = JSON.parse(sessionStorage.login_data).user_id
             xhr.open('GET' , appConfig.origin+`backend_api/checkReviewr?bid=${props.blog_id}&uid=${uid}`)
             xhr.onreadystatechange=()=>{if(xhr.readyState===4 && xhr.status===200){
                 let response = JSON.parse(xhr.response)
@@ -232,12 +232,12 @@ const Comments =props=>{
             const formdata = new FormData()
             xhr.setRequestHeader("session" ,session_id )
             formdata.append("comment" , comment)
-            formdata.append("user_id"  , JSON.parse(localStorage.login_data).user_id)
+            formdata.append("user_id"  , JSON.parse(sessionStorage.login_data).user_id)
             formdata.append("blog_id" , props.blog_id)
             xhr.send(formdata)
         }
     
-    },[session_id,ref.current.comment_input.value,localStorage])
+    },[session_id,ref.current.comment_input.value,sessionStorage])
     const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} />))))
     const nList = useMemo(()=>(<span style ={{display:"grid",placeItems:"center",
     fontSize:"30px",width:"100%" ,height:"100%"}} id = "no_comments">No Comments😅</span>))

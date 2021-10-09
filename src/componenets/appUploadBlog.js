@@ -333,7 +333,7 @@ var Editing_pane = props =>{
         console.log(final_data)
         props.appbodyloading('flex')
         if (login_context === sessionStorage.session){
-            let login_data = JSON.parse(localStorage.login_data)
+            let login_data = JSON.parse(sessionStorage.login_data)
             let xhr = new XMLHttpRequest()
             let blog_details = JSON.stringify(final_data)
             xhr.open("POST" , `${appConfig.origin}backend_api/uploadBlog`)

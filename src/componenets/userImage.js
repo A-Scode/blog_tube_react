@@ -57,7 +57,7 @@ let UserImage = props=>{
         observer.observe(ref.current)
         flag = false;
         set_div_style({...div_style , ...props.style})
-},[props.user_id,session ,localStorage])
+},[props.user_id,session ,sessionStorage])
 
     return  <Link to = {props.to} ref ={el =>ref.current =el}  style = {div_style} onClick= {()=>props.onClick()} ></Link>
 }

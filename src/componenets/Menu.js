@@ -94,7 +94,7 @@ function Menu  (props){
                 maxWidth:"80%",
                 textOverflow:'ellipsis',
                 justifySelf:'center'
-                }} >{login?JSON.parse(localStorage.login_data).username : ""}</h2>
+                }} >{login?JSON.parse(sessionStorage.login_data).username : ""}</h2>
                 </div>
                 <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/blog_tube_react/Home" >Home</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/blog_tube_react/Blogians"  img = {blogians}>Blogians</MenuItem>
