@@ -76,6 +76,7 @@ var AppLogin = props=>{
                     sessionStorage.setItem('session', response.session)
                     let login_data = JSON.stringify(response.login_data)
                     localStorage['login_data'] = login_data
+                    sessionStorage['login_data'] = login_data
                     props.appbodyloading('none')
 
                 }

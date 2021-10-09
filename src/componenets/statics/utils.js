@@ -1,7 +1,7 @@
 import appConfig from './appConfig.json'
 const profile_photo=()=>{
     if (sessionStorage.session){
-        let id = JSON.parse(localStorage.getItem('login_data')).user_id
+        let id = JSON.parse(sessionStorage.getItem('login_data')).user_id
         return id
     }
     else{
@@ -17,6 +17,7 @@ const logout = ()=>{
         if (xhr.readyState === 4 && xhr.status === 200){
             console.log("successfully Logged Out")
             delete sessionStorage.session
+            delete sessionStorage.login_data
         }
     }
     xhr.setRequestHeader('session' ,JSON.stringify(sessionStorage.session) )

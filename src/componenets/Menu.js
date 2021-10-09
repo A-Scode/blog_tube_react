@@ -69,7 +69,7 @@ function Menu  (props){
             set_login(true)
         }else{ set_login(false) }
 
-    } , [sessionStorage.session , login,login_context])
+    } , [sessionStorage.session ,login_context])
 
 
     let mq = window.matchMedia('(min-width: 576px)')
