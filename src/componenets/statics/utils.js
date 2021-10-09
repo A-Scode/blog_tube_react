@@ -1,14 +1,5 @@
 import appConfig from './appConfig.json'
-const profile_photo=()=>{
-    if (sessionStorage.session){
-        let id = JSON.parse(sessionStorage.getItem('login_data')).user_id
-        return id
-    }
-    else{
-        let id = "unknown"
-        return id
-    }
-}
+
 const logout = ()=>{
     if (sessionStorage.session){
     let xhr = new XMLHttpRequest()
@@ -28,4 +19,4 @@ const logout = ()=>{
 
 
 
-export {profile_photo , logout}
+export { logout}

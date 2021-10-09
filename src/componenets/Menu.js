@@ -79,6 +79,17 @@ function Menu  (props){
         ref.current["menu_container"].style.left = 0
     }}catch(err){
         console.log(err)}
+
+    const profile_photo=useCallback(()=>{
+        if (sessionStorage.session){
+            let id = JSON.parse(sessionStorage.getItem('login_data')).user_id
+            return id
+        }
+        else{
+            let id = "unknown"
+            return id
+        }
+    } , [sessionStorage])
     
 
     return(
