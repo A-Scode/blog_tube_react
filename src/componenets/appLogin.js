@@ -47,8 +47,7 @@ var AppLogin = props=>{
 
     const origin = appConfig.origin
 
-    let chars = {"!":null , "#":null , "$":null,"%":null,"^":null,"&":null,"*":null,"(":null,")":null,"'":null, '"':null,";":null, ":":null}
-    let Login = (event)=>{
+   let Login = (event)=>{
         let form = event.target
         let email_input = form[0]
         let password_input = form[1]
@@ -58,7 +57,7 @@ var AppLogin = props=>{
         props.appbodyloading('flex')
 
         xhr.onreadystatechange = ()=>{
-            if (xhr.status == 200 && xhr.readyState == 4){
+            if (xhr.status === 200 && xhr.readyState === 4){
                 let response = JSON.parse(xhr.response)
                 
                 if(response.status === "fail"){

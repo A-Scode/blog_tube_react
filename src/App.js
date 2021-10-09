@@ -81,7 +81,7 @@ function App() {
     }
     xhr.send()
     
-    fetch(appConfig.origin+'backend_api/retriveHomeBlogs/',{ 
+    fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
       mode:'cors',
       method:"POST",
       headers:{ session : login_context_state }

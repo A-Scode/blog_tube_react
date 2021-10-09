@@ -179,6 +179,7 @@ const Comments =props=>{
                         console.log(response)
                         break;
                     case "loginRequired":
+                        console.log(`backend_api/getComments`)
                         history.push("/blog_tube_react/Login")
                         break;
                 
