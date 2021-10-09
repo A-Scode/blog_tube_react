@@ -10,6 +10,7 @@ import like_logo from './statics/images/like.svg'
 import dislike_logo from './statics/images/dislike.svg'
 import { Login_context } from "../App";
 import UserImage from "./userImage";
+import { logout } from "./statics/utils";
 
 const AppBlog  = props=>{
     const url = new URLSearchParams(window.location.search)
@@ -180,6 +181,7 @@ const Comments =props=>{
                         break;
                     case "loginRequired":
                         console.log(`backend_api/getComments`)
+                        logout()
                         history.push("/blog_tube_react/Login")
                         break;
                 
@@ -200,6 +202,7 @@ const Comments =props=>{
         if (session_id === sessionStorage.session &&  comment !== ''){
             const xhr = new XMLHttpRequest()
             xhr.open("POST" , appConfig.origin+`backend_api/uploadComment`)
+            props.appbodyloading('flex')
             xhr.onreadystatechange = ()=>{
                 if(xhr.readyState === 4 && xhr.status === 200){
                 let response = JSON.parse(xhr.response) 
@@ -208,17 +211,22 @@ const Comments =props=>{
                     case "success":
                         console.log(response)
                         set_comment_list([response.new_comment ,...comment_list])
+                        props.appbodyloading('none')
                         break;
                     case "loginRequired":
                         console.log(response.status)
+                        logout()
                         history.push("/blog_tube_react/Login")
+                        props.appbodyloading('none')
                         break;
                     case "fail":
                         console.log(response.status)
                         history.push("/blog_tube_react/Error") 
+                        props.appbodyloading('none')
                         break;              
                     default:
                         console.log(response.status)
+                        props.appbodyloading('none')
                         break;                                 // list has to be updated here
             }}}
             const formdata = new FormData()

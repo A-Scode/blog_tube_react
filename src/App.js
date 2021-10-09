@@ -114,7 +114,7 @@ function App() {
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
             <Route exact path = '/blog_tube_react/Blog/:title'>
-              <AppBlog />
+              <AppBlog appbodyloading = {change_appbodyloading} />
             </Route>
             <CacheRoute exact path = '/blog_tube_react/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
