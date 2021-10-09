@@ -215,7 +215,7 @@ const FollowButton=props=>{
             xhr.setRequestHeader('session'  , context)
             xhr.send()
         }
-    })
+    },[context])
 
     
     useEffect(()=>{
