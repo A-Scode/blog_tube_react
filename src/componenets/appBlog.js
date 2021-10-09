@@ -97,7 +97,7 @@ const ReviewBlog=props=>{
         set_reviews({likes : props.likes ,dislikes : props.dislikes ,views : props.views})
     },[props.likes , props.dislikes , props.views])
 
-    const review=event=>{
+    const review=useCallback(event=>{
         let opt = event.target.value
         if (session_id === sessionStorage.session ){
             let xhr = new XMLHttpRequest()
@@ -117,7 +117,7 @@ const ReviewBlog=props=>{
         }else{
             history.push('/blog_tube_react/Error')
         }
-    }
+    },[session_id,props.blog_id ])
     useEffect(()=>{
         if (session_id===sessionStorage.session){
 
@@ -195,7 +195,7 @@ const Comments =props=>{
         formdata.append('blog_id' , props.blog_id)
         xhr.send(formdata)
         
-    },[])
+    },[props.blog_id])
 
     const send_comment = useCallback(()=>{
         let comment = ref.current.comment_input.value
@@ -237,7 +237,7 @@ const Comments =props=>{
             xhr.send(formdata)
         }
     
-    })
+    },[session_id,ref.current.comment_input.value,localStorage])
     const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} />))))
     const nList = useMemo(()=>(<span style ={{display:"grid",placeItems:"center",
     fontSize:"30px",width:"100%" ,height:"100%"}} id = "no_comments">No Comments😅</span>))

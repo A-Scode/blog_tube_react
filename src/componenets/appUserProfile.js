@@ -226,7 +226,7 @@ const FollowButton=props=>{
         })
         observer.observe(ref)
 
-    },[ref,props.user_id])
+    },[ref,props.user_id,context])
 
     const follow_unfollow = useCallback((event)=>{
         event.stopPropagation()
@@ -263,7 +263,7 @@ const FollowButton=props=>{
             xhr.setRequestHeader('state' , follow_state)
             xhr.send()
         }
-    })
+    },[context ,props.user_id ])
     return(
         <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context !== sessionStorage.session || JSON.parse(localStorage.login_data).user_id === props.user_id} >{follow_state}</button>
     )
