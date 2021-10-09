@@ -6,7 +6,7 @@ import appConfig from './statics/appConfig.json'
 
 import anime from 'animejs'
 import { Login_context } from '../App'
-import { useEffect, useRef , useState , useContext} from 'react'
+import { useEffect, useRef , useState , useContext, useCallback, useMemo} from 'react'
 import {
     Link} from 'react-router-dom'
 
@@ -47,7 +47,7 @@ var AppLogin = props=>{
 
     const origin = appConfig.origin
 
-   let Login = (event)=>{
+   let Login = useCallback((event)=>{
         let form = event.target
         let email_input = form[0]
         let password_input = form[1]
@@ -85,10 +85,10 @@ var AppLogin = props=>{
         xhr.setRequestHeader("credentails" , JSON.stringify({email : email_input.value,
                                                         password : password_input.value}))
         xhr.send()
-    }
+    })
     
 
-    let login_form = (<><h1 align='center' ref = {el =>ref.current['heading'] =el} >Login</h1>
+    let login_form =useMemo(()=> (<><h1 align='center' ref = {el =>ref.current['heading'] =el} >Login</h1>
     <form action= 'javascript:void(0);' method = 'POST' onSubmit =  {(e)=>Login(e) } >  
         <input id='email' maxLength={100} type="email" ref= {el=>ref.current['email']= el} placeholder = 'Email' required = {true} />
         <input type="password" minLength={8} maxLength={100} id='password' ref = {el=>ref.current['password']=el}  placeholder= "Password" required = {true} />
@@ -99,16 +99,16 @@ var AppLogin = props=>{
                     <a href = "#" onClick = {()=>set_Error('ask_email')} >Forgot Password </a>
                     </p>
                 </div>
-    </form></>)
+    </form></>))
 
-    let error_msg = (<div className = 'error'>
+    let error_msg =useMemo(()=> (<div className = 'error'>
     <h2 ref = {el =>ref.current['heading'] =el} align = 'cetner'>Invalid Credentials</h2>
     <button className = "back"  onClick = {()=>set_Error("form")} >Back</button>
     
-    </div>)
+    </div>))
 
     //email_form functions
-    let forgot_pass_email= event=>{
+    let forgot_pass_email= useCallback(event=>{
         let form = event.target
         let email_input = form[0]
         let email = email_input.value
@@ -134,9 +134,9 @@ var AppLogin = props=>{
 
         xhr.setRequestHeader("userData" , JSON.stringify({ email : email}))
         xhr.send()
-    }
+    })
 
-    let email_form = (<>
+    let email_form = useMemo(()=>(<>
             <h1 align='center' ref = {el =>ref.current['heading'] =el} >Email</h1>
         <div className = "forgot_form"  >
             <form action="javascript:void(0);" onSubmit = {forgot_pass_email} >
@@ -145,9 +145,9 @@ var AppLogin = props=>{
             </form>
         </div>
         </>
-    )
+    ))
     
-    let forgot_pass_otp = event =>{
+    let forgot_pass_otp = useCallback( event =>{
         let form = event.target
         let otp_input  = form [0]
 
@@ -174,14 +174,14 @@ var AppLogin = props=>{
 
         xhr.setRequestHeader('otp' , otp_input.value)
         xhr.send()
-    }
-    function validotp (e){
+    })
+    const validotp= useCallback((e)=>{
         if(e.target.value.length > 4){e.target.setCustomValidity('OTP must be of 4 digit');e.target.reportValidity()}
         else if(e.target.value.length < 4){e.target.setCustomValidity('OTP must have 4 digits')}
         else{e.target.setCustomValidity('')}
-    }
+    })
 
-    let otp_form = (<>
+    let otp_form = useMemo(()=>(<>
             <h1 align='center' ref = {el =>ref.current['heading'] =el} >OTP</h1>
             <div className = "forgot_form"  >
             <form action="javascript:void(0);" onSubmit = {forgot_pass_otp} >
@@ -193,9 +193,9 @@ var AppLogin = props=>{
             <input className='submit' type="submit"  value= 'Submit'   />
             </form>
         </div>
-    </>)
+    </>))
 
-    let change_pass = event =>{
+    let change_pass =useCallback( event =>{
         let form = event.target
         let password_input = form[1]
 
@@ -221,10 +221,10 @@ var AppLogin = props=>{
 
         xhr.setRequestHeader('newpass' , password_input.value)
         xhr.send()
-    }
+    })
 
 
-    let change_pass_from = (
+    let change_pass_from = useMemo(()=>(
         <><h1 align='center' ref = {el =>ref.current['heading'] =el} >Change</h1>
     <form action= 'javascript:void(0);'  onSubmit = {change_pass} >  
     <input type="password" minLength={8} maxLength={100} id='password' ref = {el=>ref.current['password']=el}  placeholder= "New password" required = {true} />
@@ -232,7 +232,7 @@ var AppLogin = props=>{
         <input className='submit' type="submit"  value= 'Change'   />
                     
     </form></>
-    )
+    ))
 
 
     return (
