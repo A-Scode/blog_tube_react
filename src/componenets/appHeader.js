@@ -170,7 +170,7 @@ if(!mq.matches){
                 : <><input ref={el => menuIcon_elem.current['searchIcon'] = el} placeholder='Search Blogs' onInput = {sorting_list} onFocus = {sorting_list} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />            </>
             }
             <div id="blogList" ref={el => menuIcon_elem.current['blogList'] = el}>
-                {state_blog_list.length !== 0 ? state_blog_list.map((e, i) =>( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
+                {state_blog_list.length !== 0 ? state_blog_list.map((e, i) =>( <Link to ={`/blog_tube_react/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
                     : <div className='blog_elems'> No Blogs Found</div>}
             </div>
             {responsive ?
@@ -178,7 +178,7 @@ if(!mq.matches){
                     {responsive ?
                         <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {sorting_list} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
                     <div id="blogListContainer" >
-                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => ( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
+                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => ( <Link to ={`/blog_tube_react/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
                             : <div className='blog_elems'> No Blogs Found</div>}
                     </div>
                 </div> : null

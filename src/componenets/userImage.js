@@ -28,7 +28,7 @@ let UserImage = props=>{
         if (flag === false){
         if (props.user_id === "unknown"){
             set_div_style({...div_style , ...props.style ,backgroundImage : `url(${unkownUser})` })
-            let to = '/Signup'
+            let to = '/blog_tube_react/Signup'
             flag = true
         }else{
                 let xhr = new XMLHttpRequest()

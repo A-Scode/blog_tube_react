@@ -40,7 +40,7 @@ const AppUserProfile = props =>{
                         set_profile_data(response.userData)
                         break;
                     case "fail":
-                        history.push('/Error')
+                        history.push('/blog_tube_react/Error')
                         break;
                     default:
                         break;
@@ -156,17 +156,17 @@ const ProfileTabs=props=>{
             </span>
             <span id="all_followers"  ref={el=>ref.current.all_followers=el} >
                     {props.followers !==[]?
-                    props.followers.map(item=>(<BlogiansMiniProfile follow={'block'} key = {item.user_id} user_details = {item}  onClick = {()=>null} to={`/Profile/${item.user_id}`} />))
+                    props.followers.map(item=>(<BlogiansMiniProfile follow={'block'} key = {item.user_id} user_details = {item}  onClick = {()=>null} to={`/blog_tube_react/Profile/${item.user_id}`} />))
                     :"No Followers"}
             </span>
             <span id="all_comments" ref={el=>ref.current.all_comments=el} >
                 {props.comments!==[]?
-                (props.comments.map(item=>(<><Link className="comment_title" to={`/Blog/${item.blog_title}?id=${item.blog_id}`} ><span>{item.blog_title}</span></Link><Comment c_detials = {item} key ={item.cid} /></>)))
+                (props.comments.map(item=>(<><Link className="comment_title" to={`/blog_tube_react/Blog/${item.blog_title}?id=${item.blog_id}`} ><span>{item.blog_title}</span></Link><Comment c_detials = {item} key ={item.cid} /></>)))
                 :"No Comments"}
             </span>
             <span id="all_followings" ref={el=>ref.current.all_followings=el} >
             {props.followings !==[]?
-                    props.followings.map(item=>(<BlogiansMiniProfile follow={'block'} key = {item.user_id} user_details = {item}  onClick = {()=>null} to={`/Profile/${item.user_id}`} />))
+                    props.followings.map(item=>(<BlogiansMiniProfile follow={'block'} key = {item.user_id} user_details = {item}  onClick = {()=>null} to={`/blog_tube_react/Profile/${item.user_id}`} />))
                     :"No Followings"}
             </span>
         </div>
@@ -203,7 +203,7 @@ const FollowButton=props=>{
                         set_follow_state('Following'):set_follow_state('Follow')
                         break;
                     case "loginRequired":
-                        history.push('/Login')
+                        history.push('/blog_tube_react/Login')
                         break;
                     case "fail":
                         check_follower()
@@ -249,7 +249,7 @@ const FollowButton=props=>{
                         
                         break;
                     case "loginRequired":
-                        history.push('/Login')
+                        history.push('/blog_tube_react/Login')
                         break;
                     case "fail":
                         break;

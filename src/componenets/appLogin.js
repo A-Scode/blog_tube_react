@@ -95,7 +95,7 @@ var AppLogin = props=>{
         <input type="password" minLength={8} maxLength={100} id='password' ref = {el=>ref.current['password']=el}  placeholder= "Password" required = {true} />
         <input className='submit' type="submit"  value= 'Login'   />
         <div className="redirectSignup">
-                    <p>Didn't Have an account?<Link to = '/Signup'>SignUp</Link>
+                    <p>Didn't Have an account?<Link to = '/blog_tube_react/Signup'>SignUp</Link>
                     <br />
                     <a href = "#" onClick = {()=>set_Error('ask_email')} >Forgot Password </a>
                     </p>

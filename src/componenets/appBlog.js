@@ -16,7 +16,7 @@ const AppBlog  = props=>{
     const blog_id = url.get('id')    
     const history = useHistory()
     if (blog_id === null){
-        history.push('/Error')
+        history.push('/blog_tube_react/Error')
     }
 
     const [blog_data_list , set_blog_data_list] = useState([])
@@ -41,10 +41,10 @@ const AppBlog  = props=>{
                                 blogger_details : response.blogger_details})
                     break;
                 case "page_not_found":
-                    history.push('/Error')
+                    history.push('/blog_tube_react/Error')
                     break;
                 case "fail":
-                    history.push('/Error')
+                    history.push('/blog_tube_react/Error')
                     break;
                 default:
                     break;
@@ -75,7 +75,7 @@ const AppBlog  = props=>{
     return(<div  className = "blog_page" ref ={el=>ref.current.blog_page = el} onMouseDown={getFullScreen} >
         <h2 align = "center">{blog_details.title}</h2>
         <img src = {blog_details.image_url} className = "title_image" loading = {"eager"} />
-        <BlogiansMiniProfile user_details = {blog_details.blogger_details} onClick={()=>null}  to ={`/Profile/${blog_details.blogger_details.user_id}`} />
+        <BlogiansMiniProfile user_details = {blog_details.blogger_details} onClick={()=>null}  to ={`/blog_tube_react/Profile/${blog_details.blogger_details.user_id}`} />
         <Blog>
             {blog_data_list.map((item,index)=>(<div key = {index} className = "container_data" dangerouslySetInnerHTML = {{__html:item}}></div>))}
         </Blog>
@@ -114,7 +114,7 @@ const ReviewBlog=props=>{
             formdata.append('review' , opt)
             xhr.send(formdata)
         }else{
-            history.push('/Error')
+            history.push('/blog_tube_react/Error')
         }
     }
     useEffect(()=>{
@@ -179,7 +179,7 @@ const Comments =props=>{
                         console.log(response)
                         break;
                     case "loginRequired":
-                        history.push("/Login")
+                        history.push("/blog_tube_react/Login")
                         break;
                 
                     default:
@@ -210,11 +210,11 @@ const Comments =props=>{
                         break;
                     case "loginRequired":
                         console.log(response.status)
-                        history.push("/Login")
+                        history.push("/blog_tube_react/Login")
                         break;
                     case "fail":
                         console.log(response.status)
-                        history.push("/Error") 
+                        history.push("/blog_tube_react/Error") 
                         break;              
                     default:
                         console.log(response.status)
@@ -253,7 +253,7 @@ const Comment = props=>{
         <div className="comment" id = {props.key}>
             <UserImage user_id= {props.c_detials.uid} width={"50px"} height="50px"
              style= {{gridArea :"user_image" , borderWidth : "2px" , alignSelf : "center" , justifySelf: "center"}}
-             to = {`/Profile/${props.c_detials.uid}`} onClick={()=>null} />
+             to = {`/blog_tube_react/Profile/${props.c_detials.uid}`} onClick={()=>null} />
             <span id="user_name">{props.c_detials.name}</span>
             <p className="comment_text" style={{whiteSpace:"break-spaces"}}>{props.c_detials.text}</p>
             <div className="datetime">{props.c_detials.upload_datetime}</div>

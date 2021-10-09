@@ -106,9 +106,9 @@ var AppBlogians = props=>{
                 <Route exact  path = {`${path}/profile_small/:user_id`}>
                     {mq.matches?(<>
                     <AppUserProfile />
-                    {follow==='none'?<button id = "FullpageProfile"  onClick={()=>history.push(`/Profile/${user_id}`)}> Full Profile </button>:null}
+                    {follow==='none'?<button id = "FullpageProfile"  onClick={()=>history.push(`/blog_tube_react/Profile/${user_id}`)}> Full Profile </button>:null}
                     </>)
-                    : <Redirect to = {`/Profile/${user_id}`} />}
+                    : <Redirect to = {`/blog_tube_react/Profile/${user_id}`} />}
                 </Route>
                 
 
@@ -129,7 +129,7 @@ function BlogiansMiniProfile(props){
     return(
         <Link className = "links" onClick = {()=>props.onClick(props.user_details.user_id)} style = {{textDecoration:'none',width : '100%',display:'flex', maxWidth: "1000px", justifyContent:'center',placeItems:'center'}} to = {props.to} >
         <div className="miniprofile"  >
-            <UserImage  width = "50px" height = "50px" to = {`/Profile/${props.user_details.user_id}`}
+            <UserImage  width = "50px" height = "50px" to = {`/blog_tube_react/Profile/${props.user_details.user_id}`}
              style = {{backgroundColor : "rgb(255, 255, 255)",
                         margin:"auto",
                         gridArea : "photo" ,

@@ -1,0 +1,26 @@
+{
+  "short_name": "BlogTube",
+  "name": "BlogTube",
+  "discription":"This is BlogTube here you will find your favouraite blogs to read. And you can follow them also...",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/*"
+    },
+    {
+      "src": "logo192.svg",
+      "type": "image/*",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.svg",
+      "type": "image/*",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "fullscreen",
+  "theme_color": "#3f51b5",
+  "background_color": "#ffffff"
+}

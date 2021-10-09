@@ -80,14 +80,14 @@ const BlogComponent = props=>{
         }
     },[props.mini])
         
-    return (<Link to = {`/Blog/${props.title}?id=${props.blog_id}`} style ={{display:"flex",width:"100%" ,placeItems:"center"}} >
+    return (<Link to = {`/blog_tube_react/Blog/${props.title}?id=${props.blog_id}`} style ={{display:"flex",width:"100%" ,placeItems:"center"}} >
         <div className="blog_details" style = {style.blog_details} >
             <img className="blog_image" style={style.title_image} src = {props.image_url} loading= "lazy" />
             
                 <div className="blogger">
                     <UserImage user_id = {props.user_details.user_id} width="35px" height="35px" style ={{
                         borderWidth:"2px"
-                    }} to ={`/Profile/${props.user_details.user_id}`}  onClick ={()=>null} />
+                    }} to ={`/blog_tube_react/Profile/${props.user_details.user_id}`}  onClick ={()=>null} />
                     <span id = "username">{props.user_details.username}</span>
                     <FollowButton user_id = {props.user_details.user_id}
                     style = {{marginLeft:'auto' , marginRight:"10px"  , height:"30px" , alignSelf:'center'}}                    
