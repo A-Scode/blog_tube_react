@@ -126,6 +126,7 @@ export default  AppUploadBlog;
 var Preview_tab =props =>{
     const history = useHistory()
     const [data_list, set_data_list] = useState([])
+    var context = useContext(Login_context)
     useEffect(()=>{
         if (props.list ){
         console.log(props.list)
@@ -151,12 +152,12 @@ var Preview_tab =props =>{
                 }
             }
         }
-        xhr.setRequestHeader("session" , sessionStorage.session)
+        xhr.setRequestHeader("session" , context)
         xhr.setRequestHeader("contentType" , "application/json;charset=utf-8")
         let formdata = new FormData()
         formdata.append('blog' , JSON.stringify(props.list))
         xhr.send(formdata)}
-    },[props.list])
+    },[props.list,context])
     return(
         <div className="showpreview">
             <Blog>
@@ -321,7 +322,7 @@ var Editing_pane = props =>{
         }
         final_data.blog = blog
     }
-    const login_context = useContext(Login_context)
+    var login_context = useContext(Login_context)
     const history = useHistory()
     const submit_data  = useCallback(()=>{
         final_data.blog = blog
@@ -370,7 +371,7 @@ var Editing_pane = props =>{
             formdata.append("blogDetails" , blog_details)
             xhr.send(formdata)
         }
-    },[blog])
+    },[blog,login_context])
     
     function rmcomp(i){
         let b = blog
