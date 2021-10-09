@@ -25,7 +25,7 @@ var AppBlogians = props=>{
         if (xhr.readyState === 4 && xhr.status === 200){
             let response = JSON.parse(xhr.response)
 
-            if (response.status == 'success'){
+            if (response.status === 'success'){
                 ref_list.current['list'] = response.userslist
                 set_user_list(response.userslist)
             }else if (response.status === 'fail'){

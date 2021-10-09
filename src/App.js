@@ -70,11 +70,11 @@ function App() {
     xhr.onreadystatechange = ()=>{
       if (xhr.readyState === 4 && xhr.status === 200){
         let session = JSON.parse(xhr.response).session
-        if (sessionStorage.session === session){
-          set_login_context_state(session)
+        if (session === ""){
+          logout()
         } 
         else{
-          logout()
+          set_login_context_state(session)
           }
         console.log(session)
       }

@@ -106,7 +106,7 @@ const AppHeader = props => {
 
         else if (mq.matches){
             
-            if (event.target.id == "searchInputResponsive"){
+            if (event.target.id === "searchInputResponsive"){
                 set_state_search_style({...search_style , display : 'flex'})
                 
             }

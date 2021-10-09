@@ -94,7 +94,7 @@ try{
         props.appbodyloading('flex')
         xhr.onreadystatechange = ()=>{
             console.log(xhr.status, xhr.readyState)
-            if (xhr.status == 200 && xhr.readyState ==4){
+            if (xhr.status === 200 && xhr.readyState ===4){
                 let response = JSON.parse(xhr.response)
                 console.log(response)
                 
@@ -179,7 +179,7 @@ try{
 
         xhr.open( 'POST', origin+'backend_api/verifyotp' )
         xhr.onreadystatechange = ()=>{
-            if(xhr.status == 200 && xhr.readyState == 4){
+            if(xhr.status === 200 && xhr.readyState === 4){
                 let response = JSON.parse(xhr.response)
                 console.log(response)
                 

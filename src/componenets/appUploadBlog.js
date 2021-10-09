@@ -9,6 +9,7 @@ import editor_image from './statics/images/editor.svg'
 import youtubeLogo from './statics/images/youtubeLogo.svg'
 import popComp from './statics/images/popComp.svg'
 import appConfig from './statics/appConfig.json'
+import { logout } from './statics/utils'
 
 
 var final_data = {}
@@ -128,7 +129,7 @@ var Preview_tab =props =>{
     const [data_list, set_data_list] = useState([])
     var context = useContext(Login_context)
     useEffect(()=>{
-        if (props.list ){
+        if (props.list && sessionStorage.session === context){
         console.log(props.list)
         props.appbodyloading('flex')
         let xhr = new XMLHttpRequest()
@@ -144,6 +145,9 @@ var Preview_tab =props =>{
                         break;
                     case "loginRequired":
                         history.push("/blog_tube_react/Login")
+                        console.log("backend_api/blogPreview" ,response)
+                        logout()
+                        props.appbodyloading('none')
                         break
                     default:
                         console.log(response.status)
