@@ -1,4 +1,4 @@
-import {useHistory,  BrowserRouter as Router ,Route ,Redirect} from 'react-router-dom'
+import {useHistory,  HashRouter as Router ,Route ,Redirect} from 'react-router-dom'
 import {CacheSwitch , CacheRoute } from 'react-router-cache-route'
 import AppHeader from './componenets/appHeader';
 import AppFooter from './componenets/appFooter';
