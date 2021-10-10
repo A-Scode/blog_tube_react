@@ -87,6 +87,7 @@ try{
     var [block_state, set_block_state] = useState('form')
 
     const origin = appConfig.origin
+    var data
 
     let submit_data=(event)=>{
         
@@ -134,7 +135,7 @@ try{
         }
 
         let form = event.target
-        let data = {username : form[0].value,
+        data = {username : form[0].value,
                     email    : form[1].value,
                     password : form[2].value,
                 }
@@ -199,6 +200,7 @@ try{
         }
 
         xhr.setRequestHeader('otp' , otp_input.value)
+        xhr.setRequestHeader('email' , data.email)
         xhr.send()
         
     }

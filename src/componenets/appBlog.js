@@ -237,7 +237,7 @@ const Comments =props=>{
             xhr.send(formdata)
         }
     
-    },[session_id,ref.current.comment_input.value,sessionStorage])
+    },[session_id,ref.current,sessionStorage])
     const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} />))))
     const nList = useMemo(()=>(<span style ={{display:"grid",placeItems:"center",
     fontSize:"30px",width:"100%" ,height:"100%"}} id = "no_comments">No Comments😅</span>))

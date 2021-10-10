@@ -11,7 +11,8 @@ const logout = ()=>{
             delete sessionStorage.login_data
         }
     }
-    xhr.setRequestHeader('session' ,JSON.stringify(sessionStorage.session) )
+    xhr.setRequestHeader('session' ,sessionStorage.session )
+    xhr.setRequestHeader('user_id'   , JSON.parse(sessionStorage.login_data).user_id)
     xhr.send()
 }
 }

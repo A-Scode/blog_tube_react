@@ -64,22 +64,22 @@ function App() {
     const [blogs_list , set_blogs_list] = useState([])
 
     useEffect(()=>{
-    let xhr = new XMLHttpRequest()
-    xhr.open("POST",config.origin+"backend_api/getSessionId")
+    // let xhr = new XMLHttpRequest()
+    // xhr.open("POST",config.origin+"backend_api/getSessionId")
 
-    xhr.onreadystatechange = ()=>{
-      if (xhr.readyState === 4 && xhr.status === 200){
-        let session = JSON.parse(xhr.response).session
-        if (session === ""){
-          logout()
-        } 
-        else{
-          set_login_context_state(session)
-          }
-        console.log(session)
-      }
-    }
-    xhr.send()
+    // xhr.onreadystatechange = ()=>{
+    //   if (xhr.readyState === 4 && xhr.status === 200){
+    //     let session = JSON.parse(xhr.response).session
+    //     if (session === ""){
+    //       logout()
+    //     } 
+    //     else{
+    //       set_login_context_state(session)
+    //       }
+    //     console.log(session)
+    //   }
+    // }
+    // xhr.send()
     
     fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
       mode:'cors',
