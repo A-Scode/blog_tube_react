@@ -139,7 +139,7 @@ try{
         data_ref.current.email    = form[1].value
         data_ref.current.password = form[2].value
               
-        xhr.setRequestHeader('userData' , JSON.stringify(data_ref))
+        xhr.setRequestHeader('userData' , JSON.stringify(data_ref.current))
 
         let form_data = new FormData()
         let imagefile = form[4].files[0]
