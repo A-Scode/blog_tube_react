@@ -64,23 +64,6 @@ function App() {
     const [blogs_list , set_blogs_list] = useState([])
 
     useEffect(()=>{
-    // let xhr = new XMLHttpRequest()
-    // xhr.open("POST",config.origin+"backend_api/getSessionId")
-
-    // xhr.onreadystatechange = ()=>{
-    //   if (xhr.readyState === 4 && xhr.status === 200){
-    //     let session = JSON.parse(xhr.response).session
-    //     if (session === ""){
-    //       logout()
-    //     } 
-    //     else{
-    //       set_login_context_state(session)
-    //       }
-    //     console.log(session)
-    //   }
-    // }
-    // xhr.send()
-    
     fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
       mode:'cors',
       method:"POST",
@@ -94,13 +77,19 @@ function App() {
                   set_blogs_list(response.blogs_list)
                   break;
               case "fail":
-                  history.push('/blog_tube_react/Home')
+                  history.push('/Home')
                   break;
               default:
                   break;
-          }}))}
+          }}))
+        }
     
-    ,[login_context_state])
+    ,[])
+    useEffect(()=>{
+      if (sessionStorage.session !== null){
+        set_login_context_state(sessionStorage.session)
+      }
+    },[sessionStorage])
   
 
     
@@ -113,31 +102,31 @@ function App() {
       <div className="appbody" ref = {callback}>
         <AppBodyLoading loading = {appbodyloading_state} />
         <CacheSwitch>
-            <Route exact path = '/blog_tube_react/Blog/:title'>
+            <Route exact path = '/Blog/:title'>
               <AppBlog appbodyloading = {change_appbodyloading} />
             </Route>
-            <CacheRoute exact path = '/blog_tube_react/Login'  >
+            <CacheRoute exact path = '/Login'  >
               <AppLogin appbodyloading = {change_appbodyloading} change_login_context = {change_login_context} />
             </CacheRoute>
-            <CacheRoute exact path = '/blog_tube_react/Signup'>
+            <CacheRoute exact path = '/Signup'>
               <AppSignup appbodyloading = {change_appbodyloading}  />
             </CacheRoute>
-            <Route  path = '/blog_tube_react/Blogians' >
+            <Route  path = '/Blogians' >
               <AppBlogians />
             </Route>
-            <Route exact path = '/blog_tube_react/Profile/:user_id'>
+            <Route exact path = '/Profile/:user_id'>
               <AppUserProfile />
             </Route>
-            <Route  path = '/blog_tube_react/UploadBlog'>
+            <Route  path = '/UploadBlog'>
               <AppUploadBlog appbodyloading= {change_appbodyloading} />
             </Route>
-            <Route exact path = "/blog_tube_react/Home" >
+            <Route exact path = "/Home" >
               <AppHome blogs_list = {blogs_list} />
             </Route>
-            <CacheRoute exact path = "/blog_tube_react/Error">
+            <CacheRoute exact path = "/Error">
               <h1>Error</h1>
             </CacheRoute>
-            <Route path = "/blog_tube_react/"><Redirect to="/blog_tube_react/Home" /></Route>
+            <Route path = "/"><Redirect to="/Home" /></Route>
         </CacheSwitch>
       
       </div>

@@ -96,7 +96,7 @@ function Menu  (props){
         <div className="menu_box" id = "menu_box"  ref= {el => ref.current['menu_box'] = el}  >
             <div className="menu_container" id = "menu_container" ref = { el => ref.current['menu_container']=el}>
                 <div className="nameImage" style = {{display : 'grid',gridTemplateRows:' 70% 30% '}} >
-                <UserImage onClick = {()=>props.onClick()} width = "80px" style = {{alignSelf:"end"}}  height = "80px" to = {login?`/blog_tube_react/Profile/${profile_photo()}`:'/blog_tube_react/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
+                <UserImage onClick = {()=>props.onClick()} width = "80px" style = {{alignSelf:"end"}}  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
                 <h2 align = "center" style = {{margin:0 , padding:0,
                 fontFamily:'play',
                 fontSize:'28px',
@@ -107,10 +107,10 @@ function Menu  (props){
                 justifySelf:'center'
                 }} >{login?JSON.parse(sessionStorage.login_data).username : ""}</h2>
                 </div>
-                <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/blog_tube_react/Home" >Home</MenuItem>
-                <MenuItem  onClick = {()=>props.onClick()} to = "/blog_tube_react/Blogians"  img = {blogians}>Blogians</MenuItem>
-                <MenuItem  onClick = {()=>props.onClick()} to = "/blog_tube_react/UploadBlog"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
-                <MenuItem  onClick = {()=>props.onClick()} to = "/blog_tube_react/Login" logout = {login?true:false} img = {login?logoutIcon:loginIcon}>{login?"Logout":"Login"}</MenuItem>
+                <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/Home" >Home</MenuItem>
+                <MenuItem  onClick = {()=>props.onClick()} to = "/Blogians"  img = {blogians}>Blogians</MenuItem>
+                <MenuItem  onClick = {()=>props.onClick()} to = "/UploadBlog"  img = {uploadBlogIcon}>Upload Blog</MenuItem>
+                <MenuItem  onClick = {()=>props.onClick()} to = "/Login" logout = {login?true:false} img = {login?logoutIcon:loginIcon}>{login?"Logout":"Login"}</MenuItem>
 
 
             </div>

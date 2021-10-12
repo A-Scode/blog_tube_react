@@ -249,7 +249,7 @@ try{
 
         let success_block = (<>
             <h3 ref = {el=>ref.current['signup_heading']=el} style = {{color:'rgb(24, 151, 201)', gridColumn:'1/ span 2'}}  align='center'>🎉Welcome🎉</h3>
-             <button id = "signup_submit"  style = {{justifySelf:'center',  gridColumn: '1/span 2',cursor:'pointer'}}><Link style  = {{textDecoration:'none'}} to  = "/blog_tube_react/Login"><span>Login</span></Link></button>
+             <button id = "signup_submit"  style = {{justifySelf:'center',  gridColumn: '1/span 2',cursor:'pointer'}}><Link style  = {{textDecoration:'none'}} to  = "/Login"><span>Login</span></Link></button>
             
             </>)
 

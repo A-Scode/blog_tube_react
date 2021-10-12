@@ -51,7 +51,7 @@ var AppUploadBlog = props=>{
         final_data.title = ref.current['blog_title'].value
         final_data.discription = ref.current['blog_discription'].value
         set_upload_blog_state('blog_editor')
-        history.push("/blog_tube_react/UploadBlog/editor")
+        history.push("/UploadBlog/editor")
     })
     
     const blog_info = useMemo(()=>(
@@ -80,10 +80,10 @@ var AppUploadBlog = props=>{
     }
     useEffect(()=>{
         if (editor_state==="editor"){
-            history.push("/blog_tube_react/UploadBlog/editor")
+            history.push("/UploadBlog/editor")
             set_editor_state("editor")
         }else if (editor_state === "preview"){
-            history.push("/blog_tube_react/UploadBlog/preview")
+            history.push("/UploadBlog/preview")
             set_editor_state("preview")
         }
     },[editor_state])
@@ -96,10 +96,10 @@ var AppUploadBlog = props=>{
             <Editor_tabs change_state = {set_to_editor} editor_state = {editor_state} />
 
             <Switch>
-                <Route exact path = "/blog_tube_react/UploadBlog/editor">
+                <Route exact path = "/UploadBlog/editor">
                     <Editing_pane appbodyloading = {state =>props.appbodyloading(state)} blog = {set_myblog} />
                 </Route>
-                <Route exact path="/blog_tube_react/UploadBlog/preview">
+                <Route exact path="/UploadBlog/preview">
                     <Preview_tab list = {blog} appbodyloading={state =>props.appbodyloading(state)} />
                 </Route>
             </Switch>
@@ -109,7 +109,7 @@ var AppUploadBlog = props=>{
     useEffect(()=>{
         final_data['blog_title_image']=""
         if (login_context !== sessionStorage.session){
-            history.push('/blog_tube_react/Login')
+            history.push('/Login')
 
             return null
         }
@@ -144,7 +144,7 @@ var Preview_tab =props =>{
                         props.appbodyloading('none')
                         break;
                     case "loginRequired":
-                        history.push("/blog_tube_react/Login")
+                        history.push("/Login")
                         console.log("backend_api/blogPreview" ,response)
                         logout()
                         props.appbodyloading('none')
@@ -188,9 +188,9 @@ var Editor_tabs= props =>{
     const {path , url} = useRouteMatch()
 
     useEffect(()=>{
-        if (path === "/blog_tube_react/UploadBlog/editor"){
+        if (path === "/UploadBlog/editor"){
             props.change_state("editor")
-        }else if (path === "/blog_tube_react/UploadBlog/preview"){
+        }else if (path === "/UploadBlog/preview"){
             props.change_state("preview")
         }
     },[])
@@ -342,15 +342,15 @@ var Editing_pane = props =>{
                     let response =JSON.parse( xhr.response)
                     switch (response.status) {
                         case "loginRequired":
-                            history.push('/blog_tube_react/Login')
+                            history.push('/Login')
                             props.appbodyloading('none')
                             break;
                         case "fail":
-                            history.push('/blog_tube_react/Error')
+                            history.push('/Error')
                             props.appbodyloading('none')
                             break;
                         case "success":
-                            history.push('/blog_tube_react/Home')
+                            history.push('/Home')
                             props.appbodyloading('none')
                             break;
                         default:
