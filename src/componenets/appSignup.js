@@ -1,5 +1,5 @@
 import './statics/css/appSignup.css'
-import {useState,useRef , useEffect} from 'react'
+import {useState,useRef , useEffect, useCallback} from 'react'
 import username from './statics/images/username.svg'
 import password from './statics/images/password.svg'
 import email from './statics/images/email.svg'
@@ -87,7 +87,7 @@ try{
     var [block_state, set_block_state] = useState('form')
 
     const origin = appConfig.origin
-    const data ={};
+    const data_ref = useRef({});
 
     let submit_data=(event)=>{
         
@@ -135,11 +135,11 @@ try{
         }
 
         let form = event.target
-        data.username = form[0].value
-        data.email    = form[1].value
-        data.password = form[2].value
+        data_ref.current.username = form[0].value
+        data_ref.current.email    = form[1].value
+        data_ref.current.password = form[2].value
               
-        xhr.setRequestHeader('userData' , JSON.stringify(data))
+        xhr.setRequestHeader('userData' , JSON.stringify(data_ref))
 
         let form_data = new FormData()
         let imagefile = form[4].files[0]
@@ -163,10 +163,10 @@ try{
     }}catch(e){}
     }
 
-    function check_otp(event){
+    const check_otp = useCallback((event)=>{
         let form = event.target
         let otp_input = form[0]
-        if(otp_input.value.length != 4){
+        if(otp_input.value.length !== 4){
             otp_input.focus()
             otp_input.setCustomValidity('OTP must be of 4 digits!!!')
             otp_input.reportValidity()
@@ -200,10 +200,10 @@ try{
         }
 
         xhr.setRequestHeader('otp' , otp_input.value)
-        xhr.setRequestHeader('email' , data.email)
+        xhr.setRequestHeader('email' , data_ref.current.email)
         xhr.send()
         
-    }
+    },[data_ref])
 
     let form_block = (<>
         <h1 className = "signup_heading" ref = {el=>ref.current['signup_heading']=el} >Sign Up</h1>
