@@ -48,6 +48,7 @@ var AppLogin = props=>{
     const origin = appConfig.origin
 
    let Login = useCallback((event)=>{
+       event.preventDefault()
         let form = event.target
         let email_input = form[0]
         let password_input = form[1]
