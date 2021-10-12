@@ -87,7 +87,7 @@ try{
     var [block_state, set_block_state] = useState('form')
 
     const origin = appConfig.origin
-    var data
+    const data ={};
 
     let submit_data=(event)=>{
         
@@ -135,10 +135,10 @@ try{
         }
 
         let form = event.target
-        data = {username : form[0].value,
-                    email    : form[1].value,
-                    password : form[2].value,
-                }
+        data.username = form[0].value
+        data.email    = form[1].value
+        data.password = form[2].value
+              
         xhr.setRequestHeader('userData' , JSON.stringify(data))
 
         let form_data = new FormData()
