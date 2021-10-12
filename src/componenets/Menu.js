@@ -105,7 +105,7 @@ function Menu  (props){
                 maxWidth:"80%",
                 textOverflow:'ellipsis',
                 justifySelf:'center'
-                }} >{login?JSON.parse(sessionStorage.login_data).username : ""}</h2>
+                }} >{login && sessionStorage.login_data !== undefined?JSON.parse(sessionStorage.login_data).username : ""}</h2>
                 </div>
                 <MenuItem onClick = {()=>props.onClick()}  img = {homeIcon} to = "/Home" >Home</MenuItem>
                 <MenuItem  onClick = {()=>props.onClick()} to = "/Blogians"  img = {blogians}>Blogians</MenuItem>
