@@ -13,8 +13,8 @@ import UserImage from "./userImage";
 import { logout } from "./statics/utils";
 
 const AppBlog  = props=>{
-    const url = new URLSearchParams(window.location.search)
-    const blog_id = url.get('id')    
+    const url = window.location.hash.split("?")[1]
+    const blog_id = url.split("=")[1]
     const history = useHistory()
     if (blog_id === null){
         history.push('/Error')
@@ -202,7 +202,7 @@ const Comments =props=>{
         if (session_id === sessionStorage.session &&  comment !== ''){
             const xhr = new XMLHttpRequest()
             xhr.open("POST" , appConfig.origin+`backend_api/uploadComment`)
-            props.appbodyloading('flex')
+            props.change_appbodyloading('flex')
             xhr.onreadystatechange = ()=>{
                 if(xhr.readyState === 4 && xhr.status === 200){
                 let response = JSON.parse(xhr.response) 
@@ -211,22 +211,22 @@ const Comments =props=>{
                     case "success":
                         console.log(response)
                         set_comment_list([response.new_comment ,...comment_list])
-                        props.appbodyloading('none')
+                        props.change_appbodyloading('none')
                         break;
                     case "loginRequired":
                         console.log(response.status)
                         logout()
                         history.push("/Login")
-                        props.appbodyloading('none')
+                        props.change_appbodyloading('none')
                         break;
                     case "fail":
                         console.log(response.status)
                         history.push("/Error") 
-                        props.appbodyloading('none')
+                        props.change_appbodyloading('none')
                         break;              
                     default:
                         console.log(response.status)
-                        props.appbodyloading('none')
+                        props.change_appbodyloading('none')
                         break;                                 // list has to be updated here
             }}}
             const formdata = new FormData()
