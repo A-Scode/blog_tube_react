@@ -265,7 +265,7 @@ const FollowButton=props=>{
         }
     },[context ,props.user_id ])
     return(
-        <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context !== sessionStorage.session || JSON.parse(sessionStorage.login_data).user_id === props.user_id} >{follow_state}</button>
+        <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context !== sessionStorage.session || sessionStorage.login_data!==undefined?JSON.parse(sessionStorage.login_data).user_id === props.user_id : false} >{follow_state}</button>
     )
 }
 
