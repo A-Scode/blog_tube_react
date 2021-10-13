@@ -6,18 +6,17 @@ import appConfig from './statics/appConfig.json'
 
 import anime from 'animejs'
 import { Login_context } from '../App'
-import { useEffect, useRef , useState , useContext, useCallback, useMemo} from 'react'
+import { useEffect, useRef , useState , useCallback, useMemo} from 'react'
 import {
-    Link} from 'react-router-dom'
+    Link,useHistory} from 'react-router-dom'
 import { logout } from './statics/utils'
 
 var AppLogin = props=>{
    
     let ref = useRef({})
-
-    let login_context = useContext(Login_context)
-
     let [Error, set_Error] = useState('form')
+    const history = useHistory()
+
 
     useEffect(()=>{
         try{
@@ -26,7 +25,7 @@ var AppLogin = props=>{
                 update:function(anime){
                     try{
                     ref.current['heading'].style.filter = `hue-rotate(${anime.progress *3.6}deg)`
-                    }catch(err){let get }
+                    }catch(err){}
                 },
                 duration:2000,
                 autoplay:true,
@@ -80,8 +79,8 @@ var AppLogin = props=>{
                     let login_data = JSON.stringify(response.login_data)
                     localStorage['login_data'] = login_data
                     sessionStorage['login_data'] = login_data
+                    history.push('/Home')
                     props.appbodyloading('none')
-
                 }
             }
         }

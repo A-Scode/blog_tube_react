@@ -1,4 +1,4 @@
-import React ,{useEffect ,useContext , useState, useCallback, useMemo, useRef} from 'react'
+import React ,{useEffect ,useContext , useState, useCallback, useMemo, useRef, useLayoutEffect} from 'react'
 import { useHistory, useRouteMatch  } from 'react-router'
 import { CacheSwitch as Switch , CacheRoute as Route  } from 'react-router-cache-route'
 import { Login_context } from '../App'
@@ -113,10 +113,15 @@ var AppUploadBlog = props=>{
             return null
         }
     },[login_context,sessionStorage])
+
+    
     useEffect(()=>{
-        let reload = ()=>"Changes will Not be Saved😥"
-        window.addEventListener("beforeunload" , reload )
-        return ()=>window.removeEventListener('beforeunload' ,reload)
+        window.onbeforeunload=e=>{
+            console.log(e)
+            return "Changes will not be saved!!!"
+        }
+
+        return ()=>window.onbeforeunload =e=>null
     },[])
     return(
         <div className="blog_upload_page">
