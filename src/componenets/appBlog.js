@@ -81,7 +81,7 @@ const AppBlog  = props=>{
             {blog_data_list.map((item,index)=>(<div key = {index} className = "container_data" dangerouslySetInnerHTML = {{__html:item}}></div>))}
         </Blog>
         <ReviewBlog blog_id = {blog_id} likes = {blog_details.likes} dislikes= {blog_details.dislikes} views= {blog_details.views} />
-        <Comments  blog_id = {blog_id} />
+        <Comments  blog_id = {blog_id} appbodyloading={props.appbodyloading} />
     </div>)
 }
 
