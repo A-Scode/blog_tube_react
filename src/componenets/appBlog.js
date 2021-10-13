@@ -119,7 +119,7 @@ const ReviewBlog=props=>{
         }
     },[session_id,props.blog_id ])
     useEffect(()=>{
-        if (session_id===sessionStorage.session){
+        if (session_id===sessionStorage.session && (Boolean(session_id) && Boolean(sessionStorage.session))){
 
             let xhr = new XMLHttpRequest()
             let uid = JSON.parse(sessionStorage.login_data).user_id
@@ -202,7 +202,7 @@ const Comments =props=>{
         if (session_id === sessionStorage.session &&  comment !== ''){
             const xhr = new XMLHttpRequest()
             xhr.open("POST" , appConfig.origin+`backend_api/uploadComment`)
-            props.change_appbodyloading('flex')
+            props.appbodyloading('flex')
             xhr.onreadystatechange = ()=>{
                 if(xhr.readyState === 4 && xhr.status === 200){
                 let response = JSON.parse(xhr.response) 
@@ -211,22 +211,22 @@ const Comments =props=>{
                     case "success":
                         console.log(response)
                         set_comment_list([response.new_comment ,...comment_list])
-                        props.change_appbodyloading('none')
+                        props.appbodyloading('none')
                         break;
                     case "loginRequired":
                         console.log(response.status)
                         logout()
                         history.push("/Login")
-                        props.change_appbodyloading('none')
+                        props.appbodyloading('none')
                         break;
                     case "fail":
                         console.log(response.status)
                         history.push("/Error") 
-                        props.change_appbodyloading('none')
+                        props.appbodyloading('none')
                         break;              
                     default:
                         console.log(response.status)
-                        props.change_appbodyloading('none')
+                        props.appbodyloading('none')
                         break;                                 // list has to be updated here
             }}}
             const formdata = new FormData()

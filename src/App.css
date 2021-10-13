@@ -72,7 +72,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
     justify-items: center;
     overflow-x: clip;
 }
-@media only screen and (max-width: 575px){
+@media (max-width: 575px){
     .appcontent{
         grid-template-rows: 100% 200px;
         grid-template-areas: 

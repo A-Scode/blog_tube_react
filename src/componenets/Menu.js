@@ -65,8 +65,9 @@ function Menu  (props){
 
 
     useEffect(()=>{
-        if( sessionStorage.session === login_context ){
+        if( sessionStorage.session === login_context && (Boolean(sessionStorage.session) && Boolean(login_context)) ){
             set_login(true)
+            console.log("login", login)
         }else{ set_login(false) }
 
     } , [sessionStorage.session ,login_context])
@@ -81,7 +82,7 @@ function Menu  (props){
         console.log(err)}
 
     const profile_photo=useCallback(()=>{
-        if (sessionStorage.session){
+        if (Boolean(sessionStorage.session)){
             let id = JSON.parse(sessionStorage.getItem('login_data')).user_id
             return id
         }

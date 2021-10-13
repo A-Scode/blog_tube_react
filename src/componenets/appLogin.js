@@ -9,6 +9,7 @@ import { Login_context } from '../App'
 import { useEffect, useRef , useState , useContext, useCallback, useMemo} from 'react'
 import {
     Link} from 'react-router-dom'
+import { logout } from './statics/utils'
 
 var AppLogin = props=>{
    
@@ -73,6 +74,7 @@ var AppLogin = props=>{
                     props.appbodyloading('none')
 
                 }else if(response.status === "success"){
+                    logout()
                     props.change_login_context(response.session)
                     sessionStorage.setItem('session', response.session)
                     let login_data = JSON.stringify(response.login_data)

@@ -191,7 +191,7 @@ const FollowButton=props=>{
     const history = useHistory()
 
     const check_follower  = useCallback(()=>{
-        if (context === sessionStorage.session){
+        if (context === sessionStorage.session && (Boolean(sessionStorage.session) && Boolean(context))){
             let xhr = new XMLHttpRequest()
             xhr.open('POST' , appConfig.origin+'backend_api/getFollowingList')
             xhr.onreadystatechange=()=>{if(xhr.status === 200 && xhr.readyState ===4){
@@ -206,7 +206,6 @@ const FollowButton=props=>{
                         console.log('backend_api/getFollowingList LoginRequired')
                         break;
                     case "fail":
-                        check_follower()
                         break;
                     default:
                         break;
@@ -231,7 +230,7 @@ const FollowButton=props=>{
     const follow_unfollow = useCallback((event)=>{
         event.stopPropagation()
         event.preventDefault()
-        if (context === sessionStorage.session){
+        if (context === sessionStorage.session && (Boolean(sessionStorage.session) || Boolean(context))){
             let xhr = new XMLHttpRequest()
             xhr.open('POST' , appConfig.origin+'backend_api/followUnfollow')
             xhr.onreadystatechange=()=>{if(xhr.status === 200 && xhr.readyState ===4){
@@ -265,7 +264,7 @@ const FollowButton=props=>{
         }
     },[context ,props.user_id ])
     return(
-        <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context !== sessionStorage.session || sessionStorage.login_data!==undefined?JSON.parse(sessionStorage.login_data).user_id === props.user_id : false} >{follow_state}</button>
+        <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context !== sessionStorage.session && sessionStorage.login_data!==undefined?JSON.parse(sessionStorage.login_data).user_id === props.user_id : false} >{follow_state}</button>
     )
 }
 

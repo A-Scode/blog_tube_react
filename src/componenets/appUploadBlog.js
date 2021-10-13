@@ -108,12 +108,12 @@ var AppUploadBlog = props=>{
     
     useEffect(()=>{
         final_data['blog_title_image']=""
-        if (login_context !== sessionStorage.session){
+        if (!Boolean(login_context) || !Boolean(sessionStorage.session)){
             history.push('/Login')
 
             return null
         }
-    },[])
+    },[login_context,sessionStorage])
     return(
         <div className="blog_upload_page">
             {upload_blog_state === 'blog'? blog_info : null}
@@ -129,7 +129,7 @@ var Preview_tab =props =>{
     const [data_list, set_data_list] = useState([])
     var context = useContext(Login_context)
     useEffect(()=>{
-        if (props.list && sessionStorage.session === context){
+        if (props.list && sessionStorage.session === context && (Boolean(sessionStorage.session) && Boolean(context))){
         console.log(props.list)
         props.appbodyloading('flex')
         let xhr = new XMLHttpRequest()
@@ -332,7 +332,7 @@ var Editing_pane = props =>{
         final_data.blog = blog
         console.log(final_data)
         props.appbodyloading('flex')
-        if (login_context === sessionStorage.session){
+        if (login_context === sessionStorage.session && (Boolean(sessionStorage.session) || Boolean(login_context))){
             let login_data = JSON.parse(sessionStorage.login_data)
             let xhr = new XMLHttpRequest()
             let blog_details = JSON.stringify(final_data)

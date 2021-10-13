@@ -33,7 +33,7 @@ div.footer p{
     align-self: center;
 }
 
-@media only screen and (max-width : 575px){
+@media (max-width : 575px){
     .footer{
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2,1fr);
@@ -46,7 +46,7 @@ div.footer p{
         justify-self:start;
     }
 }
-@media only screen and (min-width : 576px){
+@media (min-width : 576px){
     .footer{
         justify-content: space-around;
         grid-template-columns: repeat(7,1fr);

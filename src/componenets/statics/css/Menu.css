@@ -36,7 +36,7 @@
     font-family: sans-serif;
 }
 
-@media only screen and (max-width : 575px){
+@media (max-width : 575px){
     .menu_container{
         position: fixed;
         left:0 ;
@@ -46,7 +46,7 @@
     }
 }
 
-@media only screen and (min-width : 576px){
+@media (min-width : 576px){
     .menu_box{
         justify-content: center;
     }

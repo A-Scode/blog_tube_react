@@ -155,7 +155,7 @@
     font-family: monospace;
     letter-spacing: 0.5px;
 }
-@media only screen and (min-width : 769px) {
+@media (min-width : 769px) {
     .blog_elems{
         max-width: 50vw;
     }
