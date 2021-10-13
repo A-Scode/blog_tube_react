@@ -110,10 +110,14 @@ var AppUploadBlog = props=>{
         final_data['blog_title_image']=""
         if (!Boolean(login_context) || !Boolean(sessionStorage.session)){
             history.push('/Login')
-
             return null
         }
     },[login_context,sessionStorage])
+    useEffect(()=>{
+        let reload = ()=>"Changes will Not be Saved😥"
+        window.addEventListener("beforeunload" , reload )
+        return ()=>window.removeEventListener('beforeunload' ,reload)
+    },[])
     return(
         <div className="blog_upload_page">
             {upload_blog_state === 'blog'? blog_info : null}

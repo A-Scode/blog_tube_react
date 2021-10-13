@@ -198,7 +198,7 @@ const Comments =props=>{
     useEffect(()=>{
         update_comments()
     },[props.blog_id])
-    useEffect(()=>ref.current.comment_list.scrollTo(0,0),[comment_list])
+    useEffect(()=>ref.current.comment_list.scrollTo(0,0),[comment_list,ref])
 
     const send_comment = useCallback(()=>{
         let comment = ref.current.comment_input.value
