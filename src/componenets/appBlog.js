@@ -168,7 +168,7 @@ const Comments =props=>{
 
     const [comment_list , set_comment_list] = useState([])
 
-    useEffect(()=>{
+    const update_comments= useCallback(()=>{
         let xhr = new XMLHttpRequest()
         xhr.open('POST' , appConfig.origin+`backend_api/getComments`)
         xhr.onreadystatechange=()=>{
@@ -177,7 +177,6 @@ const Comments =props=>{
                 switch (response.status) {
                     case "success":
                         set_comment_list(response.comment_list)
-                        console.log(response)
                         break;
                     case "loginRequired":
                         console.log(`backend_api/getComments`)
@@ -194,8 +193,12 @@ const Comments =props=>{
         let formdata = new FormData()
         formdata.append('blog_id' , props.blog_id)
         xhr.send(formdata)
-        
+    },[comment_list,ref])
+
+    useEffect(()=>{
+        update_comments()
     },[props.blog_id])
+    useEffect(()=>ref.current.comment_list.scrollTo(0,0),[comment_list])
 
     const send_comment = useCallback(()=>{
         let comment = ref.current.comment_input.value
@@ -210,7 +213,7 @@ const Comments =props=>{
                 switch (response.status) {
                     case "success":
                         console.log(response)
-                        set_comment_list([response.new_comment ,...comment_list])
+                        update_comments()
                         props.appbodyloading('none')
                         break;
                     case "loginRequired":
@@ -250,7 +253,7 @@ const Comments =props=>{
                 <button ref = {el=>ref.current.send_comment = el} disabled= {!login_status}
                    id="send_comment" onClick = {()=>send_comment()} ></button>
                 </div>
-                <div className="comment_list">
+                <div className="comment_list" ref = { el=>el.current.comment_list = el}>
                     {comment_list.length ===0?nList: cList }
                 </div>
             </div>
