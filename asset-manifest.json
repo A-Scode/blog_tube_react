@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/blog_tube_react/static/css/main.7f5e88d6.chunk.css",
-    "main.js": "/blog_tube_react/static/js/main.df316001.chunk.js",
-    "main.js.map": "/blog_tube_react/static/js/main.df316001.chunk.js.map",
+    "main.css": "/blog_tube_react/static/css/main.fad6207f.chunk.css",
+    "main.js": "/blog_tube_react/static/js/main.1b4f9e96.chunk.js",
+    "main.js.map": "/blog_tube_react/static/js/main.1b4f9e96.chunk.js.map",
     "runtime-main.js": "/blog_tube_react/static/js/runtime-main.2b16ef85.js",
     "runtime-main.js.map": "/blog_tube_react/static/js/runtime-main.2b16ef85.js.map",
     "static/js/2.1a0b6be9.chunk.js": "/blog_tube_react/static/js/2.1a0b6be9.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.f5f8c3c3.chunk.js": "/blog_tube_react/static/js/3.f5f8c3c3.chunk.js",
     "static/js/3.f5f8c3c3.chunk.js.map": "/blog_tube_react/static/js/3.f5f8c3c3.chunk.js.map",
     "index.html": "/blog_tube_react/index.html",
-    "static/css/main.7f5e88d6.chunk.css.map": "/blog_tube_react/static/css/main.7f5e88d6.chunk.css.map",
+    "static/css/main.fad6207f.chunk.css.map": "/blog_tube_react/static/css/main.fad6207f.chunk.css.map",
     "static/js/2.1a0b6be9.chunk.js.LICENSE.txt": "/blog_tube_react/static/js/2.1a0b6be9.chunk.js.LICENSE.txt",
     "static/media/appUploadBlog.css": "/blog_tube_react/static/media/upload_image_background.20b410ac.svg",
     "static/media/blogTubeIcon.128b206c.svg": "/blog_tube_react/static/media/blogTubeIcon.128b206c.svg",
@@ -45,7 +45,7 @@
   "entrypoints": [
     "static/js/runtime-main.2b16ef85.js",
     "static/js/2.1a0b6be9.chunk.js",
-    "static/css/main.7f5e88d6.chunk.css",
-    "static/js/main.df316001.chunk.js"
+    "static/css/main.fad6207f.chunk.css",
+    "static/js/main.1b4f9e96.chunk.js"
   ]
 }
