@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/blog_tube_react/static/css/main.4ba75421.chunk.css",
-    "main.js": "/blog_tube_react/static/js/main.e739722d.chunk.js",
-    "main.js.map": "/blog_tube_react/static/js/main.e739722d.chunk.js.map",
-    "runtime-main.js": "/blog_tube_react/static/js/runtime-main.5b000c8f.js",
-    "runtime-main.js.map": "/blog_tube_react/static/js/runtime-main.5b000c8f.js.map",
-    "static/js/2.028a3894.chunk.js": "/blog_tube_react/static/js/2.028a3894.chunk.js",
-    "static/js/2.028a3894.chunk.js.map": "/blog_tube_react/static/js/2.028a3894.chunk.js.map",
-    "static/js/3.be74d957.chunk.js": "/blog_tube_react/static/js/3.be74d957.chunk.js",
-    "static/js/3.be74d957.chunk.js.map": "/blog_tube_react/static/js/3.be74d957.chunk.js.map",
+    "main.css": "/blog_tube_react/static/css/main.aa66d6ee.chunk.css",
+    "main.js": "/blog_tube_react/static/js/main.3e40efb5.chunk.js",
+    "main.js.map": "/blog_tube_react/static/js/main.3e40efb5.chunk.js.map",
+    "runtime-main.js": "/blog_tube_react/static/js/runtime-main.7e9059db.js",
+    "runtime-main.js.map": "/blog_tube_react/static/js/runtime-main.7e9059db.js.map",
+    "static/js/2.760bb816.chunk.js": "/blog_tube_react/static/js/2.760bb816.chunk.js",
+    "static/js/2.760bb816.chunk.js.map": "/blog_tube_react/static/js/2.760bb816.chunk.js.map",
+    "static/js/3.864e55f3.chunk.js": "/blog_tube_react/static/js/3.864e55f3.chunk.js",
+    "static/js/3.864e55f3.chunk.js.map": "/blog_tube_react/static/js/3.864e55f3.chunk.js.map",
     "index.html": "/blog_tube_react/index.html",
-    "static/css/main.4ba75421.chunk.css.map": "/blog_tube_react/static/css/main.4ba75421.chunk.css.map",
-    "static/js/2.028a3894.chunk.js.LICENSE.txt": "/blog_tube_react/static/js/2.028a3894.chunk.js.LICENSE.txt",
+    "static/css/main.aa66d6ee.chunk.css.map": "/blog_tube_react/static/css/main.aa66d6ee.chunk.css.map",
+    "static/js/2.760bb816.chunk.js.LICENSE.txt": "/blog_tube_react/static/js/2.760bb816.chunk.js.LICENSE.txt",
     "static/media/appUploadBlog.css": "/blog_tube_react/static/media/upload_image_background.20b410ac.svg",
     "static/media/blogTubeIcon.128b206c.svg": "/blog_tube_react/static/media/blogTubeIcon.128b206c.svg",
     "static/media/blogians.047f5f0d.svg": "/blog_tube_react/static/media/blogians.047f5f0d.svg",
@@ -30,6 +30,7 @@
     "static/media/logoutIcon.eed3c053.svg": "/blog_tube_react/static/media/logoutIcon.eed3c053.svg",
     "static/media/menu_icon.5eada420.svg": "/blog_tube_react/static/media/menu_icon.5eada420.svg",
     "static/media/menu_icon3.b09f12f9.svg": "/blog_tube_react/static/media/menu_icon3.b09f12f9.svg",
+    "static/media/moon.7ec26fc7.svg": "/blog_tube_react/static/media/moon.7ec26fc7.svg",
     "static/media/password.3375a746.svg": "/blog_tube_react/static/media/password.3375a746.svg",
     "static/media/popComp.d8ef3bd8.svg": "/blog_tube_react/static/media/popComp.d8ef3bd8.svg",
     "static/media/preview.7f131431.svg": "/blog_tube_react/static/media/preview.7f131431.svg",
@@ -37,6 +38,7 @@
     "static/media/search_icon.d5f5082f.svg": "/blog_tube_react/static/media/search_icon.d5f5082f.svg",
     "static/media/signup_background.7e498824.svg": "/blog_tube_react/static/media/signup_background.7e498824.svg",
     "static/media/steps_bg.8981b12b.svg": "/blog_tube_react/static/media/steps_bg.8981b12b.svg",
+    "static/media/sun.db9ca0d9.svg": "/blog_tube_react/static/media/sun.db9ca0d9.svg",
     "static/media/twitter.0bac7e4a.svg": "/blog_tube_react/static/media/twitter.0bac7e4a.svg",
     "static/media/unkownUser.dfda0594.svg": "/blog_tube_react/static/media/unkownUser.dfda0594.svg",
     "static/media/uploadblogIcon.c36f5bb5.svg": "/blog_tube_react/static/media/uploadblogIcon.c36f5bb5.svg",
@@ -44,9 +46,9 @@
     "static/media/youtubeLogo.6ca8061c.svg": "/blog_tube_react/static/media/youtubeLogo.6ca8061c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5b000c8f.js",
-    "static/js/2.028a3894.chunk.js",
-    "static/css/main.4ba75421.chunk.css",
-    "static/js/main.e739722d.chunk.js"
+    "static/js/runtime-main.7e9059db.js",
+    "static/js/2.760bb816.chunk.js",
+    "static/css/main.aa66d6ee.chunk.css",
+    "static/js/main.3e40efb5.chunk.js"
   ]
 }
