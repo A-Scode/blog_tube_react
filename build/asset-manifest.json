@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/blog_tube_react/static/css/main.02dbc5cd.chunk.css",
+    "main.css": "/blog_tube_react/static/css/main.466592c4.chunk.css",
     "main.js": "/blog_tube_react/static/js/main.cc3eeff3.chunk.js",
     "main.js.map": "/blog_tube_react/static/js/main.cc3eeff3.chunk.js.map",
     "runtime-main.js": "/blog_tube_react/static/js/runtime-main.7e9059db.js",
@@ -10,7 +10,7 @@
     "static/js/3.864e55f3.chunk.js": "/blog_tube_react/static/js/3.864e55f3.chunk.js",
     "static/js/3.864e55f3.chunk.js.map": "/blog_tube_react/static/js/3.864e55f3.chunk.js.map",
     "index.html": "/blog_tube_react/index.html",
-    "static/css/main.02dbc5cd.chunk.css.map": "/blog_tube_react/static/css/main.02dbc5cd.chunk.css.map",
+    "static/css/main.466592c4.chunk.css.map": "/blog_tube_react/static/css/main.466592c4.chunk.css.map",
     "static/js/2.760bb816.chunk.js.LICENSE.txt": "/blog_tube_react/static/js/2.760bb816.chunk.js.LICENSE.txt",
     "static/media/appUploadBlog.css": "/blog_tube_react/static/media/upload_image_background.20b410ac.svg",
     "static/media/blogTubeIcon.128b206c.svg": "/blog_tube_react/static/media/blogTubeIcon.128b206c.svg",
@@ -48,7 +48,7 @@
   "entrypoints": [
     "static/js/runtime-main.7e9059db.js",
     "static/js/2.760bb816.chunk.js",
-    "static/css/main.02dbc5cd.chunk.css",
+    "static/css/main.466592c4.chunk.css",
     "static/js/main.cc3eeff3.chunk.js"
   ]
 }

@@ -146,7 +146,7 @@ if(!mq.matches){
         set_state_blog_list([...final_arr])
     }catch(err){}
 
-    })
+    },[state_blog_list,menuIcon_elem])
     
     let [menu_state , set_menu_state] = useState(false)
     const ref = useRef({})
