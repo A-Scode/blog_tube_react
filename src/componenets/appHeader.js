@@ -4,16 +4,13 @@ import blogTubeIcon1 from './statics/images/blogTubeIcon.svg'
 import menuIcon from './statics/images/menu_icon.svg'
 import menuIcon3 from './statics/images/menu_icon3.svg'
 import searchIcon from './statics/images/search_icon.svg'
-import appConfig from './statics/appConfig.json'
 import search_logo from './statics/images/search_icon.svg'
-
+import { useHistory,useLocation, useRouteMatch } from 'react-router'
 import { useState, useRef ,useEffect, useCallback, useContext} from 'react'
 import { Link } from 'react-router-dom'
 
 import Menu from './Menu'
 import { Theme_context } from '../App'
-
-var change_menu_state;
 
 const AppHeader = props => {
     
@@ -23,7 +20,15 @@ const AppHeader = props => {
     var [img_state, set_img_state] = useState(menuIcon)
 
     var menuIcon_elem = useRef({})
-
+    var location = useLocation()
+    const history = useHistory()
+    
+    useEffect(()=>{
+        return history.listen((new_loc) =>{
+            if (new_loc.pathname.split("/")[1]==="Blog"){
+            window.location.reload()}
+        })
+    },[location.pathname])
 
     const [state_blog_list , set_state_blog_list] = useState(props.bloglist)
     useEffect(()=>{

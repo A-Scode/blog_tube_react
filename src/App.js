@@ -1,6 +1,5 @@
-import {useHistory,  HashRouter as Router ,Route ,Redirect} from 'react-router-dom'
+import {useHistory,  HashRouter as Router ,Route ,Redirect } from 'react-router-dom'
 import {CacheSwitch , CacheRoute } from 'react-router-cache-route'
-import $ from 'jquery'
 import AppHeader from './componenets/appHeader';
 import AppFooter from './componenets/appFooter';
 import AppLogin from './componenets/appLogin';
@@ -11,7 +10,7 @@ import AppBlog from './componenets/appBlog';
 import appConfig from './componenets/statics/appConfig.json'
 
 import './App.css'
-import  React , {useState , useCallback , useEffect, useRef} from 'react'
+import  React , {useState , useCallback , useEffect} from 'react'
 import AppUserProfile from './componenets/appUserProfile';
 import AppUploadBlog from './componenets/appUploadBlog';
 import AppHome from './componenets/appHome';
@@ -30,15 +29,7 @@ function App() {
     set_theme_context(state)
   })
 
-  var blogs= [
-    'How 5g will Revolutionize the world...',
-    'Is Self-Driving and Electric Vehical worth buy Now??',
-    'Rasmali reciepe',
-    'what after 5g',
-    'What is Quantu Computing',
-    'See How PUBG  changed lives of hunderds of people sjdfhasjkfdhufnskfaueasfajukjfdskajfkmlkvcdljfierfnolfsia',
-
-    ]
+  
 
     let [appbody , set_appbody] = useState(null)
 
@@ -62,6 +53,7 @@ function App() {
 
     useEffect(()=>{
       theming()
+      
     fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
       mode:'cors',
       method:"POST",
