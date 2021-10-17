@@ -1,5 +1,5 @@
 import {useCallback, useContext, useEffect, useRef ,useState } from 'react'
-import { Login_context } from '../App'
+import { Login_context ,Theme_context} from '../App'
 import './statics/css/Menu.css'
 import { Link , useHistory } from 'react-router-dom'
 import UserImage from './userImage'
@@ -10,15 +10,14 @@ import loginIcon from './statics/images/password.svg'
 import logoutIcon from './statics/images/logoutIcon.svg'
 import uploadBlogIcon from './statics/images/uploadblogIcon.svg'
 import blogians from  './statics/images/blogians.svg'
+import moonIcon from './statics/images/moon.svg'
+import sunIcon from './statics/images/sun.svg'
 
 function Menu  (props){
     var ref = useRef({})
-
     let count = 0 
-
     function click_event(event){
         const elements_list = ref.current['menu_container'].getElementsByTagName("*")
-
         let get_done = true
         for (let elem of elements_list){
             if (elem === event.target){
@@ -33,9 +32,7 @@ function Menu  (props){
                 
                 }
                 event.target.removeEventListener('click' ,click_event , true)}
-        
     }
-
     function change_display(item){
         if (!props.open){
             if(mq.matches){item.style.display= 'none'}
@@ -54,15 +51,12 @@ function Menu  (props){
 
         }
     }
-
-
     var login_context = useContext(Login_context)
     useEffect(()=>{
         change_display(ref.current['menu_box'])
     }, [props.open])
 
     const [login , set_login ] = useState(Boolean(sessionStorage.session))
-
 
     useEffect(()=>{
         if( sessionStorage.session === login_context && (Boolean(sessionStorage.session) && Boolean(login_context)) ){
@@ -72,9 +66,7 @@ function Menu  (props){
 
     } , [sessionStorage.session ,login_context])
 
-
     let mq = window.matchMedia('(min-width: 576px)')
-
     
     try{if (!mq.matches){
         ref.current["menu_container"].style.left = 0
@@ -91,13 +83,28 @@ function Menu  (props){
             return id
         }
     } , [sessionStorage])
-    
-
+    var theme_context = useContext(Theme_context)
+    useEffect(()=>{
+        console.log(theme_context)
+        if (theme_context === "Dark"){
+            ref.current.theme_button.style.background=`center / 30px 30px url(${sunIcon}) no-repeat`
+            ref.current.menu_container.style.color = "white"
+            ref.current.menu_container.style.backgroundColor = "#353535"
+        }
+        else{
+            ref.current.theme_button.style.background=`center / 30px 30px url(${moonIcon}) no-repeat`
+            ref.current.menu_container.style.color = "black"
+            ref.current.menu_container.style.backgroundColor = "white"
+        }
+    },[theme_context,ref])
     return(
         <div className="menu_box" id = "menu_box"  ref= {el => ref.current['menu_box'] = el}  >
             <div className="menu_container" id = "menu_container" ref = { el => ref.current['menu_container']=el}>
                 <div className="nameImage" style = {{display : 'grid',gridTemplateRows:' 70% 30% '}} >
-                <UserImage onClick = {()=>props.onClick()} width = "80px" style = {{alignSelf:"end"}}  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} user_id={profile_photo()} login_state = {props.login_state}  />
+                    <button id = "theme" ref={el=>ref.current.theme_button=el} onClick= { ()=> theme_context==='Light'?props.change_theme('Dark'):props.change_theme('Light') } ></button>
+                <UserImage onClick = {()=>props.onClick()} width = "80px" 
+                style = {{alignSelf:"end"}}  height = "80px" to = {login?`/Profile/${profile_photo()}`:'/Signup'} 
+                user_id={profile_photo()} login_state = {props.login_state}  />
                 <h2 align = "center" style = {{margin:0 , padding:0,
                 fontFamily:'play',
                 fontSize:'28px',

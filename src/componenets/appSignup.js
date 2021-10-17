@@ -1,5 +1,5 @@
 import './statics/css/appSignup.css'
-import {useState,useRef , useEffect, useCallback} from 'react'
+import {useState,useRef , useEffect, useCallback, useContext} from 'react'
 import username from './statics/images/username.svg'
 import password from './statics/images/password.svg'
 import email from './statics/images/email.svg'
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import appConfig from './statics/appConfig.json'
 
 import anime from 'animejs'
+import { Theme_context } from '../App'
 
 
 var AppSignup = props=>{
@@ -156,10 +157,16 @@ try{
     function change_image(){
         try{
         if (ref.current['image_input'].value !== '' && ref.current['image_input'].value !== prev_value ){
+            if (ref.current['image_input'].files[0].size >= 10485760){
+                alert("**File size must be under 10MB**")
+                ref.current['image_input'].value = ""
+                ref.current['image'].style.backgroundImage = `none`
+            }else{
             try{let image_url = URL.createObjectURL( ref.current['image_input'].files[0])
             ref.current['image'].style.backgroundImage = `url(${image_url})`}catch(e){console.log(e)}
             prev_value = ref.current['image_input'].value
             clearInterval(input_id)
+            }
     }}catch(e){}
     }
 
@@ -198,6 +205,11 @@ try{
                 }
             }
         }
+        xhr.onerror=()=>{
+            alert("Too Slow connection!!\n try with smaller size Photo")
+            props.appbodyloading('none')
+            set_block_state('otp')
+        }
 
         xhr.setRequestHeader('otp' , otp_input.value)
         xhr.setRequestHeader('email' , data_ref.current.email)
@@ -205,6 +217,23 @@ try{
         
     },[data_ref])
 
+    var theme_context= useContext(Theme_context)
+    useEffect(()=>{
+        if (theme_context ==="Dark"){
+            ref.current['username']?ref.current['username'].style.color="white":console.log()
+            ref.current['email']?ref.current['email'].style.color="white":console.log()
+            ref.current['password']?ref.current['password'].style.color="white":console.log()
+            ref.current['otp_input']?ref.current['otp_input'].style.color="white":console.log()
+        }else{
+
+            ref.current['username']?ref.current['username'].style.color="black":console.log()
+            ref.current['email']?ref.current['email'].style.color="black":console.log()
+            ref.current['password']?ref.current['password'].style.color="black":console.log()
+                ref.current['otp_input']?ref.current['otp_input'].style.color="black":console.log()
+
+        }
+
+    },[theme_context,ref,block_state])
     let form_block = (<>
         <h1 className = "signup_heading" ref = {el=>ref.current['signup_heading']=el} >Sign Up</h1>
         <form action="javascript:void(0);" onSubmit = {event=>submit_data(event)}>

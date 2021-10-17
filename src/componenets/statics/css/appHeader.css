@@ -177,7 +177,7 @@
     z-index: 4;
     margin: 10px;
     min-width:450px;
-    bottom:0;
+    max-height: calc(100% - 60px);
     overflow-y: auto;
     
 }

@@ -54,3 +54,9 @@
         border-radius:  20px;
     }
 }
+.nameImage #theme{
+    border: none;
+    height: 40px;width:40px;
+    position: absolute;right: 0;top:0;
+    margin:5px;
+}

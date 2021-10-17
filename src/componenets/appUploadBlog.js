@@ -7,6 +7,8 @@ import $ from "jquery"
 import preview_image from './statics/images/preview.svg'
 import editor_image from './statics/images/editor.svg'
 import youtubeLogo from './statics/images/youtubeLogo.svg'
+import insta_logo from './statics/images/instagram.svg'
+import twitter_logo from './statics/images/twitter.svg'
 import popComp from './statics/images/popComp.svg'
 import appConfig from './statics/appConfig.json'
 import { logout } from './statics/utils'
@@ -279,7 +281,29 @@ var Editing_pane = props =>{
                             border-color: blueviolet;
                             border-radius: 5px"  type= "url" id = "videolink" required  />`)
                 set_edit_state(false)
-                break;        
+                break;
+            case "Instagram Post":
+                widget= (` <label  for = "instalink" style = "border:none;padding:0;">Post Link</label> 
+                <input  style="    height: 20px;
+                width: 90%;
+                margin: 0;
+                place-self: center;
+                padding: 0;
+                border-color: blueviolet;
+                border-radius: 5px"  type= "url" id = "instalink" required  />`)
+                set_edit_state(false)
+                break;      
+            case "Tweet":
+                widget= (` <label  for = "tweetlink" style = "border:none;padding:0;">Post Link</label> 
+                <input  style="    height: 20px;
+                width: 90%;
+                margin: 0;
+                place-self: center;
+                padding: 0;
+                border-color: blueviolet;
+                border-radius: 5px"  type= "url" id = "tweetlink" required  />`)
+                set_edit_state(false)
+                break;  
             default:
                 widget=""
                     set_edit_state(true)
@@ -312,25 +336,47 @@ var Editing_pane = props =>{
             props.blog([...blog,{"List":list}])
             ref.current['maintext'].innerText = ""
         }else if (input_state === "Photo"){
-            
             let photofile = e.target[0].files[0]
+            if (photofile.size >= 10485760){
+                alert("**File size must be under 10MB**")
+                e.target[0].setCustomValidity("Choose another Photo")
+                e.target[0].files.value  = ""
+            }
+            else{
             set_blog([...blog,{ "Photo": photofile , "name" : photofile.name}])
             props.blog([...blog,{ "Photo": photofile , "name" : photofile.name}])
-        
+            }
         }else if  (input_state === "Video" ){
-           
-                
             let videofile = e.target[0].files[0]
+            if (videofile.size >= 10485760){
+                alert("**File size must be under 10MB**")
+                e.target[0].setCustomValidity("Choose another Video")
+                e.target[0].files.value  = ""
+            }
+            else{
             set_blog([...blog,{ "Video": videofile, "name" : videofile.name}])
             props.blog([...blog,{ "Video": videofile, "name" : videofile.name}])
-           
+            }
         }
         else if (input_state === "Youtube Video"){
-            let pathList = e.target[0].value.split('/')
+            let url = e.target[0].value.split("?")[0]
+            let pathList = url.split('/').filter(a=>a?a:null)
             let temp_id = pathList[pathList.length - 1].split("=")
             let id = temp_id[temp_id.length - 1]
             set_blog([...blog,{"Youtube Video": id}])
             props.blog([...blog,{"Youtube Video": id}])
+            e.target[0].value = ""
+        }else if (input_state === "Instagram Post"){
+            let url = e.target[0].value.split("?")[0]
+            let pathList = url.split('/').filter(a=>a?a:null)
+            let id = pathList[pathList.length - 1]
+            set_blog([...blog,{"Instagram Post": id}])
+            props.blog([...blog,{"Instagram Post": id}])
+            e.target[0].value = ""
+        }else if (input_state === "Tweet"){
+            let url = e.target[0].value.split("?")[0]
+            set_blog([...blog,{"Tweet": url}])
+            props.blog([...blog,{"Tweet": url}])
             e.target[0].value = ""
         }
         final_data.blog = blog
@@ -366,6 +412,10 @@ var Editing_pane = props =>{
                             console.log(response.status);
                     }
                 }
+            }
+            xhr.onerror=()=>{
+                alert("Connection Too Slow!!! /n or Try less video and photos /n Hint:Use Youtube for videos!!")
+                props.appbodyloading('none')
             }
             let formdata = new FormData()
             for (var i = 0; i < final_data.blog.length;i++ ){
@@ -409,6 +459,7 @@ var Editing_pane = props =>{
             </div>
             <div className="components" ref = {el=>ref.current['components']=el}>
                 <h6 align = "center" className="heading">Components</h6>
+                <div style = {{display:'flex',flexDirection:'column',height:'100%',overflow:'auto'}}>
                 <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Heading" } type="radio"  value="Heading"     id="Heading"    defaultChecked/>
                 <label className="complist" htmlFor="Heading">Heading</label>
                 <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Paragraph" } type="radio"  value="Paragraph"     id="Paragraph"    />
@@ -420,10 +471,12 @@ var Editing_pane = props =>{
                 <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Video" } type="radio"  value="Video"     id="Video"    />
                 <label className="complist" htmlFor="Video">Video</label>
                 <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Youtube Video"} type="radio"  value="Youtube Video"     id="Youtube Video"    />
-                <label className="complist" htmlFor="Youtube Video"><img src={youtubeLogo} width = {30} height={30} style={{verticalAlign:"middle"}} /> Video Link</label>
-
-
-
+                <label className="complist" htmlFor="Youtube Video"><img src={youtubeLogo} width = {30} height={30} style={{verticalAlign:"middle"}} />Youtube Video</label>
+                <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Instagram Post"} type="radio"  value="Instagram Post"     id="Instagram Post"    />
+                <label className="complist" htmlFor="Instagram Post"><img src={insta_logo} width = {30} height={30} style={{verticalAlign:"middle"}} /> Insta Post</label>
+                <input onClickCapture={e=>change_input_state(e)} name="comp" hidden checked = {input_state === "Tweet"} type="radio"  value="Tweet"     id="Tweet"    />
+                <label className="complist" htmlFor="Tweet"><img src={twitter_logo} width = {30} height={30} style={{verticalAlign:"middle"}} /> Tweet</label>
+                </div>
             </div>
 
             <form action="javascript:void(0);" id="text_input" ref = {el=>ref.current["text_input"]=el} cols="30" rows="10"  onSubmit= {e=>data_submit(e)} >
@@ -460,6 +513,22 @@ const Blog_part = props=>{
         title="YouTube video player" frameborder="0" style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px",width :"auto",height:"auto", borderRadius : "5px" ,justifySelf:"center"}}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe>)
+    }else if(heading === "Instagram Post"){
+        data = (<iframe src={`https://www.instagram.com/p/${props.data[heading]}/embed?utm_source=ig_web_copy_linkembed`} 
+        title="Instagram Post"
+        style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px",
+        width :"100%",maxWidth :"500px",minWidth:"250px",
+        height:"80vh", maxHeight:'700px',
+        borderRadius : "5px" ,justifySelf:"center"}}
+        height="600" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>)
+    }else if(heading === "Tweet"){
+        data = (<iframe src={`https://twitframe.com/show?url=${props.data[heading]}`}
+        title="Instagram Post"
+        style={{boxShadow:"rgb(0 0 0 / 20%) 0px 0px 5px 3px",
+        width :"100%",maxWidth :"500px",minWidth:"250px",
+        height:"70vh", 
+        borderRadius : "5px" ,justifySelf:"center"}}
+        height="600" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>)
     }
     return (
         <div className="container_part">

@@ -1,8 +1,9 @@
 import './statics/css/appFooter.css'
-import {useRef , useEffect} from 'react'
+import {useRef , useEffect, useContext} from 'react'
 import github_logo from './statics/images/github.svg'
 import facebook_logo from './statics/images/facebook.svg'
 import instagram_logo from './statics/images/instagram.svg'
+import { Theme_context } from '../App'
 
 
 
@@ -18,7 +19,6 @@ var AppFooter = props=>{
                 
                 let height = el.getBoundingClientRect().height
                 if (el.scrollTop+ height === el.scrollHeight){
-                    // ref.current['footer'].scrollIntoView({behavior:'smooth', block:'center'})
                     props.appcontainer.scroll(0, props.appcontainer.scrollHeight)
                 }else{
                     props.appcontainer.scroll(0,0)
@@ -28,6 +28,15 @@ var AppFooter = props=>{
             console.log(err)
         }
     },[props.appbody,props.appcontainer])
+
+    var theme_context = useContext(Theme_context)
+    useEffect(()=>{
+        if (theme_context ==="Dark"){
+            ref.current['footer'].style.backgroundColor="#032187"
+        }else{
+            ref.current['footer'].style.backgroundColor="#0334dd"
+        }
+    },[theme_context,ref])
 
     
 

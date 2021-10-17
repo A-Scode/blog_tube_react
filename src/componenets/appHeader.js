@@ -7,10 +7,11 @@ import searchIcon from './statics/images/search_icon.svg'
 import appConfig from './statics/appConfig.json'
 import search_logo from './statics/images/search_icon.svg'
 
-import { useState, useRef ,useEffect, useCallback} from 'react'
+import { useState, useRef ,useEffect, useCallback, useContext} from 'react'
 import { Link } from 'react-router-dom'
 
 import Menu from './Menu'
+import { Theme_context } from '../App'
 
 var change_menu_state;
 
@@ -148,26 +149,48 @@ if(!mq.matches){
     })
     
     let [menu_state , set_menu_state] = useState(false)
-
-
+    const ref = useRef({})
+    var theme_context = useContext(Theme_context)
+    useEffect(()=>{
+        if (theme_context === "Dark"){
+            ref.current.header.style.backgroundColor = "#353535"
+            ref.current.header.style.color = "white"
+            try{
+                menuIcon_elem.current['searchIcon']?menuIcon_elem.current['searchIcon'].style.color="white":console.log("no")
+                menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color ="white":console.log("no")
+                ref.current.no_blogs?ref.current.no_blogs.style.backgroundColor = "#353535":console.log()
+            ref.current.no_blogs?ref.current.no_blogs.style.color = "white":console.log()
+        }catch{}
+        }
+        else{
+            ref.current.header.style.backgroundColor = "white"
+            ref.current.header.style.color = "black"
+            try{
+                menuIcon_elem.current['searchIcon']?menuIcon_elem.current['searchIcon'].style.color="black":console.log("no")
+                menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color ="black":console.log("no")
+                ref.current.no_blogs?ref.current.no_blogs.style.backgroundColor = "white":console.log()
+            ref.current.no_blogs?ref.current.no_blogs.style.color = "black":console.log()
+        }catch{}
+        }
+    },[theme_context,ref, state_blog_list])
 
     return (
-        <div className="header" >
-            <Menu open = {menu_state} login_state = {props.login_state}  onClick = {()=>menu_click()} /> 
+        <div className="header" ref = {el=>ref.current.header=el}>
+            <Menu open = {menu_state} login_state = {props.login_state}
+            change_theme = {props.change_theme}
+            onClick = {()=>menu_click()} /> 
             <div className="menuicon"  >
                 <img src={img_state} id='menuIcon' ref={el => menuIcon_elem.current['menuIcon'] = el} onClick={()=>menu_click()} alt="menuIcon" />
 
             </div>
-            <h1 id='blog_tube' > <img src={blogTubeIcon1} id='logo' />
-
-                Blog Tube</h1>
+            <h1 id='blog_tube' > <img src={blogTubeIcon1} id='logo' /> Blog Tube</h1>
 
             {responsive ? <img src={searchIcon} id='searchIcon' ref={el => menuIcon_elem.current['searchIcon'] = el}  onClick = {()=>{
                 responsiveSearch('flex')
                 set_menu_state(false)
 
                 }} />
-                : <><input ref={el => menuIcon_elem.current['searchIcon'] = el} placeholder='Search Blogs' onInput = {sorting_list} onFocus = {sorting_list} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />            </>
+                :<input ref={el => menuIcon_elem.current['searchIcon'] = el} key={0} placeholder='Search Blogs' onInput = {sorting_list} onFocus = {sorting_list} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />
             }
             <div id="blogList" ref={el => menuIcon_elem.current['blogList'] = el}>
                 {state_blog_list.length !== 0 ? state_blog_list.map((e, i) =>( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
@@ -178,14 +201,38 @@ if(!mq.matches){
                     {responsive ?
                         <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {sorting_list} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
                     <div id="blogListContainer" >
-                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => ( <Link to ={`/Blog/${e.blog_details.title}?id=${e.blog_details.blog_id}`} ><div key={i} className='blog_elems' >{e.blog_details.title}</div></Link>))
-                            : <div className='blog_elems'> No Blogs Found</div>}
+                        {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => (<BlogSearchElem e = {e} key={i} />))
+                            : <div className='blog_elems'  ref = {el=>ref.current.no_blogs=el}> No Blogs Found</div>}
                     </div>
                 </div> : null
             }
         </div>
     )
 }
-
 export default AppHeader
+
+var BlogSearchElem = props=>{
+    var ref = useRef({})
+    var theme_context = useContext(Theme_context)
+    const theme_change = useCallback((element)=>{
+        if (theme_context === "Dark"){
+            element.style.backgroundColor = "#353535"
+            element.style.color = "white"
+            console.log(element)
+        }
+        else{
+            element.style.backgroundColor = "white"
+            element.style.color = "black"
+            console.log(element)
+
+        }
+    },[ref,theme_context])
+    return(
+        <Link   to ={`/Blog/${props.e.blog_details.title}?id=${props.e.blog_details.blog_id}`} >
+            <div ref ={el=>theme_change} className='blog_elems' >
+                {props.e.blog_details.title}
+            </div>
+        </Link>
+    )
+}
 

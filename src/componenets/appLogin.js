@@ -5,8 +5,8 @@ import form_background from './statics/images/form_background.svg'
 import appConfig from './statics/appConfig.json'
 
 import anime from 'animejs'
-import { Login_context } from '../App'
-import { useEffect, useRef , useState , useCallback, useMemo} from 'react'
+import { Login_context, Theme_context } from '../App'
+import { useEffect, useRef , useState , useCallback, useMemo, useContext} from 'react'
 import {
     Link,useHistory} from 'react-router-dom'
 import { logout } from './statics/utils'
@@ -90,6 +90,21 @@ var AppLogin = props=>{
         xhr.send()
     })
     
+    var theme_context = useContext(Theme_context)
+
+    useEffect(()=>{
+        if(theme_context=== "Dark"){
+            ref.current['email']?ref.current['email'].style.color='white':console.log()
+            ref.current['password']?ref.current['password'].style.color='white':console.log()
+            ref.current['confirm_password']?ref.current['confirm_password'].style.color='white':console.log()
+        }
+        else{
+            ref.current['email']?ref.current['email'].style.color='none':console.log()
+            ref.current['password']?ref.current['password'].style.color='none':console.log()
+            ref.current['confirm_password']?ref.current['confirm_password'].style.color='none':console.log()
+
+        }
+    },[theme_context,ref,Error])
 
     let login_form =useMemo(()=> (<><h1 align='center' ref = {el =>ref.current['heading'] =el} >Login</h1>
     <form action= 'javascript:void(0);' method = 'POST' onSubmit =  {(e)=>Login(e) } >  
@@ -99,7 +114,7 @@ var AppLogin = props=>{
         <div className="redirectSignup">
                     <p>Didn't Have an account?<Link to = '/Signup'>SignUp</Link>
                     <br />
-                    <a href = "#" onClick = {()=>set_Error('ask_email')} >Forgot Password </a>
+                    <a href = "javascript:void(0);" onClick = {()=>set_Error('ask_email')} >Forgot Password </a>
                     </p>
                 </div>
     </form></>))

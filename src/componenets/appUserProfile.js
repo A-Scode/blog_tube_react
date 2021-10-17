@@ -239,7 +239,7 @@ const FollowButton=props=>{
                     case "success":
                         if(response.followings.indexOf(props.user_id)!== -1){
                         set_follow_state('Following')
-                        props.change_followers(true)
+                        props.change_followers(response.followers_count)
                     }
                         else{
                             set_follow_state('Follow')
@@ -262,7 +262,7 @@ const FollowButton=props=>{
             xhr.setRequestHeader('state' , follow_state)
             xhr.send()
         }
-    },[context ,props.user_id ])
+    },[context ,props.user_id,follow_state ])
     return(
         <button id="follow_button" style = {props.style} ref = {el=>ref = el} onClick={follow_unfollow} disabled ={context === sessionStorage.session && (Boolean(sessionStorage.session) || Boolean(context))?false:true} >{follow_state}</button>
     )

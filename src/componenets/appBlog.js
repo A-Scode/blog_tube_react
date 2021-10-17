@@ -1,7 +1,11 @@
-import { useContext, useEffect, useState ,useRef, useCallback, useMemo} from "react";
+import React ,{ useContext, useEffect, useState ,useRef, useCallback, useMemo} from "react";
 import { useHistory } from "react-router";
 import { Blog } from "./appUploadBlog";
 import { BlogiansMiniProfile } from "./appBlogians";
+import {Helmet} from 'react-helmet'
+import $ from 'jquery'
+import ReactIframeResizer from 'react-iframe-resizer-super'
+import DOMPurify from 'dompurify'
 import appConfig from './statics/appConfig.json'
 import './statics/css/appUploadBlog.css'
 import './statics/css/appBlog.css'
@@ -11,6 +15,7 @@ import dislike_logo from './statics/images/dislike.svg'
 import { Login_context } from "../App";
 import UserImage from "./userImage";
 import { logout } from "./statics/utils";
+
 
 const AppBlog  = props=>{
     const url = window.location.hash.split("?")[1]
@@ -22,7 +27,7 @@ const AppBlog  = props=>{
 
     const [blog_data_list , set_blog_data_list] = useState([])
     const [blog_details , set_blog_details] = useState({likes:"" , dislikes:"" ,
-     views :"" , title:"" , image_url:"",blogger_details:{}})
+     views :"" , title:"" , image_url:"",discription:"",blogger_details:{}})
 
      const ref = useRef({})
     useEffect(()=>{
@@ -54,31 +59,24 @@ const AppBlog  = props=>{
     }
     xhr.send()
 
-    },[])
+    },[blog_id , history])
 
-    var full = false
 
-    const getFullScreen = useCallback(()=>{
-        if (!full){
-        document.documentElement.requestFullscreen()
-        .then( ()=>full= true)
-        .catch(()=>full = false)}    
-        
-    },[ref.current.blog_page])
     useEffect(()=>{
         let ele  = document.getElementsByClassName("appbody")[0]
         ele.scrollTo(0,0)
-    }
-    
-    ,[blog_details])
+    },[blog_details])
 
-
-    return(<div  className = "blog_page" ref ={el=>ref.current.blog_page = el} onMouseDown={getFullScreen} >
+    return(<div  className = "blog_page" ref ={el=>ref.current.blog_page = el}  >
+        <Helmet>
+            <title>{blog_details.title}</title>
+            <meta name="Description" content = {blog_details.discription} />
+        </Helmet>
         <h2 align = "center">{blog_details.title}</h2>
-        <img src = {blog_details.image_url} className = "title_image" loading = {"eager"} />
+        <img src = {blog_details.image_url} alt="title" className = "title_image" loading = {"eager"} />
         <BlogiansMiniProfile user_details = {blog_details.blogger_details} onClick={()=>null}  to ={`/Profile/${blog_details.blogger_details.user_id}`} />
         <Blog>
-            {blog_data_list.map((item,index)=>(<div key = {index} className = "container_data" dangerouslySetInnerHTML = {{__html:item}}></div>))}
+            {blog_data_list.map((item,index)=>(<DataContainer key = {index} index={index} data = {item}  /> ))}
         </Blog>
         <ReviewBlog blog_id = {blog_id} likes = {blog_details.likes} dislikes= {blog_details.dislikes} views= {blog_details.views} />
         <Comments  blog_id = {blog_id} appbodyloading={props.appbodyloading} />
@@ -86,6 +84,21 @@ const AppBlog  = props=>{
 }
 
 export default AppBlog
+
+const DataContainer=props=>{
+    const ref = useRef()
+    useEffect(()=>{
+        let sanitized_data = DOMPurify.sanitize(props.data,
+            {ADD_TAGS:['iframe'],ADD_ATTR:["allow" , "allowfullscreen",
+        'frameborder' , 'scrolling']})
+        ref.current.innerHTML = sanitized_data
+        
+    },[ref,props.data])
+    return (
+    <div ref={el=>ref.current=el} id= {`datacontainer${props.index}`} className = "container_data"  >
+        </div>
+        )
+}
 
 const ReviewBlog=props=>{
     const session_id = useContext(Login_context)
@@ -117,7 +130,7 @@ const ReviewBlog=props=>{
         }else{
             history.push('/Error')
         }
-    },[session_id,props.blog_id ])
+    },[session_id,props.blog_id,history ])
     useEffect(()=>{
         if (session_id===sessionStorage.session && (Boolean(session_id) && Boolean(sessionStorage.session))){
 
@@ -132,7 +145,7 @@ const ReviewBlog=props=>{
             }}
             xhr.send()
         }
-    },[session_id])
+    },[session_id,props.blog_id])
     useEffect(()=>{
         if (reviewed === "like"){
             ref.current.like.click()
@@ -144,7 +157,7 @@ const ReviewBlog=props=>{
     
     return(
         <div className="review">
-            <input type="radio" name="review" ref = {el=>ref.current.like = el}  id="like" value= {"like"} onInput={e=>review(e)}  hidden/>
+            <input type="radio" name="review" ref = {el=>ref.current.like = el}  id="like" value= {"like"} onInput={e=>review(e)} disabled={!session_id}  hidden/>
             <label htmlFor="like" id="like_label" style={{backgroundImage:`url(${like_logo})`}} >{reviews.likes>0?reviews.likes:"No Likes"}</label>
             <label id ="view_label" style={{backgroundImage:`url(${view_logo})`}}>{reviews.views>0?reviews.views:"No Views"}</label>
             <input type="radio" name="review" ref = {el=>ref.current.dislike = el}  id="dislike" value={"dislike"} onInput={e=>review(e)} disabled={!session_id} hidden/>
@@ -159,7 +172,7 @@ const Comments =props=>{
     const [login_status , set_login_status] = useState(false)
     const history = useHistory()
     useEffect(()=>{
-        if(session_id === sessionStorage.session){
+        if(session_id === sessionStorage.session && (Boolean(session_id) && Boolean(sessionStorage.session))){
             set_login_status(true)
         }else{
             set_login_status(false)
@@ -193,7 +206,7 @@ const Comments =props=>{
         let formdata = new FormData()
         formdata.append('blog_id' , props.blog_id)
         xhr.send(formdata)
-    },[comment_list,ref])
+    },[comment_list,ref, history  , props.blog_id])
 
     useEffect(()=>{
         update_comments()
@@ -240,11 +253,12 @@ const Comments =props=>{
             xhr.send(formdata)
         }
     
-    },[session_id,ref.current,sessionStorage])
+    },[session_id,ref,props])
     const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} />))))
     const nList = useMemo(()=>(<span style ={{display:"grid",placeItems:"center",
     fontSize:"30px",width:"100%" ,height:"100%"}} id = "no_comments">No Comments😅</span>))
     return(<div className="comments">
+            
                 <h5 align = "center">Comments</h5>
                 <div className="cover">
                 <textarea name="comment" maxLength={1000} id="comment_input"  disabled={!login_status}
@@ -253,7 +267,7 @@ const Comments =props=>{
                 <button ref = {el=>ref.current.send_comment = el} disabled= {!login_status}
                    id="send_comment" onClick = {()=>send_comment()} ></button>
                 </div>
-                <div className="comment_list" ref = { el=>el.current.comment_list = el}>
+                <div className="comment_list" ref = { el=>ref.current.comment_list = el}>
                     {comment_list.length ===0?nList: cList }
                 </div>
             </div>

@@ -121,10 +121,9 @@ var AppBlogians = props=>{
 function BlogiansMiniProfile(props){
     const [followers ,set_followers] = useState(props.user_details.followers_count)
 
-    const change_followers = useCallback((state)=>{
-        if (state)set_followers(followers+1)
-        else set_followers(followers -1)
-    })
+    const change_followers =(count)=>{
+        set_followers(count)
+    }
 
     return(
         <Link className = "links" onClick = {()=>props.onClick(props.user_details.user_id)} style = {{textDecoration:'none',width : '100%',display:'flex', maxWidth: "1000px", justifyContent:'center',placeItems:'center'}} to = {props.to} >

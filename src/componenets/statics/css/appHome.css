@@ -13,8 +13,8 @@
     margin: 20px auto ;
     overflow: hidden;
 }.blog_details:hover{
-    transform : scale( 1.05);
-    box-shadow: 4px 4px 20px  grey;
+    transform : scale( 1.01);
+    box-shadow: 0px 0px 15px  grey;
 }
 .public_details{
     display: flex;

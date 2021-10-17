@@ -1,13 +1,12 @@
 .footer{
-    position:inherit;
     min-height: 100px;
     max-height: 200px;
     width: 100%;
     bottom: 0 !important;
     background-color: #0334dd;
+    flex-basis: 100%;
     display:grid;
     z-index: 1;
-    grid-area: footer;
     color: wheat;
     box-shadow: inset 5px 5px 5px rgb(0 102 255), inset -5px -5px 5px rgb(0 102 255);
 
