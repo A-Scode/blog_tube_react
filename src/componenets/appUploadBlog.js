@@ -1,7 +1,7 @@
 import React ,{useEffect ,useContext , useState, useCallback, useMemo, useRef, useLayoutEffect} from 'react'
 import { useHistory, useRouteMatch  } from 'react-router'
 import { CacheSwitch as Switch , CacheRoute as Route  } from 'react-router-cache-route'
-import { Login_context } from '../App'
+import { Login_context, Theme_context } from '../App'
 import './statics/css/appUploadBlog.css'
 import $ from "jquery"
 import preview_image from './statics/images/preview.svg'
@@ -55,6 +55,18 @@ var AppUploadBlog = props=>{
         set_upload_blog_state('blog_editor')
         history.push("/UploadBlog/editor")
     })
+
+    var theme_context = useContext(Theme_context)
+    useEffect(()=>{
+        if (theme_context==="Dark"){
+            ref.current['blog_title'].style.color = "white"
+            ref.current['blog_discription'].style.color = "white"
+        }
+        else{
+            ref.current['blog_title'].style.color = "black"
+            ref.current['blog_discription'].style.color = "black"
+        }
+    },[theme_context,ref])
     
     const blog_info = useMemo(()=>(
         <form className="blog_info" action='javascript:void(0);' onSubmit = {event=>forward_to_editor(event)}>

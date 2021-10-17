@@ -155,6 +155,7 @@ if(!mq.matches){
         if (theme_context === "Dark"){
             ref.current.header.style.backgroundColor = "#353535"
             ref.current.header.style.color = "white"
+            menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color="white":console.log("no")
             try{
                 menuIcon_elem.current['searchIcon']?menuIcon_elem.current['searchIcon'].style.color="white":console.log("no")
                 menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color ="white":console.log("no")
@@ -165,6 +166,7 @@ if(!mq.matches){
         else{
             ref.current.header.style.backgroundColor = "white"
             ref.current.header.style.color = "black"
+            menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color="black":console.log("no")
             try{
                 menuIcon_elem.current['searchIcon']?menuIcon_elem.current['searchIcon'].style.color="black":console.log("no")
                 menuIcon_elem.current['searchIconResponsive']?menuIcon_elem.current['searchIconResponsive'].style.color ="black":console.log("no")
