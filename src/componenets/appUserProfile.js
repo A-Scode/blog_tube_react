@@ -271,6 +271,5 @@ const FollowButton=props=>{
 export {FollowButton}
 
 FollowButton.propTypes = {
-    user_id : PropTypes.string.isRequired,
     style : PropTypes.object
 }

@@ -61,6 +61,7 @@ function App() {
     const [blogs_list , set_blogs_list] = useState([])
 
     useEffect(()=>{
+      theming()
     fetch(appConfig.origin+'backend_api/retriveHomeBlogs',{ 
       mode:'cors',
       method:"POST",
@@ -94,14 +95,14 @@ function App() {
     }
       else{
       document.documentElement.style.backgroundColor = "white"
-      document.documentElement.style.color = "none"
+      document.documentElement.style.color = "black"
       }
     },[theme_context])  
     const theme_query = window.matchMedia('(prefers-color-scheme:dark)')
-    useEffect(()=>{
+    const theming = useCallback(()=>{
       if (theme_query.matches)set_theme_context("Dark")
       else set_theme_context("Light")
-    },[theme_query])
+    },[theme_context])
 
     
   return (

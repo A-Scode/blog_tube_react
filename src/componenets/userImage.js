@@ -66,7 +66,6 @@ let UserImage = props=>{
 UserImage.propTypes = {
     width : PropTypes.string.isRequired,
     height : PropTypes.string.isRequired,
-    user_id : PropTypes.string.isRequired,
     to : PropTypes.string.isRequired,
     style : PropTypes.object
 }

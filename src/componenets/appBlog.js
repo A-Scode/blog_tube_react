@@ -254,7 +254,7 @@ const Comments =props=>{
         }
     
     },[session_id,ref,props])
-    const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} />))))
+    const cList = useMemo(()=>(comment_list.map(item=>(<Comment c_detials = {item} key ={item.cid} id = {item.cid} />))))
     const nList = useMemo(()=>(<span style ={{display:"grid",placeItems:"center",
     fontSize:"30px",width:"100%" ,height:"100%"}} id = "no_comments">No Comments😅</span>))
     return(<div className="comments">
@@ -276,7 +276,7 @@ const Comments =props=>{
 
 const Comment = props=>{
     return (
-        <div className="comment" id = {props.key}>
+        <div className="comment" id = {props.id}>
             <UserImage user_id= {props.c_detials.uid} width={"50px"} height="50px"
              style= {{gridArea :"user_image" , borderWidth : "2px" , alignSelf : "center" , justifySelf: "center"}}
              to = {`/Profile/${props.c_detials.uid}`} onClick={()=>null} />

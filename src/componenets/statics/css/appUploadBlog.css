@@ -508,14 +508,15 @@ input[type="radio"]:checked + label.complist{
 }.container_data p{
     margin : 5px 0;
     text-indent: 50px;
+    padding: 0 5px;
     width: 100%;
-    font-size: 22px;
+    font-size: 20px;
     overflow-wrap: break-word;
     hyphens: auto;
 }.container_data ul li{
     list-style-type: "🔰";
     font-family: monospace;
-    font-size: 25px;
+    font-size: 22px;
     overflow-wrap: break-word;
 }.container_part h5{
     margin-top: 10px;

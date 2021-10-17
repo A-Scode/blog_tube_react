@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/blog_tube_react/static/css/main.aa66d6ee.chunk.css",
-    "main.js": "/blog_tube_react/static/js/main.5199608f.chunk.js",
-    "main.js.map": "/blog_tube_react/static/js/main.5199608f.chunk.js.map",
+    "main.css": "/blog_tube_react/static/css/main.3cc95629.chunk.css",
+    "main.js": "/blog_tube_react/static/js/main.9ed4ad3d.chunk.js",
+    "main.js.map": "/blog_tube_react/static/js/main.9ed4ad3d.chunk.js.map",
     "runtime-main.js": "/blog_tube_react/static/js/runtime-main.7e9059db.js",
     "runtime-main.js.map": "/blog_tube_react/static/js/runtime-main.7e9059db.js.map",
     "static/js/2.760bb816.chunk.js": "/blog_tube_react/static/js/2.760bb816.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.864e55f3.chunk.js": "/blog_tube_react/static/js/3.864e55f3.chunk.js",
     "static/js/3.864e55f3.chunk.js.map": "/blog_tube_react/static/js/3.864e55f3.chunk.js.map",
     "index.html": "/blog_tube_react/index.html",
-    "static/css/main.aa66d6ee.chunk.css.map": "/blog_tube_react/static/css/main.aa66d6ee.chunk.css.map",
+    "static/css/main.3cc95629.chunk.css.map": "/blog_tube_react/static/css/main.3cc95629.chunk.css.map",
     "static/js/2.760bb816.chunk.js.LICENSE.txt": "/blog_tube_react/static/js/2.760bb816.chunk.js.LICENSE.txt",
     "static/media/appUploadBlog.css": "/blog_tube_react/static/media/upload_image_background.20b410ac.svg",
     "static/media/blogTubeIcon.128b206c.svg": "/blog_tube_react/static/media/blogTubeIcon.128b206c.svg",
@@ -22,7 +22,7 @@
     "static/media/email.e322bd87.svg": "/blog_tube_react/static/media/email.e322bd87.svg",
     "static/media/facebook.3bb56ad2.svg": "/blog_tube_react/static/media/facebook.3bb56ad2.svg",
     "static/media/form_background.cfae2e28.svg": "/blog_tube_react/static/media/form_background.cfae2e28.svg",
-    "static/media/github.bff9e854.svg": "/blog_tube_react/static/media/github.bff9e854.svg",
+    "static/media/github.8eef9a2f.svg": "/blog_tube_react/static/media/github.8eef9a2f.svg",
     "static/media/homeIcon.c4907387.svg": "/blog_tube_react/static/media/homeIcon.c4907387.svg",
     "static/media/instagram.3268dfd0.svg": "/blog_tube_react/static/media/instagram.3268dfd0.svg",
     "static/media/join_datetime.db759caf.svg": "/blog_tube_react/static/media/join_datetime.db759caf.svg",
@@ -48,7 +48,7 @@
   "entrypoints": [
     "static/js/runtime-main.7e9059db.js",
     "static/js/2.760bb816.chunk.js",
-    "static/css/main.aa66d6ee.chunk.css",
-    "static/js/main.5199608f.chunk.js"
+    "static/css/main.3cc95629.chunk.css",
+    "static/js/main.9ed4ad3d.chunk.js"
   ]
 }
