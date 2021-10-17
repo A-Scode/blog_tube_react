@@ -5,7 +5,7 @@ import menuIcon from './statics/images/menu_icon.svg'
 import menuIcon3 from './statics/images/menu_icon3.svg'
 import searchIcon from './statics/images/search_icon.svg'
 import search_logo from './statics/images/search_icon.svg'
-import { useHistory,useLocation, useRouteMatch } from 'react-router'
+import { useHistory,useLocation } from 'react-router'
 import { useState, useRef ,useEffect, useCallback, useContext} from 'react'
 import { Link } from 'react-router-dom'
 
@@ -130,16 +130,16 @@ if(!mq.matches){
    
 
 
-    const sorting_list= useCallback(()=>{
+    const sorting_list= useCallback((e)=>{
         try{
-        let elem =  menuIcon_elem.current['searchIcon']
-        let value = elem.value.toLowerCase() 
+        let value = e.target.value.toLowerCase() 
         let copy = props.bloglist
         let const_obj = {}
         let final_arr = []
 
         for (let blog of copy){
-            let index = blog.toLowerCase().search(value)
+            console.log(blog)
+            let index = blog.blog_details.title.toLowerCase().search(value)
             if (index > -1){
                 const_obj[copy.indexOf(blog)] = index
             }
@@ -149,7 +149,7 @@ if(!mq.matches){
         }
         
         set_state_blog_list([...final_arr])
-    }catch(err){}
+    }catch(err){console.log(err)}
 
     },[state_blog_list,menuIcon_elem])
     
@@ -197,7 +197,7 @@ if(!mq.matches){
                 set_menu_state(false)
 
                 }} />
-                :<input ref={el => menuIcon_elem.current['searchIcon'] = el} key={0} placeholder='Search Blogs' onInput = {sorting_list} onFocus = {sorting_list} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />
+                :<input ref={el => menuIcon_elem.current['searchIcon'] = el} key={0} placeholder='Search Blogs' onInput = {e=>sorting_list(e)} onFocus = {e=>sorting_list(e)} id='searchInput'  onFocus={()=>showHideSearch('block')} type='text' />
             }
             <div id="blogList" ref={el => menuIcon_elem.current['blogList'] = el}>
                 {state_blog_list.length !== 0 ? state_blog_list.map((e, i) =>( <BlogSearchElem e = {e} key={i} style = {{backgroundColor:theme_context==="Dark"?"#353535":"white"}} />))
@@ -206,7 +206,7 @@ if(!mq.matches){
             {responsive ?
                 <div id="search" style = {state_search_style}  >
                     {responsive ?
-                        <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {sorting_list} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
+                        <><input ref={el => menuIcon_elem.current['searchIconResponsive'] = el} placeholder='Search Blogs' onInput= {e=>sorting_list(e)} id='searchInputResponsive' type='text' autoFocus= {true} />    </> : null}
                     <div id="blogListContainer" >
                         {state_blog_list.length !== 0 ? state_blog_list.map((e, i) => (<BlogSearchElem e = {e} key={i} style = {{backgroundColor:theme_context==="Dark"?"#353535":"white"}} />))
                             : <div className='blog_elems'  ref = {el=>ref.current.no_blogs=el}> No Blogs Found</div>}

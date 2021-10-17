@@ -23,6 +23,7 @@
     top:0;
 }#follow_button:disabled{
     filter: grayscale(1);
+    cursor: not-allowed;
 }div.user_head{
     display: flex;
     flex-direction: row;
